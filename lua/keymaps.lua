@@ -1,7 +1,7 @@
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
 
 -- TODO: Move general mappings to which-key
+--
 
 -- Disable arrow keys
 vim.keymap.set({ "n", "i" }, "<Up>", "<Nop>", { silent = true, desc = "Disable Up arrow key" })
