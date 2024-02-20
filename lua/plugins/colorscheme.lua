@@ -1,8 +1,8 @@
 return {
   {
     "catppuccin/nvim",
-    event = "VeryLazy",
     name = "catppuccin",
+    event = "VeryLazy",
     priority = 1000,
     opts = {
       transparent_background = true,

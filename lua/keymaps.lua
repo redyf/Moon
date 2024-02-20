@@ -11,6 +11,7 @@ vim.keymap.set({ "n", "i" }, "<Left>", "<Nop>", { silent = true, desc = "Disable
 
 -- General maps
 vim.keymap.set("n", "<leader>f", "+find/file")
+vim.keymap.set("n", "<leader>b", "+buffer")
 vim.keymap.set("n", "<leader>s", "+search")
 vim.keymap.set("n", "<leader>q", "+quit/session")
 vim.keymap.set({ "n", "v" }, "<leader>g", "+git")
