@@ -37,6 +37,6 @@ return {
 	end, { silent = true, desc = "Format Buffer" }),
 
 	vim.keymap.set("v", "<leader>cF", function()
-		require("conform").format()
+		vim.lsp.buf.format()
 	end, { silent = true, desc = "Format Lines" }),
 }

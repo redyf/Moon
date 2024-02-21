@@ -1,19 +1,24 @@
 return {
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    event = "VeryLazy",
-    priority = 1000,
-    opts = {
-      transparent_background = true,
-    },
-  },
-  {
-    "rose-pine/neovim",
-    name = "rose-pine",
-    event = "VeryLazy",
-    config = function()
-  vim.cmd [[colorscheme rose-pine]]
-end,
-  },
+	{
+		"catppuccin/nvim",
+		name = "catppuccin",
+		enable = true,
+		priority = 1000,
+		config = function()
+			require("catppuccin").setup({
+				flavour = "mocha", -- latte, frappe, macchiato, mocha
+				background = { -- :h background
+					light = "macchiato",
+					dark = "mocha",
+				},
+				transparent_background = true,
+			})
+			vim.cmd.colorscheme("catppuccin")
+		end,
+	},
+	{
+		"rose-pine/neovim",
+		name = "rose-pine",
+		enable = false,
+	},
 }

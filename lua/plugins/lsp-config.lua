@@ -21,6 +21,7 @@ return {
 					"taplo",
 					"yamlls",
 				},
+				auto_install = true,
 			})
 		end,
 	},
@@ -30,12 +31,26 @@ return {
 			"pmizio/typescript-tools.nvim",
 		},
 		config = function()
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")
 
-			lspconfig["lua_ls"].setup({
+			lspconfig.eslint.setup({
+				capabilities = capabilities,
+			})
+
+			lspconfig.pyright.setup({
+				capabilities = capabilities,
+			})
+
+			lspconfig.ruff_lsp.setup({
+				capabilities = capabilities,
+			})
+
+			lspconfig.lua_ls.setup({
+				capabilities = capabilities,
 				Lua = {
 					completion = {
-						call_snippet = "replace",
+						callSnippet = "replace",
 					},
 					diagnostics = {
 						globals = { "vim" },
@@ -48,7 +63,24 @@ return {
 					},
 				},
 			})
-			lspconfig["tsserver"].setup({
+
+			lspconfig.rust_analyzer.setup({
+				capabilities = capabilities,
+				install_cargo = true,
+				install_rustc = true,
+				settings = {
+					check_on_save = true,
+					check = {
+						command = "clippy",
+					},
+					proc_macro = {
+						enable = true,
+					},
+				},
+			})
+
+			lspconfig.tsserver.setup({
+				capabilities = capabilities,
 				settings = {
 					typescript = {
 						inlayHints = {
@@ -77,29 +109,7 @@ return {
 					},
 				},
 			})
-			require("typescript-tools").setup({
-				on_attach = function(client, bufnr)
-					client.server_capabilities.documentFormattingProvider = false
-					client.server_capabilities.documentRangeFormattingProvider = false
 
-					if vim.lsp.inlay_hint then
-						vim.lsp.inlay_hint.enable(bufnr, true)
-					end
-				end,
-				settings = {
-					tsserver_file_preferences = {
-						-- Inlay Hints
-						includeInlayParameterNameHints = "all",
-						includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-						includeInlayFunctionParameterTypeHints = true,
-						includeInlayVariableTypeHints = true,
-						includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-						includeInlayPropertyDeclarationTypeHints = true,
-						includeInlayFunctionLikeReturnTypeHints = true,
-						includeInlayEnumMemberValueHints = true,
-					},
-				},
-			})
 			require("lspconfig.ui.windows").default_options = {
 				border = "rounded",
 			}

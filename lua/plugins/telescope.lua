@@ -5,7 +5,7 @@ return {
 	event = "VeryLazy",
 	-- or                              , branch = '0.1.x',
 	dependencies = {
-		"nvim-lua/plenary.nvim",
+		{ "nvim-lua/plenary.nvim", event = "VeryLazy" },
 		{
 			"ahmedkhalf/project.nvim",
 			event = "VeryLazy",

@@ -4,6 +4,13 @@ return {
 		enabled = true,
 		event = "VeryLazy",
 		config = function()
+			require("notify").setup({
+				background_colour = "#000000",
+				fps = 60,
+				render = "default",
+				timeout = 500,
+				topDown = true,
+			})
 			local notify = require("notify")
 
 			-- Enable notifications for toggle commands
@@ -104,13 +111,6 @@ return {
 				end,
 				desc = "Dismiss all Notifications",
 			},
-		},
-		opts = {
-			background_colour = "#000000",
-			fps = 60,
-			render = "default",
-			timeout = 500,
-			topDown = true,
 		},
 	},
 }
