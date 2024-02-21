@@ -2,13 +2,17 @@ return {
 	{
 		"akinsho/bufferline.nvim",
 		version = "*",
+		after = "catppuccin",
 		event = "VeryLazy",
 		dependencies = "nvim-tree/nvim-web-devicons",
-		opts = {
-			options = {
-				separator_style = "thick", -- slant | "slope" | "thick" | "thin" | { 'any', 'any' },
-			},
-		},
+		config = function()
+			require("bufferline").setup({
+				options = {
+					separator_style = "thick", -- slant | "slope" | "thick" | "thin" | { 'any', 'any' },
+					highlights = require("catppuccin.groups.integrations.bufferline").get(),
+				},
+			})
+		end,
 	},
 	vim.keymap.set("n", "<Tab>", "<cmd>BufferLineCycleNext<cr>", { desc = "Cycle to Next Buffer" }),
 	vim.keymap.set("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Cycle to previous buffer" }),

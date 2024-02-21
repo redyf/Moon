@@ -11,7 +11,7 @@ return {
 			event = "VeryLazy",
 			config = function()
 				local telescope = require("telescope")
-				require("telescope").load_extension("projects")
+				telescope.load_extension("projects")
 				require("project_nvim").setup({})
 			end,
 			keys = {
