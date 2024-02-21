@@ -1,3 +1,11 @@
+return {
+	{
+		"rcarriga/nvim-notify",
+		enabled = true,
+    event = "VeryLazy",
+		config = function()
+			local notify = require("notify")
+      
 -- Enable notifications for toggle commands
  local function show_notification(message, level)
  	notify(message, level, { title = "conform.nvim" })
@@ -14,8 +22,7 @@
  	end
  end
 
- function ToggleRelativeLineNumber()
- 	if vim.wo.relativenumber then
+ function ToggleRelativeLineNumber() if vim.wo.relativenumber then
  		vim.wo.relativenumber = false
  		show_notification("Relative line numbers disabled", "info")
  	else
@@ -36,19 +43,16 @@
  	end
  end
 
- if vim.lsp.inlay_hint then
- 	vim.keymap.set("n", "<leader>uh", function()
- 		vim.lsp.inlay_hint(0, nil)
- 	end, { desc = "Toggle Inlay Hints" })
+ function ToggleInlayHints()
+ 	if vim.lsp.inlay_hints then
+ 		vim.lsp.inlay_hints = false
+ 		show_notification("Inlay Hints disabled", "info")
+ 	else
+ 		vim.lsp.inlay_hints = true
+ 		show_notification("Inlay Hints enabled", "info")
+ 	end
  end
-
-return {
-	{
-		"rcarriga/nvim-notify",
-		enabled = true,
-    event = "VeryLazy",
-		config = function()
-			local notify = require("notify")
+ 
 			local filtered_message = { "No information available" }
 
 			-- Override notify function to filter out messages

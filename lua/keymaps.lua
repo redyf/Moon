@@ -66,16 +66,23 @@ vim.keymap.set(
 vim.keymap.set(
 	"n",
 	"<leader>ul",
-	"function() lua ToggleLineNumber() end",
+	function() ToggleLineNumber() end,
 	{ silent = true, desc = "Toggle Line Numbers" }
 )
 vim.keymap.set(
 	"n",
 	"<leader>uL",
-	"function() lua ToggleRelativeLineNumber() end",
+	function() ToggleRelativeLineNumber() end,
 	{ silent = true, desc = "Toggle Relative Line Numbers" }
 )
-vim.keymap.set("n", "<leader>uw", "function() lua ToggleWrap() end", { silent = true, desc = "Toggle Line Wrap" })
+vim.keymap.set("n", "<leader>uw", function() ToggleWrap() end, { silent = true, desc = "Toggle Line Wrap" })
+
+-- Enable inlay hints if available
+if vim.lsp.inlay_hint then
+	vim.keymap.set("n", "<leader>uh", function()
+    ToggleInlayHints()
+	end, { desc = "Toggle Inlay Hints" })
+end
 
 -- Cool remaps
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true, desc = "Move up when line is highlighted" })
@@ -116,48 +123,3 @@ vim.keymap.set({ "n", "v" }, "<leader>D", [["_d]], { silent = true, desc = "Dele
 vim.keymap.set("i", "<C-c>", "<Esc>", { silent = true, desc = "Exit insert mode" })
 vim.keymap.set("n", "<C-f>", "!tmux new tmux-sessionizer<CR>", { silent = true, desc = "Switch between projects" })
 
--- Enable notifications for toggle commands
--- local notify = require("notify")
---
--- local function show_notification(message, level)
--- 	notify(message, level, { title = "conform.nvim" })
--- end
---
--- function ToggleLineNumber()
--- 	if vim.wo.number then
--- 		vim.wo.number = false
--- 		show_notification("Line numbers disabled", "info")
--- 	else
--- 		vim.wo.number = true
--- 		vim.wo.relativenumber = false
--- 		show_notification("Line numbers enabled", "info")
--- 	end
--- end
---
--- function ToggleRelativeLineNumber()
--- 	if vim.wo.relativenumber then
--- 		vim.wo.relativenumber = false
--- 		show_notification("Relative line numbers disabled", "info")
--- 	else
--- 		vim.wo.relativenumber = true
--- 		vim.wo.number = false
--- 		show_notification("Relative line numbers enabled", "info")
--- 	end
--- end
---
--- function ToggleWrap()
--- 	if vim.wo.wrap then
--- 		vim.wo.wrap = false
--- 		show_notification("Wrap disabled", "info")
--- 	else
--- 		vim.wo.wrap = true
--- 		vim.wo.number = false
--- 		show_notification("Wrap enabled", "info")
--- 	end
--- end
---
--- if vim.lsp.inlay_hint then
--- 	vim.keymap.set("n", "<leader>uh", function()
--- 		vim.lsp.inlay_hint(0, nil)
--- 	end, { desc = "Toggle Inlay Hints" })
--- end

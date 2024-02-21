@@ -2,35 +2,27 @@ return {
 	"nvim-telescope/telescope.nvim",
 	tag = "0.1.5",
 	cmd = { "Telescope" },
-  event = "VeryLazy",
+	event = "VeryLazy",
 	-- or                              , branch = '0.1.x',
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		{
-			"nvim-telescope/telescope-project.nvim",
-      event = "VeryLazy",
+			"ahmedkhalf/project.nvim",
+			event = "VeryLazy",
 			config = function()
 				local telescope = require("telescope")
-				local actions = require("telescope._extensions.project.actions")
-				telescope.load_extension("project")
-				vim.api.nvim_create_user_command("TelescopeProjects", function()
-					telescope.extensions.project.project({
-						attach_mappings = function(_, map)
-							map("i", "<C-n>", actions.add_project_cwd)
-							return true
-						end,
-					})
-				end, { nargs = 0 })
+				require("telescope").load_extension("projects")
+				require("project_nvim").setup({})
 			end,
 			keys = {
-				{ "<leader>fp", "<CMD>TelescopeProjects<CR>", desc = "Projects" },
+				{ "<leader>fp", "<CMD>Telescope projects<CR>", desc = "Projects" },
 			},
 		},
-		{ 
-      "nvim-telescope/telescope-fzf-native.nvim",
-      build = "make",
-      event = "VeryLazy",
-  },
+		{
+			"nvim-telescope/telescope-fzf-native.nvim",
+			build = "make",
+			event = "VeryLazy",
+		},
 	},
 	keys = {
 		{ "<leader><space>", "<CMD>Telescope find_files<CR>", desc = "Find project files" },
@@ -66,11 +58,11 @@ return {
 					},
 				},
 			},
-      pickers = {
-        colorscheme = {
-          enable_preview = true,
-        },
-      },
+			pickers = {
+				colorscheme = {
+					enable_preview = true,
+				},
+			},
 			extensions = {
 				fzf = {
 					fuzzy = true,
