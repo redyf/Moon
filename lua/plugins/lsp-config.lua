@@ -30,19 +30,52 @@ return {
 			"pmizio/typescript-tools.nvim",
 		},
 		config = function()
-			require("lspconfig.ui.windows").default_options = {
-				border = "rounded",
-			}
-			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-				border = "rounded",
-			})
+			local lspconfig = require("lspconfig")
 
-			vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-				border = "rounded",
+			lspconfig["lua_ls"].setup({
+				Lua = {
+					completion = {
+						call_snippet = "replace",
+					},
+					diagnostics = {
+						globals = { "vim" },
+					},
+					telemetry = {
+						enabled = false,
+					},
+					hint = {
+						enable = true,
+					},
+				},
 			})
-
-			vim.diagnostic.config({
-				float = { border = "rounded" },
+			lspconfig["tsserver"].setup({
+				settings = {
+					typescript = {
+						inlayHints = {
+							-- taken from https://github.com/typescript-language-server/typescript-language-server#workspacedidchangeconfiguration
+							includeInlayEnumMemberValueHints = true,
+							includeInlayFunctionLikeReturnTypeHints = true,
+							includeInlayFunctionParameterTypeHints = true,
+							includeInlayParameterNameHints = "all",
+							includeInlayParameterNameHintsWhenArgumentMatchesName = true, -- false
+							includeInlayPropertyDeclarationTypeHints = true,
+							includeInlayVariableTypeHints = true,
+							includeInlayVariableTypeHintsWhenTypeMatchesName = true, -- false
+						},
+					},
+					javascript = {
+						inlayHints = {
+							includeInlayEnumMemberValueHints = true,
+							includeInlayFunctionLikeReturnTypeHints = true,
+							includeInlayFunctionParameterTypeHints = true,
+							includeInlayParameterNameHints = "all",
+							includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+							includeInlayPropertyDeclarationTypeHints = true,
+							includeInlayVariableTypeHints = true,
+							includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+						},
+					},
+				},
 			})
 			require("typescript-tools").setup({
 				on_attach = function(client, bufnr)
@@ -67,18 +100,21 @@ return {
 					},
 				},
 			})
-			-- local lspconfig = require("lspconfig")
-			--
-			-- lspconfig.clangd.setup({
-			-- 	on_attach = function(client, bufnr)
-			-- 		client.server_capabilities.signatureHelpProvider = false
-			-- 		on_attach(client, bufnr)
-			-- 	end,
-			-- 	capabilities = "offsetEncoding = 'utf-16'",
-			-- })
+			require("lspconfig.ui.windows").default_options = {
+				border = "rounded",
+			}
+			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+				border = "rounded",
+			})
 
-			-- Use LspAttach autocommand to only map the following keys
-			-- after the language server attaches to the current buffer
+			vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+				border = "rounded",
+			})
+
+			vim.diagnostic.config({
+				float = { border = "rounded" },
+			})
+
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 				callback = function(ev)
@@ -101,55 +137,5 @@ return {
 				end,
 			})
 		end,
-		opts = {
-			servers = {
-				lua_ls = {
-					Lua = {
-						workspace = { checkThirdParty = false },
-						completion = {
-							call_snippet = "Replace",
-						},
-						diagnostics = {
-							globals = { "vim" },
-						},
-						telemetry = {
-							enabled = false,
-						},
-						hint = {
-							enable = true,
-						},
-					},
-				},
-				tsserver = {
-					settings = {
-						typescript = {
-							inlayHints = {
-								-- taken from https://github.com/typescript-language-server/typescript-language-server#workspacedidchangeconfiguration
-								includeInlayEnumMemberValueHints = true,
-								includeInlayFunctionLikeReturnTypeHints = true,
-								includeInlayFunctionParameterTypeHints = true,
-								includeInlayParameterNameHints = "all",
-								includeInlayParameterNameHintsWhenArgumentMatchesName = true, -- false
-								includeInlayPropertyDeclarationTypeHints = true,
-								includeInlayVariableTypeHints = true,
-								includeInlayVariableTypeHintsWhenTypeMatchesName = true, -- false
-							},
-						},
-						javascript = {
-							inlayHints = {
-								includeInlayEnumMemberValueHints = true,
-								includeInlayFunctionLikeReturnTypeHints = true,
-								includeInlayFunctionParameterTypeHints = true,
-								includeInlayParameterNameHints = "all",
-								includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-								includeInlayPropertyDeclarationTypeHints = true,
-								includeInlayVariableTypeHints = true,
-								includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-							},
-						},
-					},
-				},
-			},
-		},
 	},
 }

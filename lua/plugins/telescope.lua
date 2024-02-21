@@ -22,6 +22,13 @@ return {
 			"nvim-telescope/telescope-fzf-native.nvim",
 			build = "make",
 			event = "VeryLazy",
+			config = function()
+				require("telescope").load_extension("ui-select")
+			end,
+		},
+		{
+			"nvim-telescope/telescope-ui-select.nvim",
+			event = "VeryLazy",
 		},
 	},
 	keys = {
@@ -69,6 +76,9 @@ return {
 					override_generic_sorter = true,
 					override_file_sorter = true,
 					case_mode = "smart_case",
+				},
+				["ui-select"] = {
+					require("telescope.themes").get_dropdown({}),
 				},
 			},
 		})

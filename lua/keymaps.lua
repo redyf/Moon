@@ -63,24 +63,20 @@ vim.keymap.set(
 )
 
 -- Toggle
-vim.keymap.set(
-	"n",
-	"<leader>ul",
-	function() ToggleLineNumber() end,
-	{ silent = true, desc = "Toggle Line Numbers" }
-)
-vim.keymap.set(
-	"n",
-	"<leader>uL",
-	function() ToggleRelativeLineNumber() end,
-	{ silent = true, desc = "Toggle Relative Line Numbers" }
-)
-vim.keymap.set("n", "<leader>uw", function() ToggleWrap() end, { silent = true, desc = "Toggle Line Wrap" })
+vim.keymap.set("n", "<leader>ul", function()
+	ToggleLineNumber()
+end, { silent = true, desc = "Toggle Line Numbers" })
+vim.keymap.set("n", "<leader>uL", function()
+	ToggleRelativeLineNumber()
+end, { silent = true, desc = "Toggle Relative Line Numbers" })
+vim.keymap.set("n", "<leader>uw", function()
+	ToggleWrap()
+end, { silent = true, desc = "Toggle Line Wrap" })
 
 -- Enable inlay hints if available
 if vim.lsp.inlay_hint then
 	vim.keymap.set("n", "<leader>uh", function()
-    ToggleInlayHints()
+		ToggleInlayHints()
 	end, { desc = "Toggle Inlay Hints" })
 end
 
@@ -122,4 +118,3 @@ vim.keymap.set({ "n", "v" }, "<leader>D", [["_d]], { silent = true, desc = "Dele
 -- <C-c> instead of pressing esc just because
 vim.keymap.set("i", "<C-c>", "<Esc>", { silent = true, desc = "Exit insert mode" })
 vim.keymap.set("n", "<C-f>", "!tmux new tmux-sessionizer<CR>", { silent = true, desc = "Switch between projects" })
-
