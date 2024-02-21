@@ -30,10 +30,6 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
-			-- nvim-cmp supports additional completion capabilities
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			local lspconfig = require("lspconfig")
-
 			require("lspconfig.ui.windows").default_options = {
 				border = "rounded",
 			}
@@ -49,6 +45,10 @@ return {
 			vim.diagnostic.config({
 				float = { border = "rounded" },
 			})
+
+			-- nvim-cmp supports additional completion capabilities
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			local lspconfig = require("lspconfig")
 
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
@@ -69,6 +69,10 @@ return {
 			})
 
 			lspconfig.eslint.setup({
+				capabilities = capabilities,
+			})
+
+			lspconfig.nil_ls.setup({
 				capabilities = capabilities,
 			})
 
