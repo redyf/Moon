@@ -1,7 +1,6 @@
 return {
 	{
 		"hrsh7th/nvim-cmp",
-		event = { "BufReadPost", "BufNewFile" },
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
@@ -15,8 +14,8 @@ return {
 			"windwp/nvim-ts-autotag",
 		},
 		config = function()
-			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 			local cmp = require("cmp")
+			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 			local luasnip = require("luasnip")
 			local lspkind = require("lspkind")
 
@@ -33,6 +32,9 @@ return {
 					expand = function(args)
 						require("luasnip").lsp_expand(args.body)
 					end,
+				},
+				formatting = {
+					fields = { "kind", "abbr", "menu" },
 				},
 				window = {
 					completion = cmp.config.window.bordered(),
@@ -94,13 +96,13 @@ return {
 			})
 
 			-- Set configuration for specific filetype.
-			cmp.setup.filetype("gitcommit", {
-				sources = cmp.config.sources({
-					{ name = "git" }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
-				}, {
-					{ name = "buffer" },
-				}),
-			})
+			-- cmp.setup.filetype("gitcommit", {
+			-- 	sources = cmp.config.sources({
+			-- 		{ name = "git" }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
+			-- 	}, {
+			-- 		{ name = "buffer" },
+			-- 	}),
+			-- })
 
 			-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
 			cmp.setup.cmdline({ "/", "?" }, {

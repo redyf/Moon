@@ -15,7 +15,6 @@ return {
 			require("mason-lspconfig").setup({
 				ensure_installed = {
 					"lua_ls",
-					"rust_analyzer",
 					"jsonls",
 					"jdtls",
 					"marksman",
@@ -35,7 +34,24 @@ return {
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")
 
+			require("lspconfig.ui.windows").default_options = {
+				border = "rounded",
+			}
+
+			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+				border = "rounded",
+			})
+
+			vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+				border = "rounded",
+			})
+
+			vim.diagnostic.config({
+				float = { border = "rounded" },
+			})
+
 			lspconfig.lua_ls.setup({
+				capabilities = capabilities,
 				Lua = {
 					completion = {
 						callSnippet = "replace",
@@ -52,13 +68,23 @@ return {
 				},
 			})
 
-			lspconfig.eslint.setup({})
+			lspconfig.eslint.setup({
 
-			lspconfig.pyright.setup({})
+				capabilities = capabilities,
+			})
 
-			lspconfig.ruff_lsp.setup({})
+			lspconfig.pyright.setup({
+
+				capabilities = capabilities,
+			})
+
+			lspconfig.ruff_lsp.setup({
+
+				capabilities = capabilities,
+			})
 
 			lspconfig.rust_analyzer.setup({
+				capabilities = capabilities,
 				settings = {
 					["rust-analyzer"] = {
 						check_on_save = true,
@@ -126,22 +152,6 @@ return {
 					vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
 					vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
 				end,
-			})
-
-			require("lspconfig.ui.windows").default_options = {
-				border = "rounded",
-			}
-
-			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-				border = "rounded",
-			})
-
-			vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-				border = "rounded",
-			})
-
-			vim.diagnostic.config({
-				float = { border = "rounded" },
 			})
 		end,
 	},
