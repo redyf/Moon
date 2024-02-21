@@ -4,6 +4,12 @@ return {
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
 		"JoosepAlviste/nvim-ts-context-commentstring",
+		config = function()
+			---@diagnostic disable-next-line: missing-fields
+			require("ts_context_commentstring").setup({
+				enable_autocmd = false,
+			})
+		end,
 	},
 	config = function()
 		-- import comment plugin safely
@@ -16,5 +22,7 @@ return {
 			-- for commenting tsx and jsx files
 			pre_hook = ts_context_commentstring.create_pre_hook(),
 		})
+		local ft = require("Comment.ft")
+		ft.set("reason", { "//%s", "/*%s*/" })
 	end,
 }

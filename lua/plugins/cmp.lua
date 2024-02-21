@@ -11,12 +11,21 @@ return {
 			"saadparwaiz1/cmp_luasnip",
 			"rafamadriz/friendly-snippets",
 			"onsails/lspkind.nvim",
+			"windwp/nvim-autopairs",
+			"windwp/nvim-ts-autotag",
 		},
 		config = function()
+			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
 			local lspkind = require("lspkind")
 
+			require("nvim-autopairs").setup()
+
+			-- Integrate nvim-autopairs with cmp
+			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+
+			-- Load snippets
 			require("luasnip.loaders.from_vscode").lazy_load()
 
 			cmp.setup({
@@ -62,10 +71,10 @@ return {
 
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
-					{ name = "buffer" },
+					{ name = "buffer", max_item_count = 5 },
 					{ name = "copilot" },
-					{ name = "path" },
-					{ name = "luasnip" },
+					{ name = "path", max_item_count = 3 },
+					{ name = "luasnip", max_item_count = 3 },
 				}),
 				-- Enable pictogram icons for lsp/autocompletion
 				formatting = {
