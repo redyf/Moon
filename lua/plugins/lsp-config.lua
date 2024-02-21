@@ -1,28 +1,17 @@
 return {
 	{
-		"neovim/nvim-lspconfig",
-		event = { "BufReadPost" },
-		cmd = { "LspInfo", "LspInstall", "LspUninstall", "LspStart", "LspStop", "LspLog", "LspRestart" },
-		dependencies = {
-			"williamboman/mason.nvim",
-			"williamboman/mason-lspconfig.nvim",
-			"folke/neodev.nvim",
-		},
+		"williamboman/mason.nvim",
 		config = function()
-			require("neodev").setup({
-				library = {
-					enabled = true,
-					plugins = { "neotest" },
-					types = true,
-				},
-			})
-
 			require("mason").setup({
 				ui = {
 					border = "rounded",
 				},
 			})
-
+		end,
+	},
+	{
+		"williamboman/mason-lspconfig.nvim",
+		config = function()
 			require("mason-lspconfig").setup({
 				ensure_installed = {
 					"lua_ls",
@@ -37,16 +26,14 @@ return {
 				},
 				auto_install = true,
 			})
-
+		end,
+	},
+	{
+		"neovim/nvim-lspconfig",
+		config = function()
 			-- nvim-cmp supports additional completion capabilities
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")
-
-			lspconfig.eslint.setup({})
-
-			lspconfig.pyright.setup({})
-
-			lspconfig.ruff_lsp.setup({})
 
 			lspconfig.lua_ls.setup({
 				Lua = {
@@ -65,16 +52,22 @@ return {
 				},
 			})
 
+			lspconfig.eslint.setup({})
+
+			lspconfig.pyright.setup({})
+
+			lspconfig.ruff_lsp.setup({})
+
 			lspconfig.rust_analyzer.setup({
-				install_cargo = true,
-				install_rustc = true,
 				settings = {
-					check_on_save = true,
-					check = {
-						command = "clippy",
-					},
-					proc_macro = {
-						enable = true,
+					["rust-analyzer"] = {
+						check_on_save = true,
+						check = {
+							command = "clippy",
+						},
+						proc_macro = {
+							enable = true,
+						},
 					},
 				},
 			})
