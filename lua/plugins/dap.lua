@@ -7,6 +7,29 @@ return {
 		config = function()
 			local dap, dapui = require("dap"), require("dapui")
 			dapui.setup()
+
+			dap.adapters.lldb = {
+				type = "executable",
+				command = "/run/current-system/sw/bin/lldb-vscode", -- adjust as needed, must be absolute path
+				name = "lldb",
+			}
+
+			dap.configurations.cpp = {
+				{
+					name = "Launch",
+					type = "lldb",
+					request = "launch",
+					program = function()
+						return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+					end,
+					cwd = "${workspaceFolder}",
+					stopOnEntry = false,
+					args = {},
+				},
+			}
+			dap.configurations.rust = dap.configurations.cpp
+		end,
+	},
 	vim.keymap.set("n", "<leader>dB", function()
 		require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
 	end, { silent = true, desc = "Breakpoint Condition" }),
@@ -68,6 +91,4 @@ return {
 	vim.keymap.set({ "n", "v" }, "<leader>de", function()
 		require("dapui").eval()
 	end, { silent = true, desc = "Eval" }),
-		end,
-	},
 }
