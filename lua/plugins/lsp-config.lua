@@ -16,7 +16,6 @@ return {
 				ensure_installed = {
 					"lua_ls",
 					"jsonls",
-					"jdtls",
 					"marksman",
 					"pyright",
 					"ruff_lsp",
@@ -66,6 +65,10 @@ return {
 						enable = true,
 					},
 				},
+			})
+
+			lspconfig.jdtls.setup({
+				capatilities = capabilities,
 			})
 
 			lspconfig.eslint.setup({

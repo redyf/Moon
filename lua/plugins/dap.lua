@@ -16,6 +16,7 @@ return {
 				name = "lldb",
 			}
 
+			-- C++
 			dap.configurations.cpp = {
 				{
 					name = "Launch",
@@ -30,6 +31,7 @@ return {
 				},
 			}
 
+			-- Rust
 			dap.configurations.rust = {
 				{
 					name = "Launch",
@@ -70,23 +72,28 @@ return {
 				},
 			}
 
+			-- Java
 			dap.adapters.java = function(callback)
-				-- FIXME:
-				-- Here a function needs to trigger the `vscode.java.startDebugSession` LSP command
-				-- The response to the command must be the `port` used below
 				callback({
 					type = "server",
 					host = "127.0.0.1",
-					port = port,
+					port = 5005,
 				})
 			end
+
 			dap.configurations.java = {
 				{
 					type = "java",
 					request = "attach",
 					name = "Debug (Attach) - Remote",
 					hostName = "127.0.0.1",
-					port = 5005,
+					port = 8000,
+				},
+				{
+					name = "Debug Non-Project class",
+					type = "java",
+					request = "launch",
+					program = "${file}",
 				},
 			}
 		end,
