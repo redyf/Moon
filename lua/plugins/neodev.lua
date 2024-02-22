@@ -4,7 +4,7 @@ return {
 	opts = {
 		library = {
 			enabled = true,
-			plugins = { "neotest" },
+			plugins = { "neotest", "nvim-dap-ui" },
 			types = true,
 		},
 	},
