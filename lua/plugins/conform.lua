@@ -15,6 +15,7 @@ return {
 				formatters_by_ft = {
 					["html"] = { { "prettierd", "prettier" } },
 					["css"] = { { "prettierd", "prettier" } },
+					["go"] = { "gofumpt" },
 					["java"] = { "google-java-format" },
 					["python"] = { "black" },
 					["lua"] = { "stylua" },

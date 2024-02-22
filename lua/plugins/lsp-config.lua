@@ -72,6 +72,10 @@ return {
 				capabilities = capabilities,
 			})
 
+			lspconfig.gopls.setup({
+				capabilities = capabilities,
+			})
+
 			lspconfig.nil_ls.setup({
 				capabilities = capabilities,
 			})
