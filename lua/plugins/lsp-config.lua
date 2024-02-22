@@ -17,6 +17,7 @@ return {
 					"lua_ls",
 					"jsonls",
 					"marksman",
+					"jdtls",
 					"pyright",
 					"ruff_lsp",
 					"taplo",
