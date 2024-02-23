@@ -14,7 +14,6 @@ return {
 		config = function()
 			require("mason-lspconfig").setup({
 				ensure_installed = {
-					"lua_ls",
 					"jsonls",
 					"marksman",
 					"jdtls",
@@ -22,6 +21,7 @@ return {
 					"ruff_lsp",
 					"taplo",
 					"yamlls",
+					"gopls",
 				},
 				auto_install = true,
 			})
@@ -30,25 +30,9 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
-			require("lspconfig.ui.windows").default_options = {
-				border = "rounded",
-			}
-
-			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-				border = "rounded",
-			})
-
-			vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-				border = "rounded",
-			})
-
-			vim.diagnostic.config({
-				float = { border = "rounded" },
-			})
-
 			-- nvim-cmp supports additional completion capabilities
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
@@ -137,6 +121,22 @@ return {
 			-- 		},
 			-- 	},
 			-- })
+
+			require("lspconfig.ui.windows").default_options = {
+				border = "rounded",
+			}
+
+			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+				border = "rounded",
+			})
+
+			vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+				border = "rounded",
+			})
+
+			vim.diagnostic.config({
+				float = { border = "rounded" },
+			})
 
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("UserLspConfig", {}),
