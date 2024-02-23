@@ -56,10 +56,6 @@ return {
 				capatilities = capabilities,
 			})
 
-			lspconfig.eslint.setup({
-				capabilities = capabilities,
-			})
-
 			lspconfig.gopls.setup({
 				capabilities = capabilities,
 			})
@@ -89,6 +85,10 @@ return {
 						},
 					},
 				},
+			})
+
+			lspconfig.jsonls.setup({
+				capabilities = capabilities,
 			})
 
 			-- lspconfig.tsserver.setup({

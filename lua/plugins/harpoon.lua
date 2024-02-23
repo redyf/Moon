@@ -2,6 +2,7 @@ return {
 	{
 		"ThePrimeagen/harpoon",
 		event = "VeryLazy",
+		enabled = true,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},
