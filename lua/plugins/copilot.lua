@@ -11,6 +11,10 @@ return {
 				suggestion = {
 					enabled = false,
 				},
+				filetypes = {
+					java = true,
+					["*"] = false, -- disable for all other filetypes and ignore default `filetypes`
+				},
 			})
 		end,
 	},
