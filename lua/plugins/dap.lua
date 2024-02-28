@@ -39,6 +39,41 @@ return {
 			dap.configurations.c = dap.configurations.cpp
 			dap.configurations.rust = dap.configurations.cpp
 
+			-- Dart
+			dap.adapters.dart = {
+				{
+					type = "executable",
+					command = "flutter",
+					args = { "debug_adapter" },
+				},
+			}
+			dap.adapters.flutter = {
+				type = "executable",
+				command = "flutter",
+				args = { "debug_adapter" },
+			}
+			dap.configurations.dart = {
+				{
+					type = "dart",
+					request = "launch",
+					name = "Launch Dart",
+					dartSdkPath = "/etc/profiles/per-user/redyf/bin/dart", -- ensure this is correct
+					flutterSdkPath = "/etc/profiles/per-user/redyf/bin/flutter", -- ensure this is correct
+					program = "${workspaceFolder}/lib/main.dart", -- ensure this is correct
+					cwd = "${workspaceFolder}",
+					args = { "--help" }, -- Note for Dart apps this is args, for Flutter apps toolArgs
+				},
+				{
+					type = "flutter",
+					request = "launch",
+					name = "Launch flutter",
+					dartSdkPath = "/etc/profiles/per-user/redyf/bin/dart", -- ensure this is correct
+					flutterSdkPath = "/etc/profiles/per-user/redyf/bin/flutter", -- ensure this is correct
+					program = "${workspaceFolder}/lib/main.dart", -- ensure this is correct
+					cwd = "${workspaceFolder}",
+				},
+			}
+
 			-- -- Rust
 			-- dap.configurations.rust = {
 			-- 	{
