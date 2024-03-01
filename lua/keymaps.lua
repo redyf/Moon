@@ -116,4 +116,4 @@ vim.keymap.set({ "n", "v" }, "<leader>D", [["_d]], { silent = true, desc = "Dele
 
 -- <C-c> instead of pressing esc just because
 vim.keymap.set("i", "<C-c>", "<Esc>", { silent = true, desc = "Exit insert mode" })
-vim.keymap.set("n", "<C-f>", "!tmux new tmux-sessionizer<CR>", { silent = true, desc = "Switch between projects" })
+vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer-script<CR>", { desc = "Switch between projects" })
