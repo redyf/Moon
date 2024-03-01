@@ -13,6 +13,7 @@ return {
 				},
 				filetypes = {
 					java = true,
+					dart = true,
 					["*"] = false, -- disable for all other filetypes and ignore default `filetypes`
 				},
 			})
