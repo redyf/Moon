@@ -57,9 +57,9 @@ return {
 					type = "dart",
 					request = "launch",
 					name = "Launch Dart",
-					dartSdkPath = "/etc/profiles/per-user/redyf/bin/dart", -- ensure this is correct
+					dartSdkPath = "/etc/profiles/per-user/redyf/bin/dart",
 					flutterSdkPath = "/etc/profiles/per-user/redyf/bin/flutter", -- ensure this is correct
-					program = "${workspaceFolder}/lib/main.dart", -- ensure this is correct
+					program = "${workspaceFolder}/lib/main.dart",
 					cwd = "${workspaceFolder}",
 					args = { "--help" }, -- Note for Dart apps this is args, for Flutter apps toolArgs
 				},
@@ -67,9 +67,9 @@ return {
 					type = "flutter",
 					request = "launch",
 					name = "Launch flutter",
-					dartSdkPath = "/etc/profiles/per-user/redyf/bin/dart", -- ensure this is correct
-					flutterSdkPath = "/etc/profiles/per-user/redyf/bin/flutter", -- ensure this is correct
-					program = "${workspaceFolder}/lib/main.dart", -- ensure this is correct
+					dartSdkPath = "/etc/profiles/per-user/redyf/bin/dart",
+					flutterSdkPath = "/etc/profiles/per-user/redyf/bin/flutter",
+					program = "${workspaceFolder}/lib/main.dart",
 					cwd = "${workspaceFolder}",
 				},
 			}
