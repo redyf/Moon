@@ -34,9 +34,6 @@ return {
 						require("luasnip").lsp_expand(args.body)
 					end,
 				},
-				formatting = {
-					fields = { "kind", "abbr", "menu" },
-				},
 				window = {
 					completion = cmp.config.window.bordered(),
 					documentation = cmp.config.window.bordered(),
@@ -81,6 +78,7 @@ return {
 				}),
 				-- Enable pictogram icons for lsp/autocompletion
 				formatting = {
+					fields = { "kind", "abbr", "menu" },
 					expandable_indicator = true,
 					format = lspkind.cmp_format({
 						mode = "symbol_text",
