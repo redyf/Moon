@@ -14,6 +14,7 @@ return {
 				transparent_background = true,
 				integrations = {
 					alpha = true,
+					bufferline = true,
 					cmp = true,
 					dap = true,
 					dap_ui = true,
@@ -25,14 +26,16 @@ return {
 						scope_color = "", -- catppuccin color (eg. `lavender`) Default: text
 						colored_indent_levels = true,
 					},
+					lsp_saga = false,
 					lsp_trouble = true,
+					markdown = true,
 					mason = true,
 					mini = {
-						enabled = disabled,
+						enabled = false,
 						indentscope_color = "",
 					},
 					native_lsp = {
-						enabled = false,
+						enabled = true,
 						virtual_text = {
 							errors = { "italic" },
 							hints = { "italic" },
@@ -54,6 +57,10 @@ return {
 					noice = false,
 					notify = true,
 					nvimtree = false,
+					telescope = {
+						enabled = true,
+						style = "nvchad",
+					},
 					treesitter = true,
 					treesitter_context = true,
 					ufo = false,
