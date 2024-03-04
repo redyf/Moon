@@ -25,6 +25,7 @@ return {
 					"notify",
 					"toggleterm",
 					"lazyterm",
+					"nvterm",
 				},
 			},
 		},
