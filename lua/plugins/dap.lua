@@ -3,7 +3,10 @@ return {
 		"mfussenegger/nvim-dap",
 		dependencies = {
 			"rcarriga/nvim-dap-ui",
-			"leoluz/nvim-dap-go",
+			{
+				"leoluz/nvim-dap-go",
+				ft = { "go" },
+			},
 			{
 				"jay-babu/mason-nvim-dap.nvim",
 				opts = function(_, opts) end,
