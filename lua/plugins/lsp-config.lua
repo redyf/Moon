@@ -62,6 +62,25 @@ return {
 
 			lspconfig.nil_ls.setup({
 				capabilities = capabilities,
+				cmd = { "nil" },
+				filetypes = { "nix" },
+				init_options = {
+					nix = {
+						flake = {
+							autoArchive = true,
+							-- auto eval flake inputs for improved completion
+							-- generates too many issues
+							autoEvalInputs = false,
+						},
+					},
+				},
+				settings = {
+					["nil"] = {
+						formatting = {
+							command = { "alejandra" },
+						},
+					},
+				},
 			})
 
 			lspconfig.pyright.setup({
