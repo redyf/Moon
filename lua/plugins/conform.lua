@@ -5,6 +5,7 @@ return {
 		config = function()
 			local conform = require("conform")
 			conform.setup({
+				lsp_fallback = true,
 				format_on_save = function(bufnr)
 					-- Disable with a global or buffer-local variable
 					if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
