@@ -1,5 +1,3 @@
-vim.g.mapleader = " "
-
 -- TODO: Move general mappings to which-key
 
 -- Disable arrow keys
