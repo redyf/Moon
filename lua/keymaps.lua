@@ -1,58 +1,55 @@
 -- TODO: Move general mappings to which-key
 
+local map = vim.keymap.set
+
 -- Disable arrow keys
-vim.keymap.set({ "n", "i" }, "<Up>", "<Nop>", { silent = true, desc = "Disable Up arrow key" })
-vim.keymap.set({ "n", "i" }, "<Down>", "<Nop>", { silent = true, desc = "Disable Down arrow key" })
-vim.keymap.set({ "n", "i" }, "<Right>", "<Nop>", { silent = true, desc = "Disable Right arrow key" })
-vim.keymap.set({ "n", "i" }, "<Left>", "<Nop>", { silent = true, desc = "Disable Left arrow key" })
+map({ "n", "i" }, "<Up>", "<Nop>", { silent = true, desc = "Disable Up arrow key" })
+map({ "n", "i" }, "<Down>", "<Nop>", { silent = true, desc = "Disable Down arrow key" })
+map({ "n", "i" }, "<Right>", "<Nop>", { silent = true, desc = "Disable Right arrow key" })
+map({ "n", "i" }, "<Left>", "<Nop>", { silent = true, desc = "Disable Left arrow key" })
 
 -- General maps
-vim.keymap.set("n", "<leader>f", "+find/file")
-vim.keymap.set("n", "<leader>b", "+buffer")
-vim.keymap.set("n", "<leader>s", "+search")
-vim.keymap.set("n", "<leader>q", "+quit/session")
-vim.keymap.set({ "n", "v" }, "<leader>g", "+git")
-vim.keymap.set("n", "<leader>u", "+ui")
-vim.keymap.set("n", "<leader>w", "+windows")
-vim.keymap.set("n", "<leader><tab>", "+tab")
-vim.keymap.set({ "n", "v" }, "<leader>d", "+debug")
-vim.keymap.set({ "n", "v" }, "<leader>c", "+code")
-vim.keymap.set({ "n", "v" }, "<leader>t", "+test")
+map("n", "<leader>f", "+find/file")
+map("n", "<leader>b", "+buffer")
+map("n", "<leader>s", "+search")
+map("n", "<leader>q", "+quit/session")
+map({ "n", "v" }, "<leader>g", "+git")
+map("n", "<leader>u", "+ui")
+map("n", "<leader>w", "+windows")
+map("n", "<leader><tab>", "+tab")
+map({ "n", "v" }, "<leader>d", "+debug")
+map({ "n", "v" }, "<leader>c", "+code")
+map({ "n", "v" }, "<leader>t", "+test")
 
 -- Tabs
-vim.keymap.set("n", "<leader><tab>l", "<cmd>tablast<cr>", { silent = true, desc = "Last Tab" })
-vim.keymap.set("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { silent = true, desc = "First Tab" })
-vim.keymap.set("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { silent = true, desc = "New Tab" })
-vim.keymap.set("n", "<leader><tab>]", "<cmd>tabnext<cr>", { silent = true, desc = "Next Tab" })
-vim.keymap.set("n", "<leader><tab>d", "<cmd>tabclose<cr>", { silent = true, desc = "Close Tab" })
-vim.keymap.set("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { silent = true, desc = "Previous Tab" })
+map("n", "<leader><tab>l", "<cmd>tablast<cr>", { silent = true, desc = "Last Tab" })
+map("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { silent = true, desc = "First Tab" })
+map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { silent = true, desc = "New Tab" })
+map("n", "<leader><tab>]", "<cmd>tabnext<cr>", { silent = true, desc = "Next Tab" })
+map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { silent = true, desc = "Close Tab" })
+map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { silent = true, desc = "Previous Tab" })
 
 -- Windows
-vim.keymap.set("n", "<leader>ww", "<C-W>p", { silent = true, desc = "Other Window" })
-vim.keymap.set("n", "<leader>wd", "<C-W>c", { silent = true, desc = "Delete Window" })
-vim.keymap.set("n", "<leader>w-", "<C-W>s", { silent = true, desc = "Split Window Below" })
-vim.keymap.set("n", "<leader>w|", "<C-W>v", { silent = true, desc = "Split Window Right" })
--- vim.keymap.set("n", "<leader>-", "<C-W>s", {silent = true, desc = "Split Window Below"})
-vim.keymap.set("n", "<leader>|", "<C-W>v", { silent = true, desc = "Split Window Right" })
+map("n", "<leader>ww", "<C-W>p", { silent = true, desc = "Other Window" })
+map("n", "<leader>wd", "<C-W>c", { silent = true, desc = "Delete Window" })
+map("n", "<leader>w-", "<C-W>s", { silent = true, desc = "Split Window Below" })
+map("n", "<leader>w|", "<C-W>v", { silent = true, desc = "Split Window Right" })
+-- map("n", "<leader>-", "<C-W>s", {silent = true, desc = "Split Window Below"})
+map("n", "<leader>|", "<C-W>v", { silent = true, desc = "Split Window Right" })
 
 -- Save file
-vim.keymap.set("n", "<C-s>", "<cmd>w<cr><esc>", { silent = true, desc = "Save file" })
+map("n", "<C-s>", "<cmd>w<cr><esc>", { silent = true, desc = "Save file" })
 
 -- Quit/Session
-vim.keymap.set("n", "<leader>qq", "<cmd>quitall<cr><esc>", { silent = true, desc = "Quit all" })
-vim.keymap.set(
-	"n",
-	"<leader>qs",
-	"function() lua require('persistence').load() end",
-	{ silent = true, desc = "Restore Session" }
-)
-vim.keymap.set(
+map("n", "<leader>qq", "<cmd>quitall<cr><esc>", { silent = true, desc = "Quit all" })
+map("n", "<leader>qs", "function() lua require('persistence').load() end", { silent = true, desc = "Restore Session" })
+map(
 	"n",
 	"<leader>ql",
 	"function() lua require('persistence').load({ last = true })end",
 	{ silent = true, desc = "Restore Last Session" }
 )
-vim.keymap.set(
+map(
 	"n",
 	"<leader>qd",
 	"function() lua require('persistence').stop() end",
@@ -60,58 +57,53 @@ vim.keymap.set(
 )
 
 -- Toggle
-vim.keymap.set("n", "<leader>ul", function()
+map("n", "<leader>ul", function()
 	ToggleLineNumber()
 end, { silent = true, desc = "Toggle Line Numbers" })
-vim.keymap.set("n", "<leader>uL", function()
+map("n", "<leader>uL", function()
 	ToggleRelativeLineNumber()
 end, { silent = true, desc = "Toggle Relative Line Numbers" })
-vim.keymap.set("n", "<leader>uw", function()
+map("n", "<leader>uw", function()
 	ToggleWrap()
 end, { silent = true, desc = "Toggle Line Wrap" })
 
 -- Enable inlay hints if available
 if vim.lsp.inlay_hint then
-	vim.keymap.set("n", "<leader>uh", function()
+	map("n", "<leader>uh", function()
 		ToggleInlayHints()
 	end, { desc = "Toggle Inlay Hints" })
 end
 
 -- Cool remaps
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true, desc = "Move up when line is highlighted" })
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true, desc = "Move down when line is highlighted" })
-vim.keymap.set(
+map("v", "J", ":m '>+1<CR>gv=gv", { silent = true, desc = "Move up when line is highlighted" })
+map("v", "K", ":m '<-2<CR>gv=gv", { silent = true, desc = "Move down when line is highlighted" })
+map(
 	"n",
 	"J",
 	"mzJ`z",
 	{ silent = true, desc = "Allow cursor to stay in the same place after appeding to current line" }
 )
-vim.keymap.set("v", "<", "<gv", { silent = true, desc = "Indent while remaining in visual mode." })
-vim.keymap.set("v", ">", ">gv", { silent = true, desc = "Indent while remaining in visual mode." })
-vim.keymap.set(
-	"n",
-	"<C-d>",
-	"<C-d>zz",
-	{ silent = true, desc = "Allow <C-d> and <C-u> to keep the cursor in the middle" }
-)
-vim.keymap.set("n", "<C-u>", "<C-u>zz", { silent = true, desc = "Allow C-d and C-u to keep the cursor in the middle" })
+map("v", "<", "<gv", { silent = true, desc = "Indent while remaining in visual mode." })
+map("v", ">", ">gv", { silent = true, desc = "Indent while remaining in visual mode." })
+map("n", "<C-d>", "<C-d>zz", { silent = true, desc = "Allow <C-d> and <C-u> to keep the cursor in the middle" })
+map("n", "<C-u>", "<C-u>zz", { silent = true, desc = "Allow C-d and C-u to keep the cursor in the middle" })
 
 -- Remap for dealing with word wrap and adding jumps to the jumplist.
-vim.keymap.set("n", "j", [[(v:count > 1 ? 'm`' . v:count : 'g') . 'j']], { expr = true })
-vim.keymap.set("n", "k", [[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']], { expr = true })
-vim.keymap.set("n", "n", "nzzzv", { silent = true, desc = "Allow search terms to stay in the middle" })
-vim.keymap.set("n", "N", "Nzzzv", { silent = true, desc = "Allow search terms to stay in the middle" })
+map("n", "j", [[(v:count > 1 ? 'm`' . v:count : 'g') . 'j']], { expr = true })
+map("n", "k", [[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']], { expr = true })
+map("n", "n", "nzzzv", { silent = true, desc = "Allow search terms to stay in the middle" })
+map("n", "N", "Nzzzv", { silent = true, desc = "Allow search terms to stay in the middle" })
 
 -- Paste stuff without saving the deleted word into the buffer
-vim.keymap.set("x", "<leader>p", [["_dP]], { silent = true, desc = "Deletes to void register and paste over" })
+map("x", "<leader>p", [["_dP]], { silent = true, desc = "Deletes to void register and paste over" })
 
 -- Copy stuff to system clipboard with <leader> + y or just y to have it just in vim
-vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { silent = true, desc = "Copy to System Clipboard" })
-vim.keymap.set("n", "<leader>Y", [["+Y]], { silent = true, desc = "Copy to system clipboard" })
+map({ "n", "v" }, "<leader>y", [["+y]], { silent = true, desc = "Copy to System Clipboard" })
+map("n", "<leader>Y", [["+Y]], { silent = true, desc = "Copy to system clipboard" })
 
 -- Delete to void register
-vim.keymap.set({ "n", "v" }, "<leader>D", [["_d]], { silent = true, desc = "Delete to void register" })
+map({ "n", "v" }, "<leader>D", [["_d]], { silent = true, desc = "Delete to void register" })
 
 -- <C-c> instead of pressing esc just because
-vim.keymap.set("i", "<C-c>", "<Esc>", { silent = true, desc = "Exit insert mode" })
-vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer-script<CR>", { desc = "Switch between projects" })
+map("i", "<C-c>", "<Esc>", { silent = true, desc = "Exit insert mode" })
+map("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer-script<CR>", { desc = "Switch between projects" })

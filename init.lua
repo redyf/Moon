@@ -28,7 +28,7 @@ lazy.setup({
 }, {
 	change_detection = {
 		enabled = true,
-		notify = true,
+		notify = false,
 	},
 	dev = {
 		path = "~/neovim_config",
