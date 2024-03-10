@@ -1,8 +1,18 @@
 return {
+	-- {
+	-- 	"folke/tokyonight.nvim",
+	-- 	enable = false,
+	-- 	priority = 1000,
+	-- 	opts = {
+	-- 		style = "moon",
+	-- 	},
+	-- },
+
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
 		enable = true,
+    lazy = false,
 		priority = 1000,
 		config = function()
 			require("catppuccin").setup({
