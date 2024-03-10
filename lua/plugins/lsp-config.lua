@@ -72,6 +72,9 @@ return {
 							-- generates too many issues
 							autoEvalInputs = false,
 						},
+						completion = {
+							callSnippet = "replace",
+						},
 					},
 				},
 				settings = {
@@ -155,6 +158,12 @@ return {
 
 			vim.diagnostic.config({
 				float = { border = "rounded" },
+				virtual_text = {
+					prefix = "",
+				},
+				signs = true,
+				underline = true,
+				update_in_insert = true,
 			})
 
 			vim.api.nvim_create_autocmd("LspAttach", {
