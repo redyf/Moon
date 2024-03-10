@@ -1,6 +1,7 @@
 return {
 	{
 		"williamboman/mason.nvim",
+    lazy = false,
 		config = function()
 			require("mason").setup({
 				ui = {
@@ -11,6 +12,7 @@ return {
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
+    event = "VeryLazy",
 		config = function()
 			require("mason-lspconfig").setup({
 				ensure_installed = {
@@ -29,6 +31,7 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
+    lazy = false,
 		config = function()
 			-- nvim-cmp supports additional completion capabilities
 			local lspconfig = require("lspconfig")

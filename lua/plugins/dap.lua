@@ -12,6 +12,7 @@ return {
 				opts = function(_, opts) end,
 			},
 		},
+    event = "VeryLazy",
 		config = function()
 			local dap, dapui = require("dap"), require("dapui")
 			local mason_nvim_dap = require("mason-nvim-dap")

@@ -2,6 +2,7 @@ return {
 	{
 		"pmizio/typescript-tools.nvim",
 		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    event = "VeryLazy",
 		opts = {
 			on_attach = function(client, bufnr)
 				client.server_capabilities.documentFormattingProvider = false

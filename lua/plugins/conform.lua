@@ -1,6 +1,7 @@
 return {
 	{
 		"stevearc/conform.nvim",
+    event = "VeryLazy",
 		config = function()
 			local conform = require("conform")
 			conform.setup({
@@ -11,7 +12,7 @@ return {
 					end
 					return { timeout_ms = 500, lsp_fallback = true }
 				end,
-				notify_on_error = true,
+				    notify_on_error = true,
 				formatters_by_ft = {
 					["html"] = { { "prettierd", "prettier" } },
 					["css"] = { { "prettierd", "prettier" } },
