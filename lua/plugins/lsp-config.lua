@@ -1,28 +1,66 @@
 return {
 	{
 		"williamboman/mason.nvim",
-    lazy = false,
+		lazy = false,
 		config = function()
 			require("mason").setup({
 				ui = {
 					border = "rounded",
+					icons = {
+						package_installed = "✓",
+						package_pending = "➜",
+						package_uninstalled = "✗",
+					},
+				},
+				-- setup your tools here
+				ensure_installed = {
+					-- js
+					"eslint_d",
+					"prettierd",
+					-- JSON
+					"jsonlint",
+					"jq",
+					-- java
+					"checkstyle",
+					"google_java_format",
+					-- python
+					"flake8",
+					"black",
+					-- lua
+					"selene",
+					"stylua",
 				},
 			})
 		end,
 	},
 	{
+		-- Setup your lsp here
 		"williamboman/mason-lspconfig.nvim",
-    event = "VeryLazy",
+		lazy = false,
 		config = function()
 			require("mason-lspconfig").setup({
 				ensure_installed = {
+					-- c
+					"clangd",
+					-- html/css
+					"html",
+					"cssls",
+					-- lua
+					"lua_ls",
+					--json
 					"jsonls",
-					"marksman",
+					-- java
 					"jdtls",
+					-- python
 					"pyright",
 					"ruff_lsp",
+					-- markdown
+					"marksman",
+					-- toml
 					"taplo",
+					-- yaml
 					"yamlls",
+					-- go
 					"gopls",
 				},
 				auto_install = true,
@@ -31,7 +69,7 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
-    lazy = false,
+		lazy = false,
 		config = function()
 			-- nvim-cmp supports additional completion capabilities
 			local lspconfig = require("lspconfig")
