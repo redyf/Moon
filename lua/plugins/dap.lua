@@ -19,13 +19,13 @@ return {
 			dapui.setup()
 			require("dap-go").setup()
 
+			-- C++
 			dap.adapters.lldb = {
 				type = "executable",
-				command = "/run/current-system/sw/bin/lldb-vscode", -- adjust as needed, must be absolute path
+				command = "/etc/profiles/per-user/redyf/bin/lldb-vscode", -- adjust as needed, must be absolute path
 				name = "lldb",
 			}
 
-			-- -- C++
 			dap.configurations.cpp = {
 				{
 					name = "Launch",
