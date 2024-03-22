@@ -2,7 +2,8 @@ return {
 	{
 		"mfussenegger/nvim-dap",
 		dependencies = {
-			"rcarriga/nvim-dap-ui",
+			{ "rcarriga/nvim-dap-ui" },
+			{ "nvim-neotest/nvim-nio" },
 			{
 				"leoluz/nvim-dap-go",
 				ft = { "go" },
@@ -12,7 +13,6 @@ return {
 				opts = function(_, opts) end,
 			},
 		},
-    event = "VeryLazy",
 		config = function()
 			local dap, dapui = require("dap"), require("dapui")
 			local mason_nvim_dap = require("mason-nvim-dap")
