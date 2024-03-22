@@ -12,17 +12,14 @@ return {
 					enabled = false,
 				},
 				filetypes = {
-					java = true,
-					dart = true,
-					["*"] = false, -- disable for all other filetypes and ignore default `filetypes`
+					["*"] = true, -- disable for all other filetypes and ignore default `filetypes`
 				},
 			})
 		end,
 	},
 	{
 		"zbirenbaum/copilot-cmp",
-		event = { "BufEnter" },
-		dependencies = { "zbirenbaum/copilot.lua" },
+		lazy = false,
 		config = function()
 			require("copilot_cmp").setup()
 		end,
