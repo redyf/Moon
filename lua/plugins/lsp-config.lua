@@ -42,6 +42,8 @@ return {
 				ensure_installed = {
 					-- c
 					"clangd",
+					-- docker
+					"dockerls",
 					-- html/css
 					"html",
 					"cssls",
@@ -91,6 +93,22 @@ return {
 						enable = true,
 					},
 				},
+			})
+
+			lspconfig.dockerls.setup({
+				capabilities = capabilities,
+			})
+
+			lspconfig.html.setup({
+				capabilities = capabilities,
+			})
+
+			lspconfig.cssls.setup({
+				capabilities = capabilities,
+			})
+
+			lspconfig.clangd.setup({
+				capabilities = capabilities,
 			})
 
 			lspconfig.jdtls.setup({
@@ -151,6 +169,18 @@ return {
 			})
 
 			lspconfig.jsonls.setup({
+				capabilities = capabilities,
+			})
+
+			lspconfig.marksman.setup({
+				capabilities = capabilities,
+			})
+
+			lspconfig.taplo.setup({
+				capabilities = capabilities,
+			})
+
+			lspconfig.yamlls.setup({
 				capabilities = capabilities,
 			})
 
