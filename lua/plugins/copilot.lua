@@ -12,7 +12,7 @@ return {
 					enabled = false,
 				},
 				filetypes = {
-					["*"] = true, -- disable for all other filetypes and ignore default `filetypes`
+					["*"] = false,
 				},
 			})
 		end,
