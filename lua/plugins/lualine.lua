@@ -44,7 +44,7 @@ return {
 					icons_enabled = true,
 					theme = "auto",
 					component_separators = { left = "|", right = "|" },
-					section_separators = { left = "█", right = "█" },
+					section_separators = { left = "", right = "" }, --   or █
 					disabled_filetypes = {
 						statusline = { "dashboard", "alpha", "starter" },
 					},
@@ -53,7 +53,12 @@ return {
 					globalstatus = true,
 				},
 				sections = {
-					lualine_a = { "mode" },
+					lualine_a = {
+						{
+							"mode",
+							icon = "",
+						},
+					},
 					lualine_b = {
 						{
 							"branch",
