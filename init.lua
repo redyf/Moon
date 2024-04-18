@@ -28,10 +28,6 @@ lazy.setup({
 		enabled = true,
 		notify = false,
 	},
-	dev = {
-		path = "~/neovim_config",
-		fallback = true,
-	},
 	defaults = { lazy = true },
 	ui = {
 		icons = {
