@@ -21,6 +21,7 @@ return {
 					["java"] = { "google-java-format" },
 					["python"] = { "black" },
 					["lua"] = { "stylua" },
+					["yaml"] = { "prettierd" },
 					["rust"] = { "rustfmt" },
 					["markdown"] = { { "prettierd", "prettier" } },
 					["markdown.mdx"] = { { "prettierd", "prettier" } },
