@@ -53,6 +53,7 @@ return {
 					"toml",
 					"yaml",
 				},
+				auto_install = true,
 				incremental_selection = {
 					enable = true,
 					keymaps = {
