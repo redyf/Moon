@@ -53,7 +53,7 @@ vim.opt.termguicolors = true
 vim.opt.signcolumn = "yes"
 
 -- Enable cursor line highlight
-vim.opt.cursorline = true -- Highlight the line where the cursor is located
+vim.opt.cursorline = false -- Highlight the line where the cursor is located
 
 -- Set fold settings
 -- These options were reccommended by nvim-ufo

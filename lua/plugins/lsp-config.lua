@@ -184,6 +184,11 @@ return {
 				capabilities = capabilities,
 			})
 
+			lspconfig.elixirls.setup({
+				capabilities = capabilities,
+				cmd = { "/home/redyf/.local/share/nvim/mason/bin/elixir-ls" },
+			})
+
 			-- lspconfig.tsserver.setup({
 			-- 	capabilities = capabilities,
 			-- 	settings = {
