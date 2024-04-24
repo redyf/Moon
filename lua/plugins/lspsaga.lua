@@ -1,6 +1,6 @@
 return {
 	"nvimdev/lspsaga.nvim",
-	event = "VeryLazy",
+	lazy = false,
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter", -- optional
 		"nvim-tree/nvim-web-devicons", -- optional
