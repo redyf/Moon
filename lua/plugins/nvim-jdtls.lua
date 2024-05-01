@@ -6,7 +6,7 @@ return {
 			"mfussenegger/nvim-dap",
 			"williamboman/mason-lspconfig.nvim",
 		},
-		lazy = false,
+		lazy = true,
 		opts = function(_, opts)
 			local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle", ".project" }
 			local root_dir = require("jdtls.setup").find_root(root_markers)
