@@ -107,3 +107,6 @@ map({ "n", "v" }, "<leader>D", [["_d]], { silent = true, desc = "Delete to void 
 -- <C-c> instead of pressing esc just because
 map("i", "<C-c>", "<Esc>", { silent = true, desc = "Exit insert mode" })
 map("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer-script<CR>", { desc = "Switch between projects" })
+
+-- Set highlight on search, but clear on pressing <Esc> in normal mode
+map("n", "<Esc>", "<cmd>nohlsearch<CR>")
