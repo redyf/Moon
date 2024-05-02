@@ -13,7 +13,7 @@ return {
 		file_assets = {},
 		global_timer = true,
 		log_level = nil,
-		show_time = true,
+		show_time = false,
 		editing_text = "Editing %s",
 		file_explorer_text = "Browsing %s",
 		git_commit_text = "Committing changes",
