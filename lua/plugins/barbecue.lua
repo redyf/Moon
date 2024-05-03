@@ -1,7 +1,7 @@
 return {
 	{
 		"utilyre/barbecue.nvim",
-		lazy = false,
+		event = "VeryLazy",
 		name = "barbecue",
 		version = "*",
 		dependencies = {
@@ -11,6 +11,7 @@ return {
 		config = function()
 			require("barbecue").setup({
 				create_autocmd = false, -- prevent barbecue from updating itself automatically
+				theme = "catppuccin",
 			})
 
 			vim.api.nvim_create_autocmd({
