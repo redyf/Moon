@@ -41,6 +41,8 @@ return {
 		{ "<C-p>", "<cmd>Telescope git_files<cr>", desc = "Search git files" },
 		{ "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "Commits" },
 		{ "<leader>gs", "<cmd>Telescope git_status<cr>", desc = "Status" },
+		{ "<leader>gS", "<cmd>Telescope git_stash<cr>", desc = "Stash" },
+		{ "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "Branch" },
 		{ "<leader>sa", "<cmd>Telescope autocommands<cr>", desc = "Auto Commands" },
 		{ "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Buffer" },
 		{ "<leader>sc", "<cmd>Telescope command_history<cr>", desc = "Command History" },
