@@ -12,7 +12,7 @@
     <a href="https://github.com/redyf/Moon">
         <img src="https://img.shields.io/github/repo-size/redyf/Moon?color=ea999c&labelColor=303446&style=for-the-badge">
     </a>
-    <a href="https://github.com/redyf/Moon/blob/main/.github/LICENCE">
+    <a href="https://github.com/redyf/Moon/blob/main/.github/LICENSE">
         <img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=MIT&logoColor=ca9ee6&colorA=313244&colorB=cba6f7"/>
     </a>
     <br>
@@ -86,6 +86,7 @@ I'm assuming you already use Nix flakes but in case you don't, please check this
 2- Install it by adding inputs.Moon.packages.${system}.default to your environment.systemPackages or home.packages if you're using home-manager.
 
 3- Rebuild your system and you should be done
+
 ```
 
 </details>
@@ -111,10 +112,11 @@ Contributions are welcome! Feel free to [open an issue](https://github.com/redyf
 
 ## License
 
-This project is licensed under the [MIT License](LICENCE). See the LICENSE file for more details.
+This project is licensed under the [MIT License](LICENSE). See the LICENSE file for more details.
 
 ## Support
 
 Encountered an issue or have a question? Visit our [Issue Tracker](https://github.com/redyf/Moon/issues) or message me on Discord, my username is **redyf**
 
 Happy coding!
+```
