@@ -31,6 +31,8 @@ return {
 					["typescriptreact"] = { "prettierd", "prettier" },
 					["json"] = { "jq" },
 					["nix"] = { "alejandra" },
+					["haskell"] = { "ormolu" },
+					["bash"] = { "beautysh" },
 				},
 			})
 		end,
