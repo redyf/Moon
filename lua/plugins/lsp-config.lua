@@ -193,6 +193,10 @@ return {
 				capabilities = capabilities,
 			})
 
+			lspconfig.ocamllsp.setup({
+				capabilities = capabilities,
+			})
+
 			lspconfig.bashls.setup({
 				capabilities = capabilities,
 			})

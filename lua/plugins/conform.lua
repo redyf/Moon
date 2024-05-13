@@ -33,6 +33,7 @@ return {
 					["nix"] = { "alejandra" },
 					["haskell"] = { "ormolu" },
 					["bash"] = { "beautysh" },
+					["ocaml"] = { "ocamlformat" },
 				},
 			})
 		end,
