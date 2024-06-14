@@ -22,6 +22,8 @@ return {
 
 			require("nvim-autopairs").setup()
 
+			require("nvim-ts-autotag").setup()
+
 			-- Integrate nvim-autopairs with cmp
 			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
@@ -87,6 +89,7 @@ return {
 						symbol_map = {
 							Copilot = "",
 						},
+						before = require("tailwind-tools.cmp").lspkind_format,
 					}),
 				},
 				experimental = {
@@ -101,6 +104,14 @@ return {
 			-- 	}, {
 			-- 		{ name = "buffer" },
 			-- 	}),
+			-- })
+
+			-- Setup vim-dadbod
+			-- cmp.setup.filetype({ "sql" }, {
+			-- 	sources = {
+			-- 		{ name = "vim-dadbod-completion" },
+			-- 		{ name = "buffer" },
+			-- 	},
 			-- })
 
 			-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).

@@ -2,14 +2,18 @@ return {
 	{
 		"akinsho/bufferline.nvim",
 		version = "*",
-		after = "catppuccin",
 		event = "VeryLazy",
 		dependencies = "nvim-tree/nvim-web-devicons",
 		config = function()
+			-- local catppuccin_hl = require("catppuccin.groups.integrations.bufferline").get()
+			--local nord_hl = require("nord").bufferline.highlights({
+			--	italic = true,
+			--	bold = true,
+			-- })
 			require("bufferline").setup({
 				options = {
 					separator_style = "thick", -- slant | "slope" | "thick" | "thin" | { 'any', 'any' },
-					highlights = require("catppuccin.groups.integrations.bufferline").get(),
+					-- highlights = catppuccin_hl,
 				},
 			})
 		end,

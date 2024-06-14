@@ -104,6 +104,8 @@ vim.opt.formatexpr = "v:lua.require'conform'.formatexpr()"
 
 vim.opt.laststatus = 3 -- (https://neovim.io/doc/user/options.html#'laststatus')
 
+vim.opt.inccommand = "split" -- (https://neovim.io/doc/user/options.html#'inccommand')
+
 -- Add binaries installed by mason.nvim to path
 local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
 vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin" .. (is_windows and ";" or ":") .. vim.env.PATH
@@ -125,10 +127,9 @@ if g.neovide then
 	g.neovide_transparency = 0.8
 	--
 	--	-- Fonts
-	o.guifont = "MonoLisa:Medium:h13"
-	-- o.guifont = "JetBrainsMono Nerd Font:h14:Medium:i"
-	-- o.guifont = "FiraMono Nerd Font:Medium:h14"
-	-- o.guifont = "CaskaydiaCove Nerd Font:h14:b:i"
-	-- o.guifont = "BlexMono Nerd Font Mono:h14:Medium:i"
-	-- o.guifont = "Liga SFMono Nerd Font:b:h15"
+	o.guifont = "MonoLisa:h11"
+	-- o.guifont = "JetBrainsMono Nerd Font:h11:Medium:i"
+	-- o.guifont = "FiraMono Nerd Font:Medium:h11"
+	-- o.guifont = "CaskaydiaCove Nerd Font:h11:b:i"
+	-- o.guifont = "Liga SFMono Nerd Font:b:h11"
 end

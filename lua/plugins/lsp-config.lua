@@ -47,6 +47,7 @@ return {
 					-- html/css
 					"html",
 					"cssls",
+					"tailwindcss",
 					-- lua
 					"lua_ls",
 					--json
@@ -201,36 +202,48 @@ return {
 				capabilities = capabilities,
 			})
 
-			-- lspconfig.tsserver.setup({
-			-- 	capabilities = capabilities,
-			-- 	settings = {
-			-- 		typescript = {
-			-- 			inlayHints = {
-			-- 				-- taken from https://github.com/typescript-language-server/typescript-language-server#workspacedidchangeconfiguration
-			-- 				includeInlayEnumMemberValueHints = true,
-			-- 				includeInlayFunctionLikeReturnTypeHints = true,
-			-- 				includeInlayFunctionParameterTypeHints = true,
-			-- 				includeInlayParameterNameHints = "all",
-			-- 				includeInlayParameterNameHintsWhenArgumentMatchesName = true, -- false
-			-- 				includeInlayPropertyDeclarationTypeHints = true,
-			-- 				includeInlayVariableTypeHints = true,
-			-- 				includeInlayVariableTypeHintsWhenTypeMatchesName = true, -- false
-			-- 			},
-			-- 		},
-			-- 		javascript = {
-			-- 			inlayHints = {
-			-- 				includeInlayEnumMemberValueHints = true,
-			-- 				includeInlayFunctionLikeReturnTypeHints = true,
-			-- 				includeInlayFunctionParameterTypeHints = true,
-			-- 				includeInlayParameterNameHints = "all",
-			-- 				includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-			-- 				includeInlayPropertyDeclarationTypeHints = true,
-			-- 				includeInlayVariableTypeHints = true,
-			-- 				includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-			-- 			},
-			-- 		},
-			-- 	},
-			-- })
+			lspconfig.tsserver.setup({
+				capabilities = capabilities,
+				settings = {
+					typescript = {
+						inlayHints = {
+							-- taken from https://github.com/typescript-language-server/typescript-language-server#workspacedidchangeconfiguration
+							includeInlayEnumMemberValueHints = true,
+							includeInlayFunctionLikeReturnTypeHints = true,
+							includeInlayFunctionParameterTypeHints = true,
+							includeInlayParameterNameHints = "all",
+							includeInlayParameterNameHintsWhenArgumentMatchesName = true, -- false
+							includeInlayPropertyDeclarationTypeHints = true,
+							includeInlayVariableTypeHints = true,
+							includeInlayVariableTypeHintsWhenTypeMatchesName = true, -- false
+						},
+					},
+					javascript = {
+						inlayHints = {
+							includeInlayEnumMemberValueHints = true,
+							includeInlayFunctionLikeReturnTypeHints = true,
+							includeInlayFunctionParameterTypeHints = true,
+							includeInlayParameterNameHints = "all",
+							includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+							includeInlayPropertyDeclarationTypeHints = true,
+							includeInlayVariableTypeHints = true,
+							includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+						},
+					},
+				},
+			})
+
+			lspconfig.tailwindcss.setup({
+				capabilities = capabilities,
+			})
+
+			lspconfig.prismals.setup({
+				capabilities = capabilities,
+			})
+
+			lspconfig.astro.setup({
+				capabilities = capabilities,
+			})
 
 			require("lspconfig.ui.windows").default_options = {
 				border = "rounded",

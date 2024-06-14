@@ -1,94 +1,124 @@
--- function ColorMyPencils(color)
--- 	color = color or "rose-pine"
--- 	vim.cmd.colorscheme(color)
---
--- 	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
--- 	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
--- end
---
--- return {
--- 	{
--- 		"rose-pine/neovim",
--- 		name = "rose-pine",
--- 		lazy = false,
--- 		config = function()
--- 			require("rose-pine").setup({
--- 				variant = "auto", -- auto, main, moon, or dawn
--- 				dark_variant = "main", -- main, moon, or dawn
--- 				dim_inactive_windows = false,
--- 				extend_background_behind_borders = true,
---
--- 				enable = {
--- 					terminal = true,
--- 					legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
--- 					migrations = true, -- Handle deprecated options automatically
--- 				},
---
--- 				styles = {
--- 					bold = true,
--- 					italic = false,
--- 					transparency = false,
--- 				},
---
--- 				groups = {
--- 					border = "muted",
--- 					link = "iris",
--- 					panel = "surface",
---
--- 					error = "love",
--- 					hint = "iris",
--- 					info = "foam",
--- 					note = "pine",
--- 					todo = "rose",
--- 					warn = "gold",
---
--- 					git_add = "foam",
--- 					git_change = "rose",
--- 					git_delete = "love",
--- 					git_dirty = "rose",
--- 					git_ignore = "muted",
--- 					git_merge = "iris",
--- 					git_rename = "pine",
--- 					git_stage = "iris",
--- 					git_text = "rose",
--- 					git_untracked = "subtle",
---
--- 					h1 = "iris",
--- 					h2 = "foam",
--- 					h3 = "rose",
--- 					h4 = "gold",
--- 					h5 = "pine",
--- 					h6 = "foam",
--- 				},
---
--- 				highlight_groups = {
--- 					TelescopeBorder = { fg = "highlight_high", bg = "none" },
--- 					TelescopeNormal = { bg = "none" },
--- 					TelescopePromptNormal = { bg = "base" },
--- 					TelescopeResultsNormal = { fg = "subtle", bg = "none" },
--- 					TelescopeSelection = { fg = "text", bg = "base" },
--- 					TelescopeSelectionCaret = { fg = "rose", bg = "rose" },
--- 				},
---
--- 				-- before_highlight = function(group, highlight, palette)
--- 				-- Disable all undercurls
--- 				-- if highlight.undercurl then
--- 				--     highlight.undercurl = false
--- 				-- end
--- 				--
--- 				-- Change palette colour
--- 				-- if highlight.fg == palette.pine then
--- 				--     highlight.fg = palette.foam
--- 				-- end
--- 				-- end,
--- 			})
---
--- 			vim.cmd("colorscheme rose-pine")
---
--- 			ColorMyPencils()
--- 		end,
--- 	},
+function ColorMyPencils(color)
+	color = color or "oxocarbon"
+	vim.cmd.colorscheme(color)
+
+	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+end
+
 return {
+	{
+		"nyoom-engineering/oxocarbon.nvim",
+		lazy = false,
+		config = function()
+			vim.cmd([[ colorscheme oxocarbon ]])
+			ColorMyPencils()
+		end,
+	},
+	-- {
+	-- 	"sainnhe/sonokai",
+	-- 	lazy = false,
+	-- 	priority = 1000,
+	-- 	config = function()
+	-- 		vim.g.sonokai_enable_italic = true
+	-- 		vim.g.sonokai_style = "espresso" -- Available values: `'default'`, `'atlantis'`, `'andromeda'`, `'shusia'`, `'maia'`, `'espresso'`
+	-- 		vim.cmd.colorscheme("sonokai")
+	-- 	end,
+	-- },
+	{
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("tokyonight").setup({
+				style = "night", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
+				transparent = false, -- Enable this to disable setting the background color
+				terminal_colors = true, -- Configure the colors used when opening a `:terminal` in [Neovim](https://github.com/neovim/neovim)
+			})
+			-- vim.cmd([[colorscheme tokyonight]])
+		end,
+	},
+	{
+		"rose-pine/neovim",
+		name = "rose-pine",
+		lazy = false,
+		config = function()
+			require("rose-pine").setup({
+				variant = "moon", -- auto, main, moon, or dawn
+				dark_variant = "moon", -- main, moon, or dawn
+				dim_inactive_windows = false,
+				extend_background_behind_borders = true,
+
+				enable = {
+					terminal = true,
+					legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
+					migrations = true, -- Handle deprecated options automatically
+				},
+
+				styles = {
+					bold = true,
+					italic = false,
+					transparency = true,
+				},
+
+				groups = {
+					border = "muted",
+					link = "iris",
+					panel = "surface",
+
+					error = "love",
+					hint = "iris",
+					info = "foam",
+					note = "pine",
+					todo = "rose",
+					warn = "gold",
+
+					git_add = "foam",
+					git_change = "rose",
+					git_delete = "love",
+					git_dirty = "rose",
+					git_ignore = "muted",
+					git_merge = "iris",
+					git_rename = "pine",
+					git_stage = "iris",
+					git_text = "rose",
+					git_untracked = "subtle",
+
+					h1 = "iris",
+					h2 = "foam",
+					h3 = "rose",
+					h4 = "gold",
+					h5 = "pine",
+					h6 = "foam",
+				},
+
+				highlight_groups = {
+					TelescopeBorder = { fg = "highlight_high", bg = "none" },
+					TelescopeNormal = { bg = "none" },
+					TelescopePromptNormal = { bg = "base" },
+					TelescopeResultsNormal = { fg = "subtle", bg = "none" },
+					TelescopeSelection = { fg = "text", bg = "base" },
+					TelescopeSelectionCaret = { fg = "rose", bg = "rose" },
+				},
+
+				-- before_highlight = function(group, highlight, palette)
+				-- Disable all undercurls
+				-- if highlight.undercurl then
+				--     highlight.undercurl = false
+				-- end
+				--
+				-- Change palette colour
+				-- if highlight.fg == palette.pine then
+				--     highlight.fg = palette.foam
+				-- end
+				-- end,
+			})
+
+			-- vim.cmd("colorscheme rose-pine-moon")
+
+			-- ColorMyPencils()
+		end,
+	},
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
@@ -157,7 +187,7 @@ return {
 					which_key = true,
 				},
 			})
-			vim.cmd.colorscheme("catppuccin-mocha")
+			-- vim.cmd.colorscheme("catppuccin-mocha")
 		end,
 	},
 }
