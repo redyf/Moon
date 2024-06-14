@@ -1,8 +1,8 @@
 return {
 	{
-		"redyf/cord.nvim",
-		event = "VeryLazy",
+		"vyfor/cord.nvim",
 		build = "./build",
+		event = "VeryLazy",
 		opts = {
 			usercmds = true, -- Enable user commands
 			timer = {
@@ -21,6 +21,7 @@ return {
 				show_repository = true, -- Display 'View repository' button linked to repository url, if any
 				show_cursor_position = true, -- Display line and column number of cursor's position
 				swap_fields = false, -- If enabled, workspace is displayed first
+				swap_icons = true, -- If enabled, editor is displayed on the main image
 				workspace_blacklist = {}, -- List of workspace names to hide
 			},
 			lsp = {
