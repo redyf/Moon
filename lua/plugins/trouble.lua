@@ -1,26 +1,25 @@
 return {
 	{
 		"folke/trouble.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
 		event = "VeryLazy",
 		opts = {
 			auto_close = true,
 		},
 	},
 	vim.keymap.set("n", "<leader>x", "+diagnostics/quickfix"),
-	vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>", {
+	vim.keymap.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", {
 		silent = true,
-		desc = "Document Diagnostics (Trouble)",
+		desc = "Diagnostics (Trouble)",
 	}),
-	vim.keymap.set("n", "<leader>xX", "<cmd>TroubleToggle workspace_diagnostics<cr>", {
+	vim.keymap.set("n", "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", {
 		silent = true,
-		desc = "Workspace Diagnostics (Trouble)",
+		desc = "Buffer Diagnostics (Trouble)",
 	}),
-	vim.keymap.set("n", "<leader>xt", "<cmd>TroubleToggle todo<cr>", {
+	vim.keymap.set("n", "<leader>xt", "<cmd>Trouble todo<cr>", {
 		silent = true,
 		desc = "Todo (Trouble)",
 	}),
-	vim.keymap.set("n", "<leader>xQ", "<cmd>TodoQuickFix<cr>", {
+	vim.keymap.set("n", "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", {
 		silent = true,
 		desc = "Quickfix List (Trouble)",
 	}),
