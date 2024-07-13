@@ -14,7 +14,7 @@ return {
 			editor = {
 				image = "https://yoolk.ninja/wp-content/uploads/2020/11/Apps-Neovim-1024x1024.png", -- Image ID or URL in case a custom client id is provided
 				client = "1157438221865717891", -- vim, neovim, lunarvim, nvchad, astronvim or your application's client id
-				tooltip = "I use nixos btw", -- Text to display when hovering over the editor's image
+				tooltip = "eeeeemacs", -- Text to display when hovering over the editor's image
 			},
 			display = {
 				show_time = true, -- Display start timestamp
@@ -51,19 +51,6 @@ return {
 					label = "View Repository", -- Text displayed on the button
 					url = "git", -- URL where the button leads to ('git' = automatically fetch Git repository URL)
 				},
-				-- {
-				--   label = 'View Plugin',
-				--   url = 'https://github.com/vyfor/cord.nvim',
-				-- }
-			},
-			assets = { -- Custom file icons
-				-- lazy = {                                 -- Vim filetype or file name or file extension = table or string (see wiki)*
-				--   name = 'Lazy',                         -- Optional override for the icon name, redundant for language types
-				--   icon = 'https://example.com/lazy.png', -- Rich Presence asset name or URL
-				--   tooltip = 'lazy.nvim',                 -- Text to display when hovering over the icon
-				--   type = 2,                              -- 0 = language, 1 = file browser, 2 = plugin manager, 3 = lsp manager, 4 = vcs; defaults to language
-				-- },
-				-- ['Cargo.toml'] = 'crates',
 			},
 		},
 	},
