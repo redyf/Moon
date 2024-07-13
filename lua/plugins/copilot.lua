@@ -12,7 +12,7 @@ return {
 					enabled = false,
 				},
 				filetypes = {
-					["*"] = true,
+					["*"] = false,
 				},
 			})
 		end,
