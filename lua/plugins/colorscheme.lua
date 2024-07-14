@@ -15,16 +15,6 @@ return {
 			ColorMyPencils()
 		end,
 	},
-	-- {
-	-- 	"sainnhe/sonokai",
-	-- 	lazy = false,
-	-- 	priority = 1000,
-	-- 	config = function()
-	-- 		vim.g.sonokai_enable_italic = true
-	-- 		vim.g.sonokai_style = "espresso" -- Available values: `'default'`, `'atlantis'`, `'andromeda'`, `'shusia'`, `'maia'`, `'espresso'`
-	-- 		vim.cmd.colorscheme("sonokai")
-	-- 	end,
-	-- },
 	{
 		"folke/tokyonight.nvim",
 		lazy = false,
