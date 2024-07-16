@@ -41,7 +41,7 @@ return {
 			require("mason-lspconfig").setup({
 				ensure_installed = {
 					-- c
-					"clangd",
+					-- "clangd",
 					-- docker
 					"dockerls",
 					-- html/css
