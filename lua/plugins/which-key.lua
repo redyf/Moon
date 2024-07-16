@@ -5,15 +5,10 @@ return {
 		vim.o.timeout = true
 	end,
 	opts = {
-		ignore_missing = false,
 		icons = {
 			breadcrumb = "»",
 			separator = "", -- ➜
 			group = "+",
-		},
-		window = {
-			border = "none", -- none, single, double, shadow
-			winblend = 0, -- value between 0-100 0 for fully opaque and 100 for fully transparent
 		},
 	},
 	-- local wk = require("which-key")
