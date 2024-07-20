@@ -34,4 +34,36 @@ return {
 		end,
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
+	-- {
+	-- 	"nvimdev/dashboard-nvim",
+	-- 	event = "VimEnter",
+	-- 	dependencies = { { "nvim-tree/nvim-web-devicons" } },
+	-- 	config = function()
+	-- 		require("dashboard").setup({
+	--        -- stylua: ignore start
+	--        -- config
+	--        config = {
+	--          header = {
+	-- 			'    ██▀███  ▓█████ ▓█████▄▓██   ██▓  █████▒ ',
+	-- 			'   ▓██ ▒ ██▒▓█   ▀ ▒██▀ ██▌▒██  ██▒▓██   ▒  ',
+	-- 			'   ▓██ ░▄█ ▒▒███   ░██   █▌ ▒██ ██░▒████ ░  ',
+	-- 			'   ▒██▀▀█▄  ▒▓█  ▄ ░▓█▄   ▌ ░ ▐██▓░░▓█▒  ░  ',
+	-- 			'   ░██▓ ▒██▒░▒████▒░▒████▓  ░ ██▒▓░░▒█░     ',
+	-- 			'   ░ ▒▓ ░▒▓░░░ ▒░ ░ ▒▒▓  ▒   ██▒▒▒  ▒ ░     ',
+	-- 			'     ░▒ ░ ▒░ ░ ░  ░ ░ ▒  ▒ ▓██ ░▒░  ░       ',
+	-- 			'     ░░   ░    ░    ░ ░  ░ ▒ ▒ ░░   ░ ░     ',
+	-- 			'      ░        ░  ░   ░    ░ ░              ',
+	-- 			'                                            ',
+	-- 			'                                            ',
+	--          },
+	--          footer = {
+	--            "",
+	--            "git@github.com:redyf"
+	--
+	--          }
+	--        },
+	--  theme = "hyper",
+	-- 		})
+	-- 	end,
+	-- },
 }
