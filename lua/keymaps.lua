@@ -89,8 +89,8 @@ map("n", "<C-d>", "<C-d>zz", { silent = true, desc = "Allow <C-d> and <C-u> to k
 map("n", "<C-u>", "<C-u>zz", { silent = true, desc = "Allow C-d and C-u to keep the cursor in the middle" })
 
 -- Remap for dealing with word wrap and adding jumps to the jumplist.
-map("n", "j", [[(v:count > 1 ? 'm`' . v:count : 'g') . 'j']], { expr = true })
-map("n", "k", [[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']], { expr = true })
+map("n", "j", [[(v:count > 1 ? 'm`' . v:count : 'g') . 'j']], { silent = true, expr = true })
+map("n", "k", [[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']], { silent = true, expr = true })
 map("n", "n", "nzzzv", { silent = true, desc = "Allow search terms to stay in the middle" })
 map("n", "N", "Nzzzv", { silent = true, desc = "Allow search terms to stay in the middle" })
 
