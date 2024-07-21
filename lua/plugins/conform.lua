@@ -39,7 +39,8 @@ return {
 			})
 		end,
 	},
-	vim.keymap.set("n", "<leader>uf", "<cmd>FormatToggle<cr>", { silent = true, desc = "Toggle Format" }),
+	vim.keymap.set("n", "<leader>uf", "<cmd>FormatToggle<cr>", { silent = true, desc = "Toggle Format Globally" }),
+	vim.keymap.set("n", "<leader>uF", "<cmd>FormatToggle!<cr>", { silent = true, desc = "Toggle Format Locally" }),
 
 	vim.keymap.set("n", "<leader>cf", function()
 		require("conform").format()
