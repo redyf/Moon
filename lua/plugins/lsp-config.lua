@@ -4,6 +4,9 @@ return {
 		lazy = false,
 		config = function()
 			require("mason").setup({
+				-- registries = {
+				-- 	"file:~/opensource/mason-registry",
+				-- },
 				ui = {
 					border = "rounded",
 					icons = {
@@ -78,6 +81,24 @@ return {
 			local lspconfig = require("lspconfig")
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+			capabilities.textDocument.completion.completionItem = {
+				documentationFormat = { "markdown", "plaintext" },
+				snippetSupport = true,
+				preselectSupport = true,
+				insertReplaceSupport = true,
+				labelDetailsSupport = true,
+				deprecatedSupport = true,
+				commitCharactersSupport = true,
+				tagSupport = { valueSet = { 1 } },
+				resolveSupport = {
+					properties = {
+						"documentation",
+						"detail",
+						"additionalTextEdits",
+					},
+				},
+			}
+
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
 				Lua = {
@@ -120,31 +141,47 @@ return {
 				capabilities = capabilities,
 			})
 
-			lspconfig.nil_ls.setup({
+			lspconfig.nixd.setup({
 				capabilities = capabilities,
-				cmd = { "nil" },
+				cmd = { "nixd" },
 				filetypes = { "nix" },
-				init_options = {
-					nix = {
-						flake = {
-							autoArchive = true,
-							-- auto eval flake inputs for improved completion
-							-- generates too many issues
-							autoEvalInputs = false,
-						},
-						completion = {
-							callSnippet = "replace",
-						},
-					},
-				},
 				settings = {
-					["nil"] = {
+					nixd = {
+						autowatch = true,
+						nixpkgs = {
+							expr = 'import (builtins.getFlake "/home/redyf/nixdots/").inputs.nixpkgs { }',
+						},
 						formatting = {
 							command = { "alejandra" },
 						},
 					},
 				},
 			})
+			-- lspconfig.nil_ls.setup({
+			-- 	capabilities = capabilities,
+			-- 	cmd = { "nil" },
+			-- 	filetypes = { "nix" },
+			-- 	init_options = {
+			-- 		nix = {
+			-- 			flake = {
+			-- 				autoArchive = true,
+			-- 				-- auto eval flake inputs for improved completion
+			-- 				-- generates too many issues
+			-- 				autoEvalInputs = false,
+			-- 			},
+			-- 			completion = {
+			-- 				callSnippet = "replace",
+			-- 			},
+			-- 		},
+			-- 	},
+			-- 	settings = {
+			-- 		["nil"] = {
+			-- 			formatting = {
+			-- 				command = { "alejandra" },
+			-- 			},
+			-- 		},
+			-- 	},
+			-- })
 
 			lspconfig.pyright.setup({
 				capabilities = capabilities,
@@ -269,10 +306,24 @@ return {
 
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-				callback = function(ev)
-					vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+				callback = function(args)
+					local client = vim.lsp.get_client_by_id(args.data.client_id)
+					if client.server_capabilities.inlayHintProvider then
+						vim.lsp.inlay_hint.enable(true)
+					end
+					local show_notification = require("notify")
+					function ToggleInlayHints()
+						if vim.lsp.inlay_hint.enable(true) then
+							vim.lsp.inlay_hint.enable(false)
+							show_notification("Inlay Hints disabled", "info")
+						else
+							vim.lsp.inlay_hint.enable(true)
+							show_notification("Inlay Hints enabled", "info")
+						end
+					end
+					vim.bo[args.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
-					local opts = { buffer = ev.buf }
+					local opts = { buffer = args.buf }
 					vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 					vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
 					vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
@@ -290,6 +341,9 @@ return {
 					vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
 					vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
 				end,
+				vim.keymap.set("n", "<leader>uh", function()
+					ToggleInlayHints()
+				end, { silent = true, desc = "Toggle Inlay Hints" }),
 			})
 		end,
 	},
