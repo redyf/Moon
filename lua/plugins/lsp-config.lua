@@ -311,16 +311,6 @@ return {
 					if client.server_capabilities.inlayHintProvider then
 						vim.lsp.inlay_hint.enable(true)
 					end
-					local show_notification = require("notify")
-					function ToggleInlayHints()
-						if vim.lsp.inlay_hint.enable(true) then
-							vim.lsp.inlay_hint.enable(false)
-							show_notification("Inlay Hints disabled", "info")
-						else
-							vim.lsp.inlay_hint.enable(true)
-							show_notification("Inlay Hints enabled", "info")
-						end
-					end
 					vim.bo[args.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
 					local opts = { buffer = args.buf }
@@ -341,9 +331,6 @@ return {
 					vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
 					vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
 				end,
-				vim.keymap.set("n", "<leader>uh", function()
-					ToggleInlayHints()
-				end, { silent = true, desc = "Toggle Inlay Hints" }),
 			})
 		end,
 	},

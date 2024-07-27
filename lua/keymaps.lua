@@ -67,12 +67,10 @@ map("n", "<leader>uw", function()
 	ToggleWrap()
 end, { silent = true, desc = "Toggle Line Wrap" })
 
--- Enable inlay hints if available
-if vim.lsp.inlay_hint then
-	map("n", "<leader>uh", function()
-		ToggleInlayHints()
-	end, { desc = "Toggle Inlay Hints" })
-end
+-- Inlay Hints
+map("n", "<leader>uh", function()
+	ToggleInlayHints()
+end, { silent = true, desc = "Toggle Inlay Hints" })
 
 -- Cool remaps
 map("v", "J", ":m '>+1<CR>gv=gv", { silent = true, desc = "Move up when line is highlighted" })

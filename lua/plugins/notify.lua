@@ -51,11 +51,11 @@ return {
 			end
 
 			function ToggleInlayHints()
-				if vim.lsp.inlay_hints then
-					vim.lsp.inlay_hints = false
+				local is_enabled = vim.lsp.inlay_hint.is_enabled()
+				vim.lsp.inlay_hint.enable(not is_enabled)
+				if is_enabled then
 					show_notification("Inlay Hints disabled", "info")
 				else
-					vim.lsp.inlay_hints = true
 					show_notification("Inlay Hints enabled", "info")
 				end
 			end
