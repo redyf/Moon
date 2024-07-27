@@ -154,6 +154,17 @@ return {
 						formatting = {
 							command = { "alejandra" },
 						},
+						options = {
+							nixos = {
+								expr = '(builtins.getFlake "/home/redyf/nixdots/").nixosConfigurations.nixos.options',
+							},
+							home_manager = {
+								expr = '(builtins.getFlake "/home/redyf/nixdots").homeConfigurations."redyf".options',
+							},
+							flake_parts = {
+								expr = '(builtins.getFlake "/home/redyf/nixdots").debug.options',
+							},
+						},
 					},
 				},
 			})
