@@ -15,6 +15,7 @@ return {
 						package_uninstalled = "✗",
 					},
 				},
+				max_concurrent_installers = 10,
 				-- setup your tools here
 				ensure_installed = {
 					-- js
@@ -168,31 +169,32 @@ return {
 					},
 				},
 			})
-			-- lspconfig.nil_ls.setup({
-			-- 	capabilities = capabilities,
-			-- 	cmd = { "nil" },
-			-- 	filetypes = { "nix" },
-			-- 	init_options = {
-			-- 		nix = {
-			-- 			flake = {
-			-- 				autoArchive = true,
-			-- 				-- auto eval flake inputs for improved completion
-			-- 				-- generates too many issues
-			-- 				autoEvalInputs = false,
-			-- 			},
-			-- 			completion = {
-			-- 				callSnippet = "replace",
-			-- 			},
-			-- 		},
-			-- 	},
-			-- 	settings = {
-			-- 		["nil"] = {
-			-- 			formatting = {
-			-- 				command = { "alejandra" },
-			-- 			},
-			-- 		},
-			-- 	},
-			-- })
+
+			lspconfig.nil_ls.setup({
+				capabilities = capabilities,
+				cmd = { "nil" },
+				filetypes = { "nix" },
+				init_options = {
+					nix = {
+						flake = {
+							autoArchive = true,
+							-- auto eval flake inputs for improved completion
+							-- generates too many issues
+							autoEvalInputs = false,
+						},
+						completion = {
+							callSnippet = "replace",
+						},
+					},
+				},
+				settings = {
+					["nil"] = {
+						formatting = {
+							command = { "alejandra" },
+						},
+					},
+				},
+			})
 
 			lspconfig.pyright.setup({
 				capabilities = capabilities,
@@ -283,6 +285,13 @@ return {
 
 			lspconfig.tailwindcss.setup({
 				capabilities = capabilities,
+				init_options = {
+					userLanguages = {
+						elixir = "html-eex",
+						eelixir = "html-eex",
+						heex = "html-eex",
+					},
+				},
 			})
 
 			lspconfig.prismals.setup({
@@ -290,6 +299,10 @@ return {
 			})
 
 			lspconfig.astro.setup({
+				capabilities = capabilities,
+			})
+
+			lspconfig.hls.setup({
 				capabilities = capabilities,
 			})
 
