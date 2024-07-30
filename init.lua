@@ -8,9 +8,7 @@ vim.g.have_nerd_font = true
 -- These must be here for it to package with Nix.
 require("chadrc")
 require("sets")
-vim.schedule(function()
-	require("keymaps")
-end)
+require("keymaps")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
