@@ -21,7 +21,7 @@ return {
 				show_repository = true, -- Display 'View repository' button linked to repository url, if any
 				show_cursor_position = true, -- Display line and column number of cursor's position
 				swap_fields = false, -- If enabled, workspace is displayed first
-				swap_icons = true, -- If enabled, editor is displayed on the main image
+				swap_icons = false, -- If enabled, editor is displayed on the main image
 				workspace_blacklist = {}, -- List of workspace names to hide
 			},
 			lsp = {
@@ -45,6 +45,13 @@ return {
 				lsp_manager = "Configuring LSP in {}", -- Text to display when managing LSP servers (Empty string to disable)
 				vcs = "Committing changes in {}", -- Text to display when using Git or Git-related plugin (Empty string to disable)
 				workspace = "In {}", -- Text to display when in a workspace (Empty string to disable)
+			},
+			assets = {
+				heex = {
+					name = "Heex",
+					icon = "https://raw.githubusercontent.com/leonardssh/vscord/main/assets/icons/heex.png",
+					type = 0,
+				},
 			},
 			buttons = {
 				{
