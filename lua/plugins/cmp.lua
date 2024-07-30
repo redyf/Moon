@@ -1,7 +1,9 @@
+dofile(vim.g.base46_cache .. "cmp")
+
 return {
 	{
 		"hrsh7th/nvim-cmp",
-		event = "VeryLazy",
+		event = "InsertEnter",
 		dependencies = {
 			{ "hrsh7th/cmp-nvim-lsp", event = "VeryLazy" },
 			{ "hrsh7th/cmp-buffer", event = "VeryLazy" },

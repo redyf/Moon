@@ -1,3 +1,6 @@
+dofile(vim.g.base46_cache .. "mason")
+dofile(vim.g.base46_cache .. "lsp")
+
 return {
 	{
 		"williamboman/mason.nvim",
@@ -170,31 +173,31 @@ return {
 				},
 			})
 
-			lspconfig.nil_ls.setup({
-				capabilities = capabilities,
-				cmd = { "nil" },
-				filetypes = { "nix" },
-				init_options = {
-					nix = {
-						flake = {
-							autoArchive = true,
-							-- auto eval flake inputs for improved completion
-							-- generates too many issues
-							autoEvalInputs = false,
-						},
-						completion = {
-							callSnippet = "replace",
-						},
-					},
-				},
-				settings = {
-					["nil"] = {
-						formatting = {
-							command = { "alejandra" },
-						},
-					},
-				},
-			})
+			-- lspconfig.nil_ls.setup({
+			-- 	capabilities = capabilities,
+			-- 	cmd = { "nil" },
+			-- 	filetypes = { "nix" },
+			-- 	init_options = {
+			-- 		nix = {
+			-- 			flake = {
+			-- 				autoArchive = true,
+			-- 				-- auto eval flake inputs for improved completion
+			-- 				-- generates too many issues
+			-- 				autoEvalInputs = false,
+			-- 			},
+			-- 			completion = {
+			-- 				callSnippet = "replace",
+			-- 			},
+			-- 		},
+			-- 	},
+			-- 	settings = {
+			-- 		["nil"] = {
+			-- 			formatting = {
+			-- 				command = { "alejandra" },
+			-- 			},
+			-- 		},
+			-- 	},
+			-- })
 
 			lspconfig.pyright.setup({
 				capabilities = capabilities,

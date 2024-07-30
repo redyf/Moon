@@ -1,3 +1,5 @@
+dofile(vim.g.base46_cache .. "telescope")
+
 return {
 	"nvim-telescope/telescope.nvim",
 	tag = "0.1.5",
