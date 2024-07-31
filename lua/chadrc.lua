@@ -73,7 +73,7 @@ M.ui = {
 	},
 
 	cheatsheet = {
-		theme = "grid", -- simple/grid
+		theme = "simple", -- simple/grid
 		excluded_groups = { "terminal (t)", "autopairs", "Nvim", "Opens" }, -- can add group name or with mode
 	},
 
