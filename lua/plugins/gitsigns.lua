@@ -8,8 +8,6 @@ return {
 			require("gitsigns").setup({
 				current_line_blame = false,
 			})
-		end,
-		init = function()
 			vim.keymap.set({ "n", "v" }, "<leader>gh", "+hunks", { silent = true, desc = "+hunks" })
 			vim.keymap.set("n", "<leader>ghb", "<cmd>Gitsigns blame_line<cr>", { silent = true, desc = "Blame Line" })
 			vim.keymap.set("n", "<leader>ghd", "<cmd>Gitsigns diffthis<cr>", { silent = true, desc = "Diff This" })
