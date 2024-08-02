@@ -156,7 +156,7 @@ return {
 							expr = 'import (builtins.getFlake "/home/redyf/nixdots/").inputs.nixpkgs { }',
 						},
 						formatting = {
-							command = { "alejandra" },
+							command = { "nixfmt" },
 						},
 						options = {
 							nixos = {
@@ -193,7 +193,7 @@ return {
 			-- 	settings = {
 			-- 		["nil"] = {
 			-- 			formatting = {
-			-- 				command = { "alejandra" },
+			-- 				command = { "nixfmt" },
 			-- 			},
 			-- 		},
 			-- 	},

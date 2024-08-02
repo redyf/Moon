@@ -31,7 +31,7 @@ return {
 					["typescript"] = { "prettierd", "prettier" },
 					["typescriptreact"] = { "prettierd", "prettier" },
 					["json"] = { "jq" },
-					["nix"] = { "alejandra" },
+					["nix"] = { "nixfmt" },
 					["haskell"] = { "ormolu" },
 					["bash"] = { "beautysh" },
 					["ocaml"] = { "ocamlformat" },
