@@ -18,6 +18,7 @@ return {
 					["html"] = { { "prettierd", "prettier" } },
 					["css"] = { { "prettierd", "prettier" } },
 					["c"] = { "clang-format" },
+					["cpp"] = { "clang-format" },
 					["go"] = { "gofumpt" },
 					["java"] = { "google-java-format" },
 					["python"] = { "black" },

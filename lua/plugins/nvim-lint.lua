@@ -6,6 +6,7 @@ return {
 			local lint = require("lint")
 			lint.linters_by_ft = {
 				c = { "cpplint" },
+				cpp = { "cpplint" },
 				go = { "golangci-lint" },
 				nix = { "statix" },
 				lua = { "selene" },
