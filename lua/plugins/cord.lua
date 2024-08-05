@@ -52,6 +52,11 @@ return {
 					icon = "https://raw.githubusercontent.com/leonardssh/vscord/main/assets/icons/heex.png",
 					type = 0,
 				},
+				typescriptreact = {
+					name = "TSX",
+					icon = "https://raw.githubusercontent.com/leonardssh/vscord/main/assets/icons/tsx.png",
+					type = 0,
+				},
 			},
 			buttons = {
 				{
