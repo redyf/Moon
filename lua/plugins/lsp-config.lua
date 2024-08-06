@@ -135,6 +135,7 @@ return {
 
 			lspconfig.clangd.setup({
 				capabilities = capabilities,
+				filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
 			})
 
 			lspconfig.jdtls.setup({
@@ -336,7 +337,7 @@ return {
 				callback = function(args)
 					local client = vim.lsp.get_client_by_id(args.data.client_id)
 					if client.server_capabilities.inlayHintProvider then
-						vim.lsp.inlay_hint.enable(true)
+						vim.lsp.inlay_hint.enable(false)
 					end
 					vim.bo[args.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
