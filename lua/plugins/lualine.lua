@@ -164,7 +164,7 @@ local M = {}
 M.lualine = {
 	"nvim-lualine/lualine.nvim",
 	event = "VeryLazy",
-	enabled = false,
+	enabled = true,
 	opts = function()
 		local function get_lsp_client(_)
 			---@type any?{}
