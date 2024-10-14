@@ -69,7 +69,7 @@ vim.opt.scrolloff = 8
 -- Place a column line
 vim.opt.colorcolumn = "80"
 
--- Reduce which-key timeout to 200ms
+-- Reduce which-key timeout
 vim.opt.timeoutlen = 200
 
 -- Set encoding type
@@ -125,11 +125,7 @@ if g.neovide then
 	g.neovide_cursor_vfx_particle_density = 14.0
 	g.neovide_cursor_vfx_particle_speed = 12.0
 	g.neovide_transparency = 0.8
-	--
-	--	-- Fonts
-	o.guifont = "MonoLisa:h11"
-	-- o.guifont = "JetBrainsMono Nerd Font:h11:Medium:i"
-	-- o.guifont = "FiraMono Nerd Font:Medium:h11"
-	-- o.guifont = "CaskaydiaCove Nerd Font:h11:b:i"
-	-- o.guifont = "Liga SFMono Nerd Font:b:h11"
+
+	-- Fonts
+	o.guifont = "JetBrainsMono Nerd Font:h11:Medium:i"
 end

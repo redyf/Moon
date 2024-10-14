@@ -1,6 +1,3 @@
-dofile(vim.g.base46_cache .. "mason")
-dofile(vim.g.base46_cache .. "lsp")
-
 return {
 	{
 		"williamboman/mason.nvim",
@@ -256,7 +253,7 @@ return {
 				capabilities = capabilities,
 			})
 
-			lspconfig.tsserver.setup({
+			lspconfig.ts_ls.setup({
 				capabilities = capabilities,
 				settings = {
 					typescript = {
