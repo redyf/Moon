@@ -1,5 +1,3 @@
-dofile(vim.g.base46_cache .. "telescope")
-
 return {
 	"nvim-telescope/telescope.nvim",
 	tag = "0.1.5",
@@ -58,6 +56,8 @@ return {
 		{ "<leader>so", "<cmd>Telescope vim_options<cr>", desc = "Options" },
 		{ "<leader>sR", "<cmd>Telescope resume<cr>", desc = "Resume" },
 		{ "<leader>uC", "<cmd>Telescope colorscheme<cr>", desc = "Colorscheme Preview" },
+		{ "<leader>sd", "<cmd>Telescope diagnostics bufnr=0<CR>", desc = "Document diagnostics" },
+		{ "<leader>st", "<cmd>TodoTelescope<CR>", desc = "Todo (Telescope)" },
 	},
 	config = function()
 		local actions = require("telescope.actions")
@@ -73,6 +73,9 @@ return {
 				colorscheme = {
 					enable_preview = true,
 				},
+				-- find_files = {
+				-- 	theme = "ivy",
+				-- },
 			},
 			extensions = {
 				fzf = {

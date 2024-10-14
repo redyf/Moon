@@ -1,5 +1,3 @@
-dofile(vim.g.base46_cache .. "bufferline")
-
 return {
 	{
 		"akinsho/bufferline.nvim",

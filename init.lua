@@ -1,4 +1,3 @@
-vim.g.base46_cache = vim.fn.stdpath("data") .. "/nvchad/base46/"
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -6,7 +5,6 @@ vim.g.maplocalleader = " "
 vim.g.have_nerd_font = true
 
 -- These must be here for it to package with Nix.
-require("chadrc")
 require("sets")
 require("keymaps")
 
@@ -75,6 +73,3 @@ lazy.setup({
 		},
 	},
 })
-
-dofile(vim.g.base46_cache .. "defaults")
-dofile(vim.g.base46_cache .. "statusline")

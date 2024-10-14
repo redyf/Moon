@@ -1,18 +1,9 @@
-pcall(function()
-	dofile(vim.g.base46_cache .. "syntax")
-	dofile(vim.g.base46_cache .. "treesitter")
-end)
-
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
-		},
-		keys = {
-			{ "<c-space>", desc = "Increment selection" },
-			{ "<bs>", desc = "Decrement selection", mode = "x" },
 		},
 		config = function()
 			local config = require("nvim-treesitter.configs")
@@ -62,7 +53,7 @@ return {
 						init_selection = "<C-space>",
 						node_incremental = "<C-space>",
 						scope_incremental = false,
-						node_decremental = "<bs>",
+						node_decremental = "<c-backspace>",
 					},
 				},
 				textobjects = {
