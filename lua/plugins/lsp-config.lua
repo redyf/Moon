@@ -151,20 +151,20 @@ return {
 					nixd = {
 						autowatch = true,
 						nixpkgs = {
-							expr = 'import (builtins.getFlake "/home/redyf/nixdots/").inputs.nixpkgs { }',
+							expr = 'import (builtins.getFlake "/home/redyf/opensource/nixdots").inputs.nixpkgs { }',
 						},
 						formatting = {
 							command = { "nixfmt" },
 						},
 						options = {
 							nixos = {
-								expr = '(builtins.getFlake "/home/redyf/nixdots/").nixosConfigurations.nixos.options',
+								expr = '(builtins.getFlake "/home/redyf/opensource/nixdots/").nixosConfigurations.nixos.options',
 							},
 							home_manager = {
-								expr = '(builtins.getFlake "/home/redyf/nixdots").homeConfigurations."redyf".options',
+								expr = '(builtins.getFlake "/home/redyf/opensource/nixdots").homeConfigurations."redyf".options',
 							},
 							flake_parts = {
-								expr = '(builtins.getFlake "/home/redyf/nixdots").debug.options',
+								expr = '(builtins.getFlake "/home/redyf/opensource/nixdots").debug.options',
 							},
 						},
 					},
@@ -333,8 +333,8 @@ return {
 				group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 				callback = function(args)
 					local client = vim.lsp.get_client_by_id(args.data.client_id)
-					if client.server_capabilities.inlayHintProvider then
-						vim.lsp.inlay_hint.enable(false)
+					if client.supports_method("textDocument/inlayHint") then
+						vim.lsp.inlay_hint.enable(true)
 					end
 					vim.bo[args.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
