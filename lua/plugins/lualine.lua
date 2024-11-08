@@ -204,7 +204,7 @@ M.lualine = {
 			options = {
 				component_separators = { "", "" },
 				globalstatus = true,
-				section_separators = "",
+				section_separators = { left = "", right = "" }, --   or █
 				theme = vim.g.lualine_theme or "auto",
 			},
 			sections = {

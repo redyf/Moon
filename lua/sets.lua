@@ -70,7 +70,7 @@ vim.opt.scrolloff = 8
 vim.opt.colorcolumn = "80"
 
 -- Reduce which-key timeout
-vim.opt.timeoutlen = 200
+vim.opt.timeoutlen = 100
 
 -- Set encoding type
 vim.opt.encoding = "utf-8"
