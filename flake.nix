@@ -6,14 +6,16 @@
     utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    utils,
-    ...
-  }:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      utils,
+      ...
+    }:
     utils.lib.eachDefaultSystem (
-      system: let
+      system:
+      let
         inherit (nixpkgs) lib;
         pkgs = nixpkgs.legacyPackages.${system};
         runtimeDeps = with pkgs; [
@@ -34,24 +36,24 @@
           wakatime
         ];
 
-        nvim =
-          pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped
-          (pkgs.neovimUtils.makeNeovimConfig
-            {
-              customRC = ''
-                set runtimepath^=${./.}
-                source ${./.}/init.lua
-              '';
-            }
-            // {
-              wrapperArgs = [
-                "--prefix"
-                "PATH"
-                ":"
-                "${lib.makeBinPath runtimeDeps}"
-              ];
-            });
-      in {
+        nvim = pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped (
+          pkgs.neovimUtils.makeNeovimConfig {
+            customRC = ''
+              set runtimepath^=${./.}
+              source ${./.}/init.lua
+            '';
+          }
+          // {
+            wrapperArgs = [
+              "--prefix"
+              "PATH"
+              ":"
+              "${lib.makeBinPath runtimeDeps}"
+            ];
+          }
+        );
+      in
+      {
         overlays = {
           neovim = _: _prev: {
             neovim = nvim;
