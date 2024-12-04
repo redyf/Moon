@@ -43,7 +43,7 @@ return {
 				{ type = "padding", val = 3 },
 				{
 					type = "text",
-					val = "@jonlinkens",
+					val = "@redyf",
 					opts = {
 						position = "center",
 						hl = "Keyword",

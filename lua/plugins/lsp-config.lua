@@ -28,7 +28,7 @@ return {
 					"checkstyle",
 					"google_java_format",
 					-- python
-					"flake8",
+					"ruff",
 					"black",
 					-- lua
 					"selene",
@@ -59,7 +59,6 @@ return {
 					-- java
 					"jdtls",
 					-- python
-					"pyright",
 					"ruff_lsp",
 					-- markdown
 					"marksman",
@@ -196,10 +195,6 @@ return {
 			-- 		},
 			-- 	},
 			-- })
-
-			lspconfig.pyright.setup({
-				capabilities = capabilities,
-			})
 
 			lspconfig.ruff_lsp.setup({
 				capabilities = capabilities,

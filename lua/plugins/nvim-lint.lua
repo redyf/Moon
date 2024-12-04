@@ -10,7 +10,7 @@ return {
 				go = { "golangci-lint" },
 				nix = { "statix" },
 				lua = { "selene" },
-				python = { "flake8" },
+				python = { "ruff" },
 				javascript = { "eslint" },
 				javascriptreact = { "eslint" },
 				typescript = { "eslint" },
