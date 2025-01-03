@@ -19,7 +19,7 @@ return {
 				["cpp"] = { "clang-format" },
 				["go"] = { "gofumpt" },
 				["java"] = { "google-java-format" },
-				["python"] = { "black" },
+				["python"] = { "ruff" },
 				["lua"] = { "stylua" },
 				["yaml"] = { "prettier", "prettierd", stop_after_first = true },
 				["rust"] = { "rustfmt" },

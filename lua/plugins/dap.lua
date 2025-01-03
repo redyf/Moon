@@ -20,27 +20,61 @@ return {
 			dapui.setup()
 			require("dap-go").setup()
 
-			-- C++
-			dap.adapters.lldb = {
-				type = "executable",
-				command = "/etc/profiles/per-user/redyf/bin/lldb-vscode", -- adjust as needed, must be absolute path
-				name = "lldb",
+			dap.adapters.codelldb = {
+				type = "server",
+				port = "${port}",
+				executable = {
+					command = "codelldb",
+					args = { "--port", "${port}" },
+				},
 			}
 
 			dap.configurations.cpp = {
 				{
-					name = "Launch",
-					type = "lldb",
+					name = "runit",
+					type = "codelldb",
 					request = "launch",
+
 					program = function()
-						return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+						return vim.fn.input("", vim.fn.getcwd(), "file")
 					end,
+
+					args = { "--log_level=all" },
 					cwd = "${workspaceFolder}",
 					stopOnEntry = false,
-					args = {},
+					terminal = "integrated",
+
+					pid = function()
+						local handle = io.popen("pgrep hw$")
+						local result = handle:read()
+						handle:close()
+						return result
+					end,
 				},
 			}
 
+			-- C++
+			-- dap.adapters.lldb = {
+			-- 	type = "executable",
+			-- 	-- command = "/etc/profiles/per-user/redyf/bin/lldb-vscode", -- adjust as needed, must be absolute path
+			-- 	command = "/nix/store/xkbcqzmd6x0q5nkfskap56j3jk6y1an1-lldb-18.1.8/bin/lldb", -- adjust as needed, must be absolute path
+			-- 	name = "lldb",
+			-- }
+			--
+			-- dap.configurations.cpp = {
+			-- 	{
+			-- 		name = "Launch",
+			-- 		type = "lldb",
+			-- 		request = "launch",
+			-- 		program = function()
+			-- 			return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+			-- 		end,
+			-- 		cwd = "${workspaceFolder}",
+			-- 		stopOnEntry = false,
+			-- 		args = {},
+			-- 	},
+			-- }
+			--
 			dap.configurations.c = dap.configurations.cpp
 			dap.configurations.rust = dap.configurations.cpp
 

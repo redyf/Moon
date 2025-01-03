@@ -59,7 +59,7 @@ return {
 					-- java
 					"jdtls",
 					-- python
-					"ruff_lsp",
+					"pyright",
 					-- markdown
 					"marksman",
 					-- toml
@@ -170,33 +170,11 @@ return {
 				},
 			})
 
-			-- lspconfig.nil_ls.setup({
-			-- 	capabilities = capabilities,
-			-- 	cmd = { "nil" },
-			-- 	filetypes = { "nix" },
-			-- 	init_options = {
-			-- 		nix = {
-			-- 			flake = {
-			-- 				autoArchive = true,
-			-- 				-- auto eval flake inputs for improved completion
-			-- 				-- generates too many issues
-			-- 				autoEvalInputs = false,
-			-- 			},
-			-- 			completion = {
-			-- 				callSnippet = "replace",
-			-- 			},
-			-- 		},
-			-- 	},
-			-- 	settings = {
-			-- 		["nil"] = {
-			-- 			formatting = {
-			-- 				command = { "nixfmt" },
-			-- 			},
-			-- 		},
-			-- 	},
-			-- })
+			lspconfig.pyright.setup({
+				capabilities = capabilities,
+			})
 
-			lspconfig.ruff_lsp.setup({
+			lspconfig.ruff.setup({
 				capabilities = capabilities,
 			})
 

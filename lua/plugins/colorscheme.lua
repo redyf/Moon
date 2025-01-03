@@ -1,5 +1,5 @@
 function ColorMyPencils(color)
-	color = color or "oxocarbon"
+	color = color or "catppuccin-mocha"
 	vim.cmd.colorscheme(color)
 
 	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
@@ -7,14 +7,14 @@ function ColorMyPencils(color)
 end
 
 return {
-	{
-		"nyoom-engineering/oxocarbon.nvim",
-		lazy = false,
-		config = function()
-			vim.cmd([[ colorscheme oxocarbon ]])
-			ColorMyPencils()
-		end,
-	},
+	-- {
+	-- 	"nyoom-engineering/oxocarbon.nvim",
+	-- 	lazy = false,
+	-- 	config = function()
+	-- 		vim.cmd([[ colorscheme oxocarbon ]])
+	-- 		ColorMyPencils()
+	-- 	end,
+	-- },
 	-- {
 	-- 	"rose-pine/neovim",
 	-- 	name = "rose-pine",
@@ -83,14 +83,6 @@ return {
 	-- 	end,
 	-- },
 	-- {
-	-- 	"blazkowolf/gruber-darker.nvim",
-	-- 	lazy = false,
-	-- 	config = function()
-	-- 		vim.cmd.colorscheme("gruber-darker")
-	-- 		ColorMyPencils()
-	-- 	end,
-	-- },
-	-- {
 	-- 	"folke/tokyonight.nvim",
 	-- 	lazy = false,
 	-- 	priority = 1000,
@@ -132,76 +124,76 @@ return {
 	-- 		ColorMyPencils()
 	-- 	end,
 	-- },
-	-- {
-	-- 	"catppuccin/nvim",
-	-- 	name = "catppuccin",
-	-- 	lazy = false,
-	-- 	priority = 1000,
-	-- 	config = function()
-	-- 		require("catppuccin").setup({
-	-- 			flavour = "macchiato", -- latte, frappe, macchiato, mocha
-	-- 			background = {
-	-- 				light = "macchiato",
-	-- 				dark = "macchiato",
-	-- 			},
-	-- 			transparent_background = false,
-	-- 			integrations = {
-	-- 				alpha = true,
-	-- 				bufferline = true,
-	-- 				cmp = true,
-	-- 				dap = true,
-	-- 				dap_ui = true,
-	-- 				fidget = true,
-	-- 				gitsigns = true,
-	-- 				harpoon = true,
-	-- 				indent_blankline = {
-	-- 					enabled = true,
-	-- 					scope_color = "", -- catppuccin color (eg. `lavender`) Default: text
-	-- 					colored_indent_levels = true,
-	-- 				},
-	-- 				lsp_saga = false,
-	-- 				lsp_trouble = true,
-	-- 				markdown = true,
-	-- 				mason = true,
-	-- 				mini = {
-	-- 					enabled = false,
-	-- 					indentscope_color = "",
-	-- 				},
-	-- 				native_lsp = {
-	-- 					enabled = true,
-	-- 					virtual_text = {
-	-- 						errors = { "italic" },
-	-- 						hints = { "italic" },
-	-- 						warnings = { "italic" },
-	-- 						information = { "italic" },
-	-- 					},
-	-- 					underlines = {
-	-- 						errors = { "underline" },
-	-- 						hints = { "underline" },
-	-- 						warnings = { "underline" },
-	-- 						information = { "underline" },
-	-- 					},
-	-- 					inlay_hints = {
-	-- 						background = true,
-	-- 					},
-	-- 				},
-	-- 				neogit = true,
-	-- 				neotest = true,
-	-- 				noice = true,
-	-- 				notify = true,
-	-- 				nvimtree = false,
-	-- 				telescope = {
-	-- 					enabled = true,
-	-- 					-- style = "nvchad",
-	-- 				},
-	-- 				treesitter = true,
-	-- 				treesitter_context = true,
-	-- 				ufo = false,
-	-- 				which_key = true,
-	-- 			},
-	-- 		})
-	-- 		vim.cmd.colorscheme("catppuccin-mocha")
-	-- 		ColorMyPencils()
-	-- 	end,
-	-- },
+	{
+		"catppuccin/nvim",
+		name = "catppuccin",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("catppuccin").setup({
+				flavour = "macchiato", -- latte, frappe, macchiato, mocha
+				background = {
+					light = "mocha",
+					dark = "mocha",
+				},
+				transparent_background = false,
+				integrations = {
+					alpha = true,
+					bufferline = true,
+					cmp = true,
+					dap = true,
+					dap_ui = true,
+					fidget = true,
+					gitsigns = true,
+					harpoon = true,
+					indent_blankline = {
+						enabled = true,
+						scope_color = "", -- catppuccin color (eg. `lavender`) Default: text
+						colored_indent_levels = true,
+					},
+					lsp_saga = false,
+					lsp_trouble = true,
+					markdown = true,
+					mason = true,
+					mini = {
+						enabled = false,
+						indentscope_color = "",
+					},
+					native_lsp = {
+						enabled = true,
+						virtual_text = {
+							errors = { "italic" },
+							hints = { "italic" },
+							warnings = { "italic" },
+							information = { "italic" },
+						},
+						underlines = {
+							errors = { "underline" },
+							hints = { "underline" },
+							warnings = { "underline" },
+							information = { "underline" },
+						},
+						inlay_hints = {
+							background = true,
+						},
+					},
+					neogit = true,
+					neotest = true,
+					noice = true,
+					notify = true,
+					nvimtree = false,
+					telescope = {
+						enabled = true,
+						-- style = "nvchad",
+					},
+					treesitter = true,
+					treesitter_context = true,
+					ufo = false,
+					which_key = true,
+				},
+			})
+			vim.cmd.colorscheme("catppuccin-mocha")
+			ColorMyPencils()
+		end,
+	},
 }
