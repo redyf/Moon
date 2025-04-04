@@ -89,6 +89,15 @@ return {
 	-- 	opts = {},
 	-- 	config = function()
 	-- 		require("tokyonight").setup({
+	-- 			styles = {
+	-- 				comments = { italic = true },
+	-- 				keywords = { italic = true },
+	-- 				functions = { italic = true },
+	-- 				variables = {},
+	-- 				-- Background styles. Can be "dark", "transparent" or "normal"
+	-- 				sidebars = "transparent", -- style for sidebars, see below
+	-- 				floats = "transparent", -- style for floating windows
+	-- 			},
 	-- 			on_highlights = function(hl, c)
 	-- 				local prompt = "#2d3149"
 	-- 				hl.TelescopeNormal = {
@@ -120,7 +129,7 @@ return {
 	-- 				}
 	-- 			end,
 	-- 		})
-	-- 		vim.cmd.colorscheme("tokyonight-storm")
+	-- 		vim.cmd.colorscheme("tokyonight-night")
 	-- 		ColorMyPencils()
 	-- 	end,
 	-- },
@@ -131,12 +140,18 @@ return {
 		priority = 1000,
 		config = function()
 			require("catppuccin").setup({
-				flavour = "macchiato", -- latte, frappe, macchiato, mocha
+				flavour = "mocha", -- latte, frappe, macchiato, mocha
 				background = {
 					light = "mocha",
 					dark = "mocha",
 				},
 				transparent_background = false,
+				styles = {
+					comments = { "italic" },
+					conditionals = {},
+					keywords = { "italic" },
+					functions = {},
+				},
 				integrations = {
 					alpha = true,
 					bufferline = true,

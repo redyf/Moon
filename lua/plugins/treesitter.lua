@@ -6,8 +6,8 @@ return {
 			"nvim-treesitter/nvim-treesitter-textobjects",
 		},
 		config = function()
-			local config = require("nvim-treesitter.configs")
-			config.setup({
+			local configs = require("nvim-treesitter.configs")
+			configs.setup({
 				highlight = {
 					enable = true,
 				},
@@ -19,32 +19,6 @@ return {
 				},
 				folding = {
 					enable = true,
-				},
-				ensure_installed = {
-					"bash",
-					"c",
-					"html",
-					"css",
-					"javascript",
-					"jsdoc",
-					"json",
-					"lua",
-					"luadoc",
-					"luap",
-					"nix",
-					"rust",
-					"java",
-					"markdown",
-					"markdown_inline",
-					"python",
-					"query",
-					"regex",
-					"tsx",
-					"typescript",
-					"vim",
-					"vimdoc",
-					"toml",
-					"yaml",
 				},
 				auto_install = true,
 				incremental_selection = {

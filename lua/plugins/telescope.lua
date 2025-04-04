@@ -32,7 +32,7 @@ return {
 		},
 	},
 	keys = {
-		{ "<leader><space>", "<CMD>Telescope find_files<CR>", desc = "Find project files" },
+		{ "<leader><space>", "<CMD>Telescope find_files hidden=true<CR>", desc = "Find project files" },
 		{ "<leader>/", "<cmd>Telescope live_grep<cr>", desc = "Grep (root dir)" },
 		{ "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
 		{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find project files" },

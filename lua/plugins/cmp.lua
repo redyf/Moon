@@ -73,9 +73,9 @@ return {
 
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
+					{ name = "path", max_item_count = 3 },
 					{ name = "buffer", max_item_count = 5 },
 					{ name = "copilot" },
-					{ name = "path", max_item_count = 3 },
 					{ name = "luasnip", max_item_count = 3 },
 				}),
 				-- Enable pictogram icons for lsp/autocompletion
@@ -130,6 +130,30 @@ return {
 				}, {
 					{ name = "cmdline" },
 				}),
+			})
+
+			-- Integrate cmp with neovim native LSP
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			capabilities.textDocument.completion.completionItem = {
+				documentationFormat = { "markdown", "plaintext" },
+				snippetSupport = true,
+				preselectSupport = true,
+				insertReplaceSupport = true,
+				labelDetailsSupport = true,
+				deprecatedSupport = true,
+				commitCharactersSupport = true,
+				tagSupport = { valueSet = { 1 } },
+				resolveSupport = {
+					properties = { "documentation", "detail", "additionalTextEdits" },
+				},
+			}
+
+			-- Apply capabilities to all native LSPs
+			vim.api.nvim_create_autocmd("LspAttach", {
+				callback = function(args)
+					local client = vim.lsp.get_client_by_id(args.data.client_id)
+					client.server_capabilities = vim.tbl_deep_extend("force", client.server_capabilities, capabilities)
+				end,
 			})
 		end,
 	},
