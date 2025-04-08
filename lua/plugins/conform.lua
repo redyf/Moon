@@ -30,6 +30,10 @@ return {
 				["json"] = { "jq" },
 				["nix"] = { "nixfmt" },
 				["bash"] = { "beautysh" },
+				["elixir"] = { "mix" },
+				["eelixir"] = { "mix" },
+				["heex"] = { "mix" },
+				["surface"] = { "mix" },
 			},
 		},
 		init = function()
