@@ -27,12 +27,6 @@ return {
 					-- java
 					"checkstyle",
 					"google_java_format",
-					-- python
-					"ruff",
-					"black",
-					-- lua
-					"selene",
-					"stylua",
 				},
 			})
 		end,

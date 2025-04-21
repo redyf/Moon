@@ -14,6 +14,7 @@ return {
 			{ "windwp/nvim-autopairs", event = "VeryLazy" },
 			{ "windwp/nvim-ts-autotag", event = "VeryLazy" },
 		},
+		enabled = false,
 		config = function()
 			local cmp = require("cmp")
 			local cmp_autopairs = require("nvim-autopairs.completion.cmp")

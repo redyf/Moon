@@ -11,6 +11,7 @@ return {
 				nix = { "statix" },
 				lua = { "selene" },
 				python = { "ruff" },
+				elixir = { "mix" },
 				javascript = { "eslint" },
 				javascriptreact = { "eslint" },
 				typescript = { "eslint" },

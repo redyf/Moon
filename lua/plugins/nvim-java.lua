@@ -2,6 +2,7 @@ return {
 	{
 		"nvim-java/nvim-java",
 		event = "VeryLazy",
+		enabled = false,
 		config = function()
 			require("java").setup({
 				jdtls = {

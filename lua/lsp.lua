@@ -1,5 +1,5 @@
-local cmp_config = require("plugins/cmp")
-local capabilities = cmp_config.capabilities
+-- local cmp_config = require("plugins/cmp")
+-- local capabilities = cmp_config.capabilities
 vim.lsp.config["luals"] = {
 	capabilities = capabilities,
 	-- Command and arguments to start the server.
@@ -220,8 +220,28 @@ vim.lsp.enable("bashls")
 
 vim.lsp.config["tailwindcss"] = {
 	cmd = { "tailwindcss-language-server" },
-	filetypes = { "css" },
+	filetypes = {
+		"css",
+		"scss",
+		"sass",
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact",
+		"html",
+		"heex",
+		"elixir",
+		"eelixir",
+	},
 	capabilities = capabilities,
+	root_markers = {
+		"tailwind.config.js",
+		"tailwind.config.cjs",
+		"tailwind.config.mjs",
+		"tailwind.config.ts",
+		"package.json",
+		".git",
+	},
 	init_options = {
 		includeLanguages = {
 			elixir = "html-eex",

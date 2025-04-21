@@ -25,15 +25,12 @@
           # LSP/Linters
           nixd
           statix
-          deadnix
-          manix
+          lua-language-server
+          selene
+          stylua
 
           # Telescope
           chafa
-          ffmpegthumbnailer
-
-          # Misc
-          wakatime
         ];
 
         nvim = pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped (

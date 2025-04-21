@@ -3,21 +3,8 @@ return {
 	tag = "0.1.5",
 	cmd = { "Telescope" },
 	event = "VeryLazy",
-	-- or                              , branch = '0.1.x',
 	dependencies = {
 		{ "nvim-lua/plenary.nvim", event = "VeryLazy" },
-		{
-			"ahmedkhalf/project.nvim",
-			event = "VeryLazy",
-			config = function()
-				local telescope = require("telescope")
-				telescope.load_extension("projects")
-				require("project_nvim").setup({})
-			end,
-			keys = {
-				{ "<leader>fp", "<CMD>Telescope projects<CR>", desc = "Projects" },
-			},
-		},
 		{
 			"nvim-telescope/telescope-fzf-native.nvim",
 			build = "make",
@@ -73,9 +60,6 @@ return {
 				colorscheme = {
 					enable_preview = true,
 				},
-				-- find_files = {
-				-- 	theme = "ivy",
-				-- },
 			},
 			extensions = {
 				fzf = {
