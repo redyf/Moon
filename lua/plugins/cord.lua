@@ -4,7 +4,7 @@ return {
 		branch = "master",
 		build = ":Cord update",
 		event = "VeryLazy",
-		enabled = false,
+		enabled = true,
 		opts = {},
 	},
 }

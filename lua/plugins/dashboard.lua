@@ -75,10 +75,17 @@ return {
 
 			-- alpha.setup(dashboard.config)
 			dashboard.section.buttons.val = {
-				dashboard.button("f", "  Find File", "<CMD>Telescope find_files<CR>"),
+				-- dashboard.button("f", "  Find File", "<CMD>Telescope find_files<CR>"),
+				dashboard.button("f", "  Find File", "<CMD>FzfLua files<CR>"),
 				dashboard.button("n", "  New File", "function() vim.cmd[[ene]] end"),
-				dashboard.button("r", "󰈚  Recent Files", "<CMD>Telescope oldfiles<CR>"),
-				dashboard.button("g", "󰈭  Find Word", "<CMD>Telescope live_grep<CR>"),
+				-- dashboard.button("r", "󰈚  Recent Files", "<CMD>Telescope oldfiles<CR>"),
+				dashboard.button("r", "󰈚  Recent Files", function()
+					-- Read from ShaDa to include files that were already deleted from the buffer list.
+					vim.cmd("rshada!")
+					require("fzf-lua").oldfiles()
+				end),
+				-- dashboard.button("g", "󰈭  Find Word", "<CMD>Telescope live_grep<CR>"),
+				dashboard.button("g", "󰈭  Find Word", "<cmd>FzfLua live_grep<cr>"),
 				-- dashboard.button("s", "  Restore Session", "function() require('persistence').load() end"),
 				dashboard.button("q", "  Quit Neovim", "<cmd>qa<cr>"),
 			}

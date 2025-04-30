@@ -1,7 +1,6 @@
 -- local cmp_config = require("plugins/cmp")
 -- local capabilities = cmp_config.capabilities
 vim.lsp.config["luals"] = {
-	capabilities = capabilities,
 	-- Command and arguments to start the server.
 	cmd = { "lua-language-server" },
 	-- Filetypes to automatically attach to.
@@ -27,28 +26,24 @@ vim.lsp.enable("luals")
 vim.lsp.config["dockerls"] = {
 	cmd = { "dockerfile-language-server" },
 	filetypes = { "dockerfile" },
-	capabilities = capabilities,
 }
 vim.lsp.enable("dockerls")
 
 vim.lsp.config["html"] = {
 	cmd = { "html-lsp" },
 	filetypes = { "html" },
-	capabilities = capabilities,
 }
 vim.lsp.enable("html")
 
 vim.lsp.config["cssls"] = {
 	cmd = { "css-lsp" },
 	filetypes = { "css", "scss", "less" },
-	capabilities = capabilities,
 }
 vim.lsp.enable("cssls")
 
 vim.lsp.config["clangd"] = {
 	cmd = { "clangd" },
 	filetypes = { "c", "cpp" },
-	capabilities = capabilities,
 }
 vim.lsp.enable("clangd")
 
@@ -66,7 +61,6 @@ vim.lsp.enable("clangd")
 -- 		"build.gradle.kts",
 -- 		".git",
 -- 	},
--- 	capabilities = capabilities,
 -- 	settings = {
 -- 		java = {
 -- 			autobuild = { enabled = true },
@@ -91,14 +85,12 @@ vim.lsp.enable("clangd")
 vim.lsp.config["gopls"] = {
 	cmd = { "gopls" },
 	filetypes = { "go" },
-	capabilities = capabilities,
 }
 vim.lsp.enable("gopls")
 
 vim.lsp.config["pyright"] = {
 	cmd = { "pyright-langserver", "--stdio" },
 	filetypes = { "python" },
-	capabilities = capabilities,
 	root_markers = {
 		"pyproject.toml",
 		"setup.py",
@@ -135,7 +127,6 @@ vim.lsp.enable("pyright")
 vim.lsp.config["omnisharp"] = {
 	cmd = { "OmniSharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
 	filetypes = { "cs", "csharp" },
-	capabilities = capabilities,
 	root_markers = {
 		"*.sln",
 		"*.csproj",
@@ -160,7 +151,6 @@ vim.lsp.enable("omnisharp")
 vim.lsp.config["rust_analyzer"] = {
 	cmd = { "rust-analyzer" },
 	filetypes = { "rust" },
-	capabilities = capabilities,
 	settings = {
 		["rust-analyzer"] = {
 			check_on_save = true,
@@ -178,35 +168,30 @@ vim.lsp.enable("rust_analyzer")
 vim.lsp.config["jsonls"] = {
 	cmd = { "json-lsp" },
 	filetypes = { "json" },
-	capabilities = capabilities,
 }
 vim.lsp.enable("jsonls")
 
 vim.lsp.config["marksman"] = {
 	cmd = { "marksman" },
 	filetypes = { "markdown" },
-	capabilities = capabilities,
 }
 vim.lsp.enable("marksman")
 
 vim.lsp.config["taplo"] = {
 	cmd = { "taplo" },
 	filetypes = { "toml" },
-	capabilities = capabilities,
 }
 vim.lsp.enable("taplo")
 
 vim.lsp.config["yamlls"] = {
 	cmd = { "yaml-language-server" },
 	filetypes = { "yaml" },
-	capabilities = capabilities,
 }
 vim.lsp.enable("yamlls")
 
 vim.lsp.config["elixir-ls"] = {
 	cmd = { "elixir-ls" },
 	filetypes = { "elixir", "eelixir", "heex", "surface" },
-	capabilities = capabilities,
 	root_markers = { "mix.exs", ".git" },
 }
 vim.lsp.enable("elixir-ls")
@@ -214,7 +199,6 @@ vim.lsp.enable("elixir-ls")
 vim.lsp.config["bashls"] = {
 	cmd = { "bash-language-server" },
 	filetypes = { "bash", "csh", "ksh", "sh", "zsh" },
-	capabilities = capabilities,
 }
 vim.lsp.enable("bashls")
 
@@ -233,7 +217,6 @@ vim.lsp.config["tailwindcss"] = {
 		"elixir",
 		"eelixir",
 	},
-	capabilities = capabilities,
 	root_markers = {
 		"tailwind.config.js",
 		"tailwind.config.cjs",
@@ -255,14 +238,12 @@ vim.lsp.enable("tailwindcss")
 vim.lsp.config["prismals"] = {
 	cmd = { "prisma-language-server" },
 	filetypes = { "prisma" },
-	capabilities = capabilities,
 }
 vim.lsp.enable("prismals")
 
 vim.lsp.config["tsserver"] = {
 	cmd = { "typescript-language-server", "--stdio" },
 	filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
-	capabilities = capabilities,
 	settings = {
 		typescript = {
 			inlayHints = {
@@ -296,7 +277,6 @@ vim.lsp.enable("tsserver")
 vim.lsp.config["nixd"] = {
 	cmd = { "nixd" },
 	filetypes = { "nix" },
-	capabilities = capabilities,
 	settings = {
 		nixd = {
 			autowatch = true,
@@ -325,7 +305,6 @@ vim.lsp.enable("nixd")
 vim.lsp.config["ocaml-lsp"] = {
 	cmd = { "ocamllsp" },
 	filetypes = { "ocaml" },
-	capabilities = capabilities,
 	root_markers = { "dune-project", "dune-workspace", ".git" },
 }
 vim.lsp.enable("ocaml-lsp")

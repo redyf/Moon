@@ -3,6 +3,7 @@ return {
 	tag = "0.1.5",
 	cmd = { "Telescope" },
 	event = "VeryLazy",
+	enabled = false,
 	dependencies = {
 		{ "nvim-lua/plenary.nvim", event = "VeryLazy" },
 		{
