@@ -104,8 +104,8 @@ vim.lsp.config["pyright"] = {
 			analysis = {
 				autoSearchPaths = true,
 				useLibraryCodeForTypes = true,
-				diagnosticMode = "workspace", -- ou "openFilesOnly" se preferir
-				typeCheckingMode = "basic", -- opções: "off", "basic", "strict"
+				diagnosticMode = "workspace", -- or "openFilesOnly"
+				typeCheckingMode = "basic", -- options: "off", "basic", "strict"
 			},
 		},
 	},
@@ -314,17 +314,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
 		local client = vim.lsp.get_client_by_id(args.data.client_id)
 
-		-- Desativa o autocompletar nativo do LSP, já que usamos cmp
+		-- Disable lsp native autocomplete, as we are using cmp
 		if client:supports_method("textDocument/completion") then
-			vim.lsp.completion.enable(false, client.id, args.buf) -- Desativa explicitamente
+			vim.lsp.completion.enable(false, client.id, args.buf) -- Disables it explicitly
 		end
 
-		-- Configuração de inlay hints (mantida)
+		-- Inlay hints config
 		if client.supports_method("textDocument/inlayHint") then
 			vim.lsp.inlay_hint.enable(false)
 		end
 
-		-- NÃO definir omnifunc manualmente, deixar o cmp gerenciar
+		-- Don't define omnifunc, let cmp handle it
 		-- vim.bo[args.buf].omnifunc = "v:lua.vim.lsp.omnifunc" -- Removido
 
 		local opts = { buffer = args.buf }
