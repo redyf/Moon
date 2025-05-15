@@ -1,4 +1,4 @@
-local icons = require("config.icons")
+local icons = require("utils.icons")
 
 return {
 	{

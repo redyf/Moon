@@ -2,6 +2,7 @@ return {
 	{
 		"stevearc/oil.nvim",
 		event = "VeryLazy",
+		enabled = false,
 		-- Optional dependencies
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = {
@@ -47,5 +48,5 @@ return {
 			},
 		},
 	},
-	vim.keymap.set("n", "<leader>o", "<cmd>Oil --float<cr>", { silent = true, desc = "Open Parent Directory" }),
+	-- vim.keymap.set("n", "<leader>o", "<cmd>Oil --float<cr>", { silent = true, desc = "Open Parent Directory" }),
 }
