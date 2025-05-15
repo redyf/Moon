@@ -21,7 +21,8 @@ return {
 					dap = true,
 				},
 			})
-			require("lspconfig").jdtls.setup({})
+			-- require("lspconfig").jdtls.setup({})
+			vim.lsp.enable("jdtls")
 		end,
 	},
 }
