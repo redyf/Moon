@@ -65,7 +65,6 @@ return {
 					nvimtree = false,
 					telescope = {
 						enabled = true,
-						-- style = "nvchad",
 					},
 					treesitter = true,
 					treesitter_context = true,
