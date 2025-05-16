@@ -5,7 +5,6 @@ return {
 	event = "VeryLazy",
 	enabled = false,
 	dependencies = {
-		{ "nvim-lua/plenary.nvim", event = "VeryLazy" },
 		{
 			"nvim-telescope/telescope-fzf-native.nvim",
 			build = "make",

@@ -3,9 +3,6 @@ return {
 		"ThePrimeagen/harpoon",
 		event = "VeryLazy",
 		enabled = false,
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
 		config = function()
 			local telescope = require("telescope")
 			require("telescope").load_extension("harpoon")
