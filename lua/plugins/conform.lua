@@ -14,7 +14,7 @@ return {
 				["css"] = { "prettier", "prettierd", stop_after_first = true },
 				["c"] = { "clang-format" },
 				["cpp"] = { "clang-format" },
-				["go"] = { "gofumpt" },
+				["go"] = { "gofmt" },
 				["java"] = { "google-java-format" },
 				["python"] = { "ruff" },
 				["lua"] = { "stylua" },
