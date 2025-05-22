@@ -1,7 +1,7 @@
 return {
 	{
 		"saghen/blink.cmp",
-		dependencies = { "rafamadriz/friendly-snippets" },
+		dependencies = { "L3MON4D3/LuaSnip", version = "v2.*" },
 		event = "VeryLazy",
 		version = "1.*",
 
@@ -21,13 +21,17 @@ return {
 			},
 
 			appearance = {
-				use_nvim_cmp_as_default = true,
-				nerd_font_variant = "mono",
+				kind_icons = require("utils.icons").kind,
 			},
 
+			snippets = { preset = "luasnip" },
 			completion = {
+				list = {
+					selection = { preselect = false, auto_insert = true },
+					max_items = 10,
+				},
 				documentation = {
-					auto_show = false,
+					auto_show = true,
 					window = {
 						scrollbar = false,
 					},
@@ -49,15 +53,36 @@ return {
 				enabled = true,
 				completion = {
 					menu = { auto_show = true },
+					list = {
+						selection = { preselect = false, auto_insert = true },
+					},
 				},
 			},
 
 			sources = {
-				default = { "lsp", "path", "snippets", "buffer" },
-			},
+				-- Disable some sources in comments and strings.
+				default = function()
+					local sources = { "lsp", "buffer" }
+					local ok, node = pcall(vim.treesitter.get_node)
 
-			fuzzy = { implementation = "prefer_rust_with_warning" },
+					if ok and node then
+						if not vim.tbl_contains({ "comment", "line_comment", "block_comment" }, node:type()) then
+							table.insert(sources, "path")
+						end
+						if node:type() ~= "string" then
+							table.insert(sources, "snippets")
+						end
+					end
+
+					return sources
+				end,
+			},
 		},
-		opts_extend = { "sources.default" },
+		config = function(_, opts)
+			require("blink.cmp").setup(opts)
+
+			-- Extend neovim's client capabilities with the completion ones.
+			vim.lsp.config("*", { capabilities = require("blink.cmp").get_lsp_capabilities(nil, true) })
+		end,
 	},
 }

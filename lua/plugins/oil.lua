@@ -2,51 +2,40 @@ return {
 	{
 		"stevearc/oil.nvim",
 		event = "VeryLazy",
-		enabled = false,
-		-- Optional dependencies
+		enabled = true,
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = {
-			delete_to_trash = true,
-			keymaps = {
-				["g?"] = "actions.show_help",
-				["<CR>"] = "actions.select",
-				["<C-s>"] = "actions.select_vsplit",
-				["<C-h>"] = "actions.select_split",
-				["<C-t>"] = "actions.select_tab",
-				["<C-p>"] = "actions.preview",
-				["<C-c>"] = "actions.close",
-				["<C-l>"] = "actions.refresh",
-				["-"] = "actions.parent",
-				["_"] = "actions.open_cwd",
-				["`"] = "actions.cd",
-				["~"] = "actions.tcd",
-				["gs"] = "actions.change_sort",
-				["gx"] = "actions.open_external",
-				["g."] = "actions.toggle_hidden",
-				["g\\"] = "actions.toggle_trash",
-				["q"] = "actions.close",
-			},
-			use_default_keymaps = true,
 			view_options = {
-				show_hidden = true,
+				show_hidden = true, -- Optional, adjust as needed
 			},
 			float = {
-				padding = 2,
-				max_width = 0,
-				max_height = 0,
-				border = "rounded", -- 'single' | 'double' | 'shadow' | 'curved' | ... other options supported by win open
 				win_options = {
-					winblend = 0,
-				},
-			},
-			-- Configuration for the actions floating preview window
-			preview = {
-				border = "rounded", -- 'single' | 'double' | 'shadow' | 'curved' | ... other options supported by win open
-				win_options = {
-					winblend = 0,
+					winblend = 0, -- Ensure floating window is transparent
 				},
 			},
 		},
+		config = function()
+			require("oil").setup({
+				delete_to_trash = true,
+				keymaps = {
+					["<C-h>"] = false,
+					["q"] = "actions.close",
+				},
+				use_default_keymaps = true,
+				view_options = {
+					show_hidden = true,
+				},
+				vim.api.nvim_set_hl(0, "OilDir", { bg = "none", link = "Directory" }),
+				vim.api.nvim_set_hl(0, "OilFile", { bg = "none" }),
+				vim.api.nvim_set_hl(0, "OilBackground", { bg = "none" }),
+				vim.api.nvim_set_hl(0, "OilBorder", { bg = "none", link = "FloatBorder" }),
+				vim.keymap.set(
+					"n",
+					"<leader>o",
+					"<cmd>Oil --float<cr>",
+					{ silent = true, desc = "Open Parent Directory" }
+				),
+			})
+		end,
 	},
-	-- vim.keymap.set("n", "<leader>o", "<cmd>Oil --float<cr>", { silent = true, desc = "Open Parent Directory" }),
 }

@@ -24,21 +24,6 @@ return {
 		},
 	},
 	{
-		"echasnovski/mini.files",
-		version = false,
-		event = "VeryLazy",
-		config = function()
-			require("mini.files").setup({
-				vim.keymap.set(
-					"n",
-					"<leader>o",
-					"<cmd>lua MiniFiles.open()<cr>",
-					{ silent = true, desc = "Open Parent Directory" }
-				),
-			})
-		end,
-	},
-	{
 		"echasnovski/mini.pairs",
 		version = false,
 		event = "VeryLazy",
@@ -52,6 +37,19 @@ return {
 		event = "VeryLazy",
 		config = function()
 			require("mini.surround").setup({})
+		end,
+	},
+	{
+		"echasnovski/mini.statusline",
+		version = false,
+		event = "VeryLazy",
+		enabled = true,
+		config = function()
+			local statusline = require("mini.statusline")
+			statusline.setup({ use_icons = vim.g.have_nerd_font })
+			statusline.section_location = function()
+				return "%2l:%-2v"
+			end
 		end,
 	},
 	{
