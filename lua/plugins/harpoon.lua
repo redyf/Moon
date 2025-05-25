@@ -4,9 +4,7 @@ return {
 		event = "VeryLazy",
 		enabled = false,
 		config = function()
-			local telescope = require("telescope")
-			require("telescope").load_extension("harpoon")
-			require("harpoon").setup({})
+			require("harpoon").setup()
 
 			local mark = require("harpoon.mark")
 			local ui = require("harpoon.ui")

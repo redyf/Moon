@@ -1,10 +1,10 @@
 return {
 	{
-		"nvim-treesitter/nvim-treesitter-context",
+		"arnamak/stay-centered.nvim",
 		event = "VeryLazy",
 		enabled = true,
 		config = function()
-			require("treesitter-context").setup()
+			require("stay-centered").setup()
 		end,
 	},
 }

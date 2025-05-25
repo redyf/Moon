@@ -12,7 +12,7 @@ return {
 		name = "catppuccin",
 		lazy = false,
 		priority = 1000,
-		enabled = false,
+		enabled = true,
 		config = function()
 			require("catppuccin").setup({
 				flavour = "mocha", -- latte, frappe, macchiato, mocha
@@ -88,7 +88,7 @@ return {
 		"folke/tokyonight.nvim",
 		lazy = false,
 		priority = 1000,
-		enabled = true,
+		enabled = false,
 		opts = {
 			transparent = true,
 			style = "night",

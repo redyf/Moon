@@ -1,55 +1,16 @@
 return {
 	{
-		"echasnovski/mini.ai",
+		"echasnovski/mini.nvim",
 		version = false,
 		event = "VeryLazy",
 		config = function()
-			require("mini.ai").setup({})
-		end,
-	},
-	{
-		"echasnovski/mini.comment",
-		version = false,
-		event = "VeryLazy",
-		config = function()
-			require("mini.comment").setup({})
-		end,
-	},
-	{
-		"echasnovski/mini.cursorword",
-		version = false,
-		event = "VeryLazy",
-		opts = {
-			delay = 100,
-		},
-	},
-	{
-		"echasnovski/mini.pairs",
-		version = false,
-		event = "VeryLazy",
-		config = function()
-			require("mini.pairs").setup({})
-		end,
-	},
-	{
-		"echasnovski/mini.surround",
-		version = false,
-		event = "VeryLazy",
-		config = function()
-			require("mini.surround").setup({})
-		end,
-	},
-	{
-		"echasnovski/mini.statusline",
-		version = false,
-		event = "VeryLazy",
-		enabled = true,
-		config = function()
-			local statusline = require("mini.statusline")
-			statusline.setup({ use_icons = vim.g.have_nerd_font })
-			statusline.section_location = function()
-				return "%2l:%-2v"
-			end
+			require("mini.ai").setup()
+			require("mini.comment").setup()
+			require("mini.cursorword").setup()
+			require("mini.pairs").setup()
+			require("mini.surround").setup()
+			require("mini.statusline").setup()
+			require("mini.indentscope").setup()
 		end,
 	},
 	{
@@ -84,24 +45,24 @@ return {
 			end
 
 			local starter = require("mini.starter")
-            --stylua: ignore
-            local config = {
-                evaluate_single = true,
-                header = logo,
-                items = {
-                    new_section("Find file", "FzfLua files", "FzfLua"),
-                    new_section("Recent files", "FzfLua oldfiles", "FzfLua"),
-                    new_section("Grep text", "FzfLua live_grep", "FzfLua"),
-                    new_section("Lazy", "Lazy", "Config"),
-                    new_section("Mason", "Mason", "Config"),
-                    new_section("New file", "ene | startinsert", "Built-in"),
-                    new_section("Quit", "qa", "Built-in"),
-                },
-                content_hooks = {
-                    starter.gen_hook.adding_bullet(pad .. "░ ", false),
-                    starter.gen_hook.aligning("center", "center"),
-                },
-            }
+	           --stylua: ignore
+	           local config = {
+	               evaluate_single = true,
+	               header = logo,
+	               items = {
+	                   new_section("Find file", "FzfLua files", "FzfLua"),
+	                   new_section("Recent files", "FzfLua oldfiles", "FzfLua"),
+	                   new_section("Grep text", "FzfLua live_grep", "FzfLua"),
+	                   new_section("Lazy", "Lazy", "Config"),
+	                   new_section("Mason", "Mason", "Config"),
+	                   new_section("New file", "ene | startinsert", "Built-in"),
+	                   new_section("Quit", "qa", "Built-in"),
+	               },
+	               content_hooks = {
+	                   starter.gen_hook.adding_bullet(pad .. "░ ", false),
+	                   starter.gen_hook.aligning("center", "center"),
+	               },
+	           }
 			return config
 		end,
 		config = function(_, config)
