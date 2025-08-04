@@ -47,49 +47,17 @@ vim.lsp.config["clangd"] = {
 }
 vim.lsp.enable("clangd")
 
--- vim.lsp.config["jdtls"] = {
--- 	cmd = { "jdtls" },
--- 	filetypes = { "java" },
--- 	root_markers = {
--- 		"settings.gradle",
--- 		"settings.gradle.kts",
--- 		"pom.xml",
--- 		"build.gradle",
--- 		"mvnw",
--- 		"gradlew",
--- 		"build.gradle",
--- 		"build.gradle.kts",
--- 		".git",
--- 	},
--- 	settings = {
--- 		java = {
--- 			autobuild = { enabled = true },
--- 			signatureHelp = { enabled = true },
--- 			completion = {
--- 				enabled = true,
--- 				importOrder = { "java", "javax", "com", "org" },
--- 			},
--- 		},
--- 	},
--- 	-- Adiciona handlers para comandos personalizados
--- 	init_options = {
--- 		bundles = {
--- 			vim.fn.expand("$MASON/share/java-debug-adapter/com.microsoft.java.debug.plugin.jar"),
--- 			-- unpack remaining bundles
--- 			(table.unpack or unpack)(vim.split(vim.fn.glob("$MASON/share/java-test/*.jar"), "\n", {})),
--- 		},
--- 	},
--- }
--- vim.lsp.enable("jdtls")
-
 vim.lsp.config["gopls"] = {
 	cmd = { "gopls" },
 	filetypes = { "go" },
+	root_markers = {
+		"go.mod",
+	},
 }
 vim.lsp.enable("gopls")
 
-vim.lsp.config["pyright"] = {
-	cmd = { "pyright-langserver", "--stdio" },
+vim.lsp.config["basedpyright"] = {
+	cmd = { "basedpyright-langserver" },
 	filetypes = { "python" },
 	root_markers = {
 		"pyproject.toml",
@@ -98,6 +66,7 @@ vim.lsp.config["pyright"] = {
 		"requirements.txt",
 		"Pipfile",
 		"pyrightconfig.json",
+		"uv.lock",
 	},
 	settings = {
 		python = {
@@ -355,6 +324,8 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 	border = "rounded",
 })
 
+vim.lsp.handlers["language/status"] = function() end
+
 vim.diagnostic.config({
 	float = { border = "rounded" },
 	virtual_lines = { current_line = false },
@@ -363,5 +334,5 @@ vim.diagnostic.config({
 	},
 	signs = true,
 	underline = true,
-	update_in_insert = true,
+	update_in_insert = false,
 })
