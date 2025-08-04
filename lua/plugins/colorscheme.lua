@@ -1,5 +1,5 @@
 function ColorMe(color)
-	color = color or "tokyonight-night"
+	color = color or "tokyonight-storm"
 	-- color = color or "github_dark_high_contrast"
 	vim.cmd.colorscheme(color)
 	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
@@ -12,7 +12,7 @@ return {
 		name = "catppuccin",
 		lazy = false,
 		priority = 1000,
-		enabled = true,
+		enabled = false,
 		config = function()
 			require("catppuccin").setup({
 				flavour = "mocha", -- latte, frappe, macchiato, mocha
@@ -88,7 +88,7 @@ return {
 		"folke/tokyonight.nvim",
 		lazy = false,
 		priority = 1000,
-		enabled = false,
+		enabled = true,
 		opts = {
 			transparent = true,
 			style = "night",

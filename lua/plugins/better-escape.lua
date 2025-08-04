@@ -2,6 +2,7 @@ return {
 	{
 		"max397574/better-escape.nvim",
 		event = "VeryLazy",
+		enabled = true,
 		config = function()
 			require("better_escape").setup({
 				timeout = 200,

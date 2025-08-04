@@ -72,7 +72,7 @@
             luajitPackages.luarocks-nix # Package manager for Lua on Nix
           ];
           shellHook = ''
-            echo "Environment is ready" | ${pkgs.lolcat}/bin/lolcat;
+            echo "Environment is ready" | ${pkgs.glow}/bin/glow;
           '';
         };
       }

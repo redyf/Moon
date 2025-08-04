@@ -10,6 +10,7 @@ return {
 			separator = "", -- ➜
 			group = "+",
 		},
+		preset = "helix",
 	},
 	-- local wk = require("which-key")
 	-- local ui = require("harpoon.ui")

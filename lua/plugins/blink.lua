@@ -30,6 +30,9 @@ return {
 					selection = { preselect = false, auto_insert = true },
 					max_items = 10,
 				},
+				ghost_text = {
+					enabled = true,
+				},
 				documentation = {
 					auto_show = true,
 					window = {
@@ -54,7 +57,7 @@ return {
 				completion = {
 					menu = { auto_show = true },
 					list = {
-						selection = { preselect = false, auto_insert = true },
+						selection = { preselect = false, auto_insert = false },
 					},
 				},
 			},
