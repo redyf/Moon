@@ -1,5 +1,5 @@
 function ColorMe(color)
-	color = color or "tokyonight-storm"
+	color = color or "tokyonight-moon"
 	-- color = color or "github_dark_high_contrast"
 	vim.cmd.colorscheme(color)
 	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
@@ -7,6 +7,36 @@ function ColorMe(color)
 end
 
 return {
+	{
+		"folke/tokyonight.nvim",
+		lazy = false,
+		enabled = true,
+		config = function()
+			require("tokyonight").setup({
+				transparent = true,
+				on_highlights = function(hl, c)
+					hl.TabLineFill = {
+						bg = c.none,
+					}
+				end,
+				on_colors = function(colors)
+					colors.bg_statusline = colors.none
+				end,
+				styles = {
+					comments = { italic = true },
+					sidebars = "transparent",
+					floats = "transparent",
+				},
+			})
+
+			vim.cmd.colorscheme("tokyonight-moon")
+			ColorMe()
+			-- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+			-- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+			-- vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
+			-- vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+		end,
+	},
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
@@ -82,34 +112,6 @@ return {
 				},
 			})
 			vim.cmd.colorscheme("catppuccin-mocha")
-		end,
-	},
-	{
-		"folke/tokyonight.nvim",
-		lazy = false,
-		priority = 1000,
-		enabled = true,
-		opts = {
-			transparent = true,
-			style = "night",
-			styles = {
-				comments = { italic = true },
-				keywords = {},
-				functions = {},
-				variables = {},
-				sidebars = "transparent",
-				floats = "transparent",
-			},
-		},
-		config = function(_, opts)
-			require("tokyonight").setup(opts)
-			vim.cmd([[colorscheme tokyonight-night]])
-			ColorMe()
-			-- -- Force transparency for key highlight groups
-			-- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-			-- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-			-- vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
-			-- vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
 		end,
 	},
 }
