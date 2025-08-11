@@ -9,13 +9,13 @@ return {
 			require("mini.cursorword").setup()
 			require("mini.pairs").setup()
 			require("mini.surround").setup()
-			require("mini.statusline").setup()
 			require("mini.indentscope").setup()
 		end,
 	},
 	{
 		"echasnovski/mini.starter",
 		version = false,
+		enabled = true,
 		event = "VimEnter",
 		opts = function()
 			local logo = table.concat({

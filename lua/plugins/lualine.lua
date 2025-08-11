@@ -1,156 +1,84 @@
 return {
 	{
 		"nvim-lualine/lualine.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
 		event = "VeryLazy",
-		enabled = false,
+		init = function()
+			vim.g.lualine_laststatus = vim.o.laststatus
+			if vim.fn.argc(-1) > 0 then
+				vim.o.statusline = " "
+			else
+				vim.o.laststatus = 0
+			end
+		end,
 		config = function()
-			local lualine = require("lualine")
+			local clients_lsp = function()
+				local bufnr = vim.api.nvim_get_current_buf()
 
-			local icons = {
-				mode = {
-					n = "", -- Normal
-					i = "✎ ", -- Insert
-					v = "◉ ", -- Visual
-					[""] = "◉ ", -- Visual Block
-					c = "⌘ ", -- Command
-					t = " ", -- Terminal
-					other = " ", -- Outros modos
-				},
-				file = {
-					modified = "+ ", -- Indicador de arquivo modificado
-					readonly = "🔒 ", -- Indicador de arquivo somente leitura
-				},
-			}
+				local clients = vim.lsp.get_clients({ bufnr = bufnr })
+				if next(clients) == nil then
+					return ""
+				end
 
-			-- Função para obter o ícone do modo
-			local function mode_icon()
-				local mode = vim.fn.mode()
-				return (icons.mode[mode] or icons.mode.other) .. vim.fn.mode():upper()
+				local c = {}
+				for _, client in pairs(clients) do
+					table.insert(c, client.name)
+				end
+				return " " .. table.concat(c, "|")
 			end
 
-			-- Definir um grupo de destaque para lualineblue com fundo azul do Catppuccin Mocha
-			vim.api.nvim_set_hl(0, "LualineBlue", { bg = "#89b4fa", fg = "#1e1e2e" }) -- Azul do Catppuccin Mocha, texto escuro
-
-			-- Configuração do lualine
-			require("lualine").setup({
+			local M = {
 				options = {
-					icons_enabled = true,
-					theme = "auto",
-					component_separators = { left = "|", right = "|" },
-					section_separators = { left = "", right = "" }, --   or █
-					disabled_filetypes = {
-						statusline = {},
-						winbar = {},
-					},
-					ignore_focus = {},
-					always_divide_middle = true,
-					always_show_tabline = true,
-					globalstatus = false,
-					refresh = {
-						statusline = 100,
-						tabline = 100,
-						winbar = 100,
-					},
+					theme = "tokyonight",
+					component_separators = "",
+					section_separators = { left = "", right = "" },
+					disabled_filetypes = { "NvimTree", "snacks_dashboard" },
 				},
 				sections = {
 					lualine_a = {
-						{
-							"mode",
-							fmt = function()
-								return mode_icon()
-							end,
-						},
+						{ "mode", icon = "" },
 					},
 					lualine_b = {
 						{
-							"filename",
-							path = 1, -- Mostra o caminho relativo
-							symbols = {
-								modified = icons.file.modified,
-								readonly = icons.file.readonly,
-							},
-						},
-					},
-					lualine_c = {},
-					lualine_x = {},
-					lualine_y = {
-						{
 							"filetype",
-							fmt = function(str)
-								return str
-							end, -- Apenas o tipo de arquivo (ex.: lua)
+							icon_only = true,
+							padding = { left = 1, right = 0 },
+						},
+						"filename",
+					},
+					lualine_c = {
+						{
+							"branch",
+							icon = "",
 						},
 						{
-							-- Total de linhas
-							function()
-								return vim.fn.line("$")
-							end,
-							padding = { left = 1, right = 1 }, -- Controle de espaçamento
-							color = "LualineBlue", -- Aplica o fundo azul
-						},
-						{
-							-- Linha/coluna
-							function()
-								return string.format("%d/%d", vim.fn.line("."), vim.fn.col("."))
-							end,
-							padding = { left = 1, right = 1 }, -- Controle de espaçamento
-							color = "LualineBlue", -- Aplica o fundo azul
+							"diff",
+							symbols = { added = " ", modified = " ", removed = " " },
+							colored = false,
 						},
 					},
-					lualine_z = {},
+					lualine_x = {
+						{
+							"diagnostics",
+							symbols = { error = " ", warn = " ", hint = " ", info = " " },
+							update_in_insert = true,
+						},
+					},
+					lualine_y = { clients_lsp },
+					lualine_z = {
+						{ "location", icon = "" },
+					},
 				},
 				inactive_sections = {
-					lualine_a = {},
-					lualine_b = {
-						{
-							"filename",
-							path = 1,
-							symbols = {
-								modified = icons.file.modified,
-								readonly = icons.file.readonly,
-							},
-						},
-					},
+					lualine_a = { "filename" },
+					lualine_b = {},
 					lualine_c = {},
 					lualine_x = {},
-					lualine_y = {
-						{
-							"filetype",
-							fmt = function(str)
-								return str
-							end,
-							color = "LualineBlue", -- Aplica o fundo azul
-						},
-						{
-							function()
-								return vim.fn.line("$")
-							end,
-							padding = { left = 0, right = 1 },
-							color = "LualineBlue", -- Aplica o fundo azul
-						},
-						{
-							function()
-								return string.format("%d/%d", vim.fn.line("."), vim.fn.col("."))
-							end,
-							padding = { left = 1, right = 1 },
-							color = "LualineBlue", -- Aplica o fundo azul
-						},
-					},
-					lualine_z = {},
+					lualine_y = {},
+					lualine_z = { "location" },
 				},
-				tabline = {},
-				winbar = {},
-				inactive_winbar = {},
-				extensions = {},
-			})
+			}
 
-			-- Reaplica o highlight ao mudar o colorscheme (caso necessário)
-			vim.api.nvim_create_autocmd("ColorScheme", {
-				callback = function()
-					vim.api.nvim_set_hl(0, "LualineBlue", { bg = "#89b4fa", fg = "#1e1e2e" })
-				end,
-			})
+			require("lualine").setup(M)
 		end,
 	},
 }
