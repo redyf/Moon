@@ -29,6 +29,12 @@ vim.lsp.config["dockerls"] = {
 }
 vim.lsp.enable("dockerls")
 
+vim.lsp.config["terraformls"] = {
+	cmd = { "terraform-ls" },
+	filetypes = { "terraform, tf" },
+}
+vim.lsp.enable("terraformls")
+
 vim.lsp.config["html"] = {
 	cmd = { "html-lsp" },
 	filetypes = { "html" },
@@ -56,8 +62,8 @@ vim.lsp.config["gopls"] = {
 }
 vim.lsp.enable("gopls")
 
-vim.lsp.config["basedpyright"] = {
-	cmd = { "basedpyright-langserver" },
+vim.lsp.config("basedpyright", {
+	cmd = { "basedpyright-langserver", "--stdio" },
 	filetypes = { "python" },
 	root_markers = {
 		"pyproject.toml",
@@ -69,29 +75,17 @@ vim.lsp.config["basedpyright"] = {
 		"uv.lock",
 	},
 	settings = {
-		python = {
+		basedpyright = {
 			analysis = {
+				autoImportCompletions = true,
 				autoSearchPaths = true,
-				useLibraryCodeForTypes = true,
-				diagnosticMode = "workspace", -- or "openFilesOnly"
-				typeCheckingMode = "basic", -- options: "off", "basic", "strict"
+				diagnosticMode = "openFilesOnly", -- openFilesOnly, workspace
+				typeCheckingMode = "standard",
 			},
 		},
 	},
-}
-vim.lsp.enable("pyright")
-
--- vim.lsp.config["csharp_ls"] =
--- 	{
--- 		cmd = { "csharp-ls" },
--- 		filetypes = { "cs", "csharp" },
--- 		root_markers = {
--- 			"*.sln",
--- 			"*.csproj",
--- 			".git",
--- 		},
--- 		settings = {},
--- 	} vim.lsp.enable("csharp_ls")
+})
+vim.lsp.enable("basedpyright")
 
 vim.lsp.config["omnisharp"] = {
 	cmd = { "OmniSharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
@@ -134,27 +128,26 @@ vim.lsp.config["rust_analyzer"] = {
 }
 vim.lsp.enable("rust_analyzer")
 
-vim.lsp.config["jsonls"] = {
-	cmd = { "json-lsp" },
-	filetypes = { "json" },
-}
-vim.lsp.enable("jsonls")
-
-vim.lsp.config["marksman"] = {
-	cmd = { "marksman" },
-	filetypes = { "markdown" },
-}
-vim.lsp.enable("marksman")
-
-vim.lsp.config["taplo"] = {
-	cmd = { "taplo" },
-	filetypes = { "toml" },
-}
-vim.lsp.enable("taplo")
-
 vim.lsp.config["yamlls"] = {
-	cmd = { "yaml-language-server" },
-	filetypes = { "yaml" },
+	cmd = { "yaml-language-server", "--stdio" },
+	filetypes = { "yaml", "yaml.docker-compose", "yaml.gitlab", "yaml.helm-values" },
+	root_markers = { ".git" },
+	settings = {
+		redhat = {
+			telemetry = {
+				enabled = false,
+			},
+		},
+		yaml = {
+			format = {
+				enable = true,
+			},
+			schemas = {
+				["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+				["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.32.1-standalone-strict/all.json"] = "/*.k8s.yaml",
+			},
+		},
+	},
 }
 vim.lsp.enable("yamlls")
 
@@ -271,13 +264,6 @@ vim.lsp.config["nixd"] = {
 }
 vim.lsp.enable("nixd")
 
-vim.lsp.config["ocaml-lsp"] = {
-	cmd = { "ocamllsp" },
-	filetypes = { "ocaml" },
-	root_markers = { "dune-project", "dune-workspace", ".git" },
-}
-vim.lsp.enable("ocaml-lsp")
-
 vim.api.nvim_create_autocmd("LspAttach", {
 	-- group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 	callback = function(args)
@@ -328,10 +314,8 @@ vim.lsp.handlers["language/status"] = function() end
 
 vim.diagnostic.config({
 	float = { border = "rounded" },
-	virtual_lines = { current_line = false },
-	virtual_text = {
-		prefix = "",
-	},
+	{ virtual_lines = { current_line = false }, virtual_text = false },
+	{ virtual_text = false, prefix = "" },
 	signs = true,
 	underline = true,
 	update_in_insert = false,

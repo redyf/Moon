@@ -5,6 +5,11 @@ return {
 		build = ":Cord update",
 		event = "VeryLazy",
 		enabled = true,
-		opts = {},
+		opts = {
+			display = {
+				theme = "atom",
+				flavor = "accent",
+			},
+		},
 	},
 }

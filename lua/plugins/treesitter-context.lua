@@ -2,7 +2,7 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter-context",
 		event = "VeryLazy",
-		enabled = true,
+		enabled = false,
 		config = function()
 			require("treesitter-context").setup({
 				mode = "topline",

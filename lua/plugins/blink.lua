@@ -26,6 +26,11 @@ return {
 
 			snippets = { preset = "luasnip" },
 			completion = {
+				accept = {
+					auto_brackets = {
+						enabled = true,
+					},
+				},
 				list = {
 					selection = { preselect = false, auto_insert = true },
 					max_items = 10,
@@ -37,6 +42,7 @@ return {
 					auto_show = true,
 					window = {
 						scrollbar = false,
+						border = "solid",
 					},
 				},
 				trigger = {
@@ -50,6 +56,7 @@ return {
 
 			signature = {
 				enabled = true,
+				window = { border = "rounded" },
 			},
 
 			cmdline = {

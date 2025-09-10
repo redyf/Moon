@@ -33,6 +33,8 @@ return {
 				["eelixir"] = { "mix" },
 				["heex"] = { "mix" },
 				["surface"] = { "mix" },
+				["tf"] = { "terraform_fmt" },
+				["terraform"] = { "terraform_fmt" },
 			},
 		},
 		init = function()

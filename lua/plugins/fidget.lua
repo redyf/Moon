@@ -2,6 +2,7 @@ return {
 	{
 		"j-hui/fidget.nvim",
 		event = "VeryLazy",
+		enabled = false,
 		opts = {
 			progress = {
 				suppress_on_insert = true, -- Suppress new messages while in insert mode

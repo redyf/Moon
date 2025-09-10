@@ -19,6 +19,8 @@ return {
 				json = { "jsonlint" },
 				java = { "checkstyle" },
 				bash = { "shellcheck" },
+				tf = { "terraform_validate" },
+				terraform = { "terraform_validate" },
 			}
 		end,
 	},
