@@ -1,5 +1,5 @@
 function ColorMe(color)
-	color = color or "tokyonight_moon"
+	color = color or "oxocarbon-dark"
 	vim.cmd.colorscheme(color)
 	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
@@ -9,12 +9,23 @@ end
 
 return {
 	{
-		"folke/tokyonight.nvim",
+		"sainnhe/gruvbox-material",
+		enabled = false,
 		lazy = false,
-		enabled = true,
+		priority = 1000,
+		config = function()
+			vim.o.background = "dark"
+			vim.g.gruvbox_material_background = "hard"
+			vim.cmd.colorscheme("gruvbox-material")
+		end,
+	},
+	{
+		"folke/tokyonight.nvim",
+		enabled = false,
+		lazy = false,
 		config = function()
 			require("tokyonight").setup({
-				transparent = true,
+				transparent = false,
 				on_highlights = function(hl, c)
 					hl.TabLineFill = {
 						bg = c.none,
@@ -60,19 +71,18 @@ return {
 			})
 
 			vim.cmd.colorscheme("tokyonight-moon")
-			-- ColorMe()
 		end,
 	},
 	{
 		"catppuccin/nvim",
+		enabled = true,
 		name = "catppuccin",
 		lazy = false,
 		priority = 1000,
-		enabled = false,
 		config = function()
 			require("catppuccin").setup({
-				flavour = "mocha", -- latte, frappe, macchiato, mocha
-				transparent_background = true,
+				flavour = "macchiato", -- latte, frappe, macchiato, mocha
+				transparent_background = false,
 				background = {
 					light = "mocha",
 					dark = "mocha",
@@ -94,7 +104,7 @@ return {
 					harpoon = true,
 					indent_blankline = {
 						enabled = true,
-						scope_color = "", -- catppuccin color (eg. `lavender`) Default: text
+						-- scope_color = "", -- catppuccin color (eg. `lavender`) Default: text
 						colored_indent_levels = true,
 					},
 					lsp_saga = false,
@@ -137,7 +147,7 @@ return {
 					which_key = true,
 				},
 			})
-			vim.cmd.colorscheme("catppuccin-mocha")
+			vim.cmd.colorscheme("catppuccin")
 		end,
 	},
 }

@@ -79,7 +79,7 @@ vim.lsp.config("basedpyright", {
 			analysis = {
 				autoImportCompletions = true,
 				autoSearchPaths = true,
-				diagnosticMode = "openFilesOnly", -- openFilesOnly, workspace
+				diagnosticMode = "workspace",
 				typeCheckingMode = "standard",
 			},
 		},
@@ -159,8 +159,9 @@ vim.lsp.config["elixir-ls"] = {
 vim.lsp.enable("elixir-ls")
 
 vim.lsp.config["bashls"] = {
-	cmd = { "bash-language-server" },
+	cmd = { "bash-language-server", "start" },
 	filetypes = { "bash", "csh", "ksh", "sh", "zsh" },
+	root_markers = { ".git" },
 }
 vim.lsp.enable("bashls")
 
@@ -319,4 +320,23 @@ vim.diagnostic.config({
 	signs = true,
 	underline = true,
 	update_in_insert = false,
+})
+
+-- Função para restart do LSP específico
+local function restart_basedpyright()
+	local clients = vim.lsp.get_clients({ name = "basedpyright" })
+	for _, client in pairs(clients) do
+		client:stop()
+	end
+
+	vim.defer_fn(function()
+		vim.lsp.enable("basedpyright")
+	end, 1000)
+end
+
+vim.api.nvim_create_autocmd("BufNewFile", {
+	pattern = "*.py",
+	callback = function()
+		vim.defer_fn(restart_basedpyright, 500)
+	end,
 })
