@@ -81,8 +81,7 @@ vim.opt.guicursor = {
 	"i-ci-ve:ver25",
 	"r-cr:ver25",
 	"o:ver25",
-	"a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor",
-	"sm:ver25-blinkwait175-blinkoff150-blinkon175",
+	"sm:ver25",
 }
 
 -- Enable chars list
@@ -113,7 +112,6 @@ vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin" .. (is_windows and ";" or 
 local g = vim.g
 local o = vim.o
 if g.neovide then
-	-- Options
 	g.neovide_fullscreen = false
 	g.neovide_hide_mouse_when_typing = false
 	g.neovide_refresh_rate = 165
@@ -124,7 +122,5 @@ if g.neovide then
 	g.neovide_cursor_vfx_particle_density = 14.0
 	g.neovide_cursor_vfx_particle_speed = 12.0
 	g.neovide_transparency = 0.8
-
-	-- Fonts
 	o.guifont = "JetBrainsMono Nerd Font:h11:Medium:i"
 end

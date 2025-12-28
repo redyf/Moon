@@ -25,7 +25,7 @@ return {
 		lazy = false,
 		config = function()
 			require("tokyonight").setup({
-				transparent = false,
+				transparent = true,
 				on_highlights = function(hl, c)
 					hl.TabLineFill = {
 						bg = c.none,
@@ -82,7 +82,7 @@ return {
 		config = function()
 			require("catppuccin").setup({
 				flavour = "macchiato", -- latte, frappe, macchiato, mocha
-				transparent_background = false,
+				transparent_background = true,
 				background = {
 					light = "mocha",
 					dark = "mocha",

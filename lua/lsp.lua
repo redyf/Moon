@@ -59,8 +59,50 @@ vim.lsp.config["gopls"] = {
 	root_markers = {
 		"go.mod",
 	},
+	settings = {
+		gopls = {
+			hints = {
+				rangeVariableTypes = true,
+				parameterNames = true,
+				constantValues = true,
+				assignVariablesTypes = true,
+				compositeLiteralFields = true,
+				compositeLiteralTypes = true,
+				functionTypeParameters = true,
+			},
+			completeUnimported = true,
+			usePlaceholders = true,
+			analyses = {
+				unusedparams = true,
+			},
+		},
+	},
 }
 vim.lsp.enable("gopls")
+
+vim.lsp.config["dartls"] = {
+	cmd = { "dart", "language-server", "--protocol=lsp" },
+	filetypes = { "dart" },
+	root_markers = {
+		"pubspec.yaml",
+	},
+	init_options = {
+		onlyAnalyzeProjectsWithOpenFiles = false,
+		suggestFromUnimportedLibraries = true,
+		closingLabels = true,
+		outline = true,
+		flutterOutline = true,
+	},
+	settings = {
+		dart = {
+			completeFunctionCalls = true,
+			showTodos = true,
+			enableSnippets = true,
+			updateImportsOnRename = true,
+			lineLength = 120,
+		},
+	},
+}
 
 vim.lsp.config("basedpyright", {
 	cmd = { "basedpyright-langserver", "--stdio" },
