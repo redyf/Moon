@@ -53,7 +53,7 @@ vim.opt.termguicolors = true
 vim.opt.signcolumn = "yes"
 
 -- Enable cursor line highlight
-vim.opt.cursorline = false -- Highlight the line where the cursor is located
+vim.opt.cursorline = true -- Highlight the line where the cursor is located
 
 -- Set fold settings
 -- These options were reccommended by nvim-ufo
@@ -77,11 +77,11 @@ vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
 
 vim.opt.guicursor = {
-	"n-v-c:ver25",
+	"n-v-c:block",
 	"i-ci-ve:ver25",
-	"r-cr:ver25",
-	"o:ver25",
-	"sm:ver25",
+	"r-cr:hor20",
+	"o:block",
+	"sm:block", -- showmatch
 }
 
 -- Enable chars list

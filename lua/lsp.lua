@@ -129,29 +129,36 @@ vim.lsp.config("basedpyright", {
 })
 vim.lsp.enable("basedpyright")
 
-vim.lsp.config["omnisharp"] = {
-	cmd = { "OmniSharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
-	filetypes = { "cs", "csharp" },
-	root_markers = {
-		"*.sln",
-		"*.csproj",
-		".git",
+-- No NixOS, o pacote roslyn-ls fornece este binário pronto para uso
+local roslyn_bin = vim.fn.exepath("Microsoft.CodeAnalysis.LanguageServer")
+
+-- Se por acaso o binário não estiver no path, tentamos um fallback comum no Nix
+if roslyn_bin == "" then
+	roslyn_bin = "Microsoft.CodeAnalysis.LanguageServer"
+end
+
+vim.lsp.config["roslyn"] = {
+	cmd = {
+		roslyn_bin,
+		"--logLevel",
+		"Information",
+		"--extensionLogDirectory",
+		vim.fs.joinpath(vim.fn.stdpath("cache"), "roslyn"),
+		"--stdio",
 	},
+	filetypes = { "cs", "csharp", "razor" },
+	root_markers = { "*.sln", "*.csproj", ".git" },
 	settings = {
-		FormattingOptions = {
-			EnableEditorConfigSupport = true,
-			OrganizeImports = true,
+		["csharp|inlay_hints"] = {
+			csharp_enable_inlay_hints_for_implicit_object_creation = true,
+			csharp_enable_inlay_hints_for_implicit_variable_types = true,
 		},
-		RoslynExtensionsOptions = {
-			EnableAnalyzersSupport = true,
-			EnableImportCompletion = true,
-		},
-		Sdk = {
-			IncludePrerelease = false,
+		["csharp|code_lens"] = {
+			dotnet_enable_references_code_lens = true,
 		},
 	},
 }
-vim.lsp.enable("omnisharp")
+vim.lsp.enable("roslyn")
 
 vim.lsp.config["rust_analyzer"] = {
 	cmd = { "rust-analyzer" },

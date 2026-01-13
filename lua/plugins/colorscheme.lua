@@ -9,19 +9,8 @@ end
 
 return {
 	{
-		"sainnhe/gruvbox-material",
-		enabled = false,
-		lazy = false,
-		priority = 1000,
-		config = function()
-			vim.o.background = "dark"
-			vim.g.gruvbox_material_background = "hard"
-			vim.cmd.colorscheme("gruvbox-material")
-		end,
-	},
-	{
 		"folke/tokyonight.nvim",
-		enabled = false,
+		enabled = true,
 		lazy = false,
 		config = function()
 			require("tokyonight").setup({
@@ -69,13 +58,12 @@ return {
 					floats = "transparent",
 				},
 			})
-
 			vim.cmd.colorscheme("tokyonight-moon")
 		end,
 	},
 	{
 		"catppuccin/nvim",
-		enabled = true,
+		enabled = false,
 		name = "catppuccin",
 		lazy = false,
 		priority = 1000,
