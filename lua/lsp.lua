@@ -36,13 +36,13 @@ vim.lsp.config["terraformls"] = {
 vim.lsp.enable("terraformls")
 
 vim.lsp.config["html"] = {
-  cmd = { "vscode-html-language-server", "--stdio" }
+  cmd = { "vscode-html-language-server", "--stdio" },
 	filetypes = { "html" },
 }
 vim.lsp.enable("html")
 
 vim.lsp.config["cssls"] = {
-  cmd = { "vscode-css-language-server", "--stdio" }
+  cmd = { "vscode-css-language-server", "--stdio" },
 	filetypes = { "css", "scss", "less" },
 }
 vim.lsp.enable("cssls")
@@ -194,7 +194,7 @@ vim.lsp.config["bashls"] = {
 vim.lsp.enable("bashls")
 
 vim.lsp.config["tailwindcss"] = {
-  cmd = { "tailwindcss-language-server", "--stdio" }
+  cmd = { "tailwindcss-language-server", "--stdio" },
 	filetypes = {
 		"css",
 		"scss",
