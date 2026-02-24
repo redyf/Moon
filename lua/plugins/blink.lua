@@ -88,11 +88,19 @@ return {
 				end,
 			},
 		},
-		config = function(_, opts)
-			require("blink.cmp").setup(opts)
-
-			-- Extend neovim's client capabilities with the completion ones.
-			vim.lsp.config("*", { capabilities = require("blink.cmp").get_lsp_capabilities(nil, true) })
-		end,
+    config = function(_, opts)
+      require("blink.cmp").setup(opts)
+      vim.lsp.config("*", {
+        capabilities = require("blink.cmp").get_lsp_capabilities(nil, true),
+        handlers = {
+          ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+            border = "rounded",
+          }),
+          ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+            border = "rounded",
+          }),
+        },
+      })
+    end,
 	},
 }

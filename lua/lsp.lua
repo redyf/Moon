@@ -1,18 +1,7 @@
--- local cmp_config = require("plugins/cmp")
--- local capabilities = cmp_config.capabilities
 vim.lsp.config["luals"] = {
-	-- Command and arguments to start the server.
 	cmd = { "lua-language-server" },
-	-- Filetypes to automatically attach to.
 	filetypes = { "lua" },
-	-- Sets the "root directory" to the parent directory of the file in the
-	-- current buffer that contains either a ".luarc.json" or a
-	-- ".luarc.jsonc" file. Files that share a root directory will reuse
-	-- the connection to the same LSP server.
 	root_markers = { ".luarc.json", ".luarc.jsonc" },
-	-- Specific settings to send to the server. The schema for this is
-	-- defined by the server. For example the schema for lua-language-server
-	-- can be found here https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json
 	settings = {
 		Lua = {
 			runtime = {
@@ -23,10 +12,11 @@ vim.lsp.config["luals"] = {
 }
 vim.lsp.enable("luals")
 
-vim.lsp.config["dockerls"] = {
-	cmd = { "dockerfile-language-server" },
-	filetypes = { "dockerfile" },
-}
+vim.lsp.config("dockerls", {
+  cmd = { "docker-langserver", "--stdio" },
+  filetypes = { "dockerfile" },
+  root_markers = { "Dockerfile", ".git" },
+})
 vim.lsp.enable("dockerls")
 
 vim.lsp.config["terraformls"] = {
@@ -46,13 +36,13 @@ vim.lsp.config["terraformls"] = {
 vim.lsp.enable("terraformls")
 
 vim.lsp.config["html"] = {
-	cmd = { "html-lsp" },
+  cmd = { "vscode-html-language-server", "--stdio" }
 	filetypes = { "html" },
 }
 vim.lsp.enable("html")
 
 vim.lsp.config["cssls"] = {
-	cmd = { "css-lsp" },
+  cmd = { "vscode-css-language-server", "--stdio" }
 	filetypes = { "css", "scss", "less" },
 }
 vim.lsp.enable("cssls")
@@ -89,30 +79,6 @@ vim.lsp.config["gopls"] = {
 	},
 }
 vim.lsp.enable("gopls")
-
-vim.lsp.config["dartls"] = {
-	cmd = { "dart", "language-server", "--protocol=lsp" },
-	filetypes = { "dart" },
-	root_markers = {
-		"pubspec.yaml",
-	},
-	init_options = {
-		onlyAnalyzeProjectsWithOpenFiles = false,
-		suggestFromUnimportedLibraries = true,
-		closingLabels = true,
-		outline = true,
-		flutterOutline = true,
-	},
-	settings = {
-		dart = {
-			completeFunctionCalls = true,
-			showTodos = true,
-			enableSnippets = true,
-			updateImportsOnRename = true,
-			lineLength = 120,
-		},
-	},
-}
 
 vim.lsp.config("basedpyright", {
 	cmd = { "basedpyright-langserver", "--stdio" },
@@ -156,7 +122,7 @@ vim.lsp.config["roslyn"] = {
 		vim.fs.joinpath(vim.fn.stdpath("cache"), "roslyn"),
 		"--stdio",
 	},
-	filetypes = { "cs", "csharp", "razor" },
+	filetypes = { "cs", "razor" },
 	root_markers = { "*.sln", "*.csproj", ".git" },
 	settings = {
 		["csharp|inlay_hints"] = {
@@ -173,17 +139,16 @@ vim.lsp.enable("roslyn")
 vim.lsp.config["rust_analyzer"] = {
 	cmd = { "rust-analyzer" },
 	filetypes = { "rust" },
-	settings = {
-		["rust-analyzer"] = {
-			check_on_save = true,
-			check = {
-				command = "clippy",
-			},
-			proc_macro = {
-				enable = true,
-			},
-		},
-	},
+  settings = {
+    ["rust-analyzer"] = {
+      check = {
+        command = "clippy",
+      },
+      procMacro = {
+        enable = true,
+      },
+    },
+  },
 }
 vim.lsp.enable("rust_analyzer")
 
@@ -197,25 +162,29 @@ vim.lsp.config["yamlls"] = {
 				enabled = false,
 			},
 		},
-		yaml = {
-			format = {
-				enable = true,
-			},
-			schemas = {
-				["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
-				["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.32.1-standalone-strict/all.json"] = "/*.k8s.yaml",
-			},
-		},
+    yaml = {
+      format = {
+        enable = true,
+      },
+      schemaStore = {
+        enable = true,
+        url = "https://www.schemastore.org/api/json/catalog.json",
+      },
+      schemas = {
+        ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+        ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.32.1-standalone-strict/all.json"] = "/*.k8s.yaml",
+      },
+    },
 	},
 }
 vim.lsp.enable("yamlls")
 
-vim.lsp.config["elixir-ls"] = {
+vim.lsp.config["elixir_ls"] = {
 	cmd = { "elixir-ls" },
 	filetypes = { "elixir", "eelixir", "heex", "surface" },
 	root_markers = { "mix.exs", ".git" },
 }
-vim.lsp.enable("elixir-ls")
+vim.lsp.enable("elixir_ls")
 
 vim.lsp.config["bashls"] = {
 	cmd = { "bash-language-server", "start" },
@@ -225,7 +194,7 @@ vim.lsp.config["bashls"] = {
 vim.lsp.enable("bashls")
 
 vim.lsp.config["tailwindcss"] = {
-	cmd = { "tailwindcss-language-server" },
+  cmd = { "tailwindcss-language-server", "--stdio" }
 	filetypes = {
 		"css",
 		"scss",
@@ -357,28 +326,22 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			vim.lsp.buf.format({ async = true })
 		end, opts)
 		vim.keymap.set("n", "<space>cd", vim.diagnostic.open_float, opts)
-		vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
-		vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
+		vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+		vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 	end,
-})
-
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-	border = "rounded",
-})
-
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-	border = "rounded",
 })
 
 vim.lsp.handlers["language/status"] = function() end
 
 vim.diagnostic.config({
-	float = { border = "rounded" },
-	{ virtual_lines = { current_line = false }, virtual_text = false },
-	{ virtual_text = false, prefix = "" },
-	signs = true,
-	underline = true,
-	update_in_insert = false,
+  float = { border = "rounded" },
+  virtual_lines = false,
+  virtual_text = {
+    prefix = "●",
+  },
+  signs = true,
+  underline = true,
+  update_in_insert = false,
 })
 
 -- Função para restart do LSP específico
