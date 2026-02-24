@@ -30,8 +30,18 @@ vim.lsp.config["dockerls"] = {
 vim.lsp.enable("dockerls")
 
 vim.lsp.config["terraformls"] = {
-	cmd = { "terraform-ls" },
-	filetypes = { "terraform, tf" },
+  cmd = { "terraform-ls", "serve" },
+  filetypes = { "terraform", "terraform-vars" },
+  root_markers = { ".terraform", ".git" },
+  init_options = {
+    experimentalFeatures = {
+      validateOnSave = true,
+      prefillRequiredFields = true,
+    },
+    validation = {
+      enableEnhancedValidation = true,
+    },
+  },
 }
 vim.lsp.enable("terraformls")
 
