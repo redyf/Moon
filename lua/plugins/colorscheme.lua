@@ -52,7 +52,7 @@ return {
 				end,
 				styles = {
 					comments = { italic = true },
-					variables = { italic = true },
+					variables = { italic = false },
 					functions = { italic = true },
 					sidebars = "transparent",
 					floats = "transparent",
