@@ -2,16 +2,9 @@ return {
 	{
 		"saghen/blink.cmp",
 		dependencies = { "L3MON4D3/LuaSnip", version = "v2.*" },
-		event = "VeryLazy",
+		event = { "InsertEnter", "CmdlineEnter" },
 		version = "1.*",
-
 		opts = {
-			-- All presets have the following mappings:
-			-- C-space: Open menu or open docs if already open
-			-- C-n/C-p or Up/Down: Select next/previous item
-			-- C-e: Hide menu
-			-- C-k: Toggle signature help (if signature.enabled = true)
-			-- See :h blink-cmp-config-keymap for defining your own keymap
 			keymap = {
 				preset = "enter",
 				["<C-k>"] = { "select_prev", "fallback" },
@@ -19,11 +12,6 @@ return {
 				["<Tab>"] = { "select_next", "fallback" },
 				["<S-Tab>"] = { "select_prev", "fallback" },
 			},
-
-			appearance = {
-				kind_icons = require("utils.icons").kind,
-			},
-
 			snippets = { preset = "luasnip" },
 			completion = {
 				accept = {
@@ -47,18 +35,18 @@ return {
 				},
 				trigger = {
 					show_on_trigger_character = true,
+					show_on_keyword = true,
+					show_on_insert_on_trigger_character = true,
 				},
 				menu = {
 					border = "rounded",
 					scrollbar = false,
 				},
 			},
-
 			signature = {
 				enabled = true,
 				window = { border = "rounded" },
 			},
-
 			cmdline = {
 				enabled = true,
 				completion = {
@@ -68,13 +56,14 @@ return {
 					},
 				},
 			},
-
 			sources = {
-				-- Disable some sources in comments and strings.
 				default = function()
+					local ft = vim.bo.filetype
+					if ft == "nix" then
+						return { "lsp", "buffer", "path", "snippets" }
+					end
 					local sources = { "lsp", "buffer" }
 					local ok, node = pcall(vim.treesitter.get_node)
-
 					if ok and node then
 						if not vim.tbl_contains({ "comment", "line_comment", "block_comment" }, node:type()) then
 							table.insert(sources, "path")
@@ -83,24 +72,18 @@ return {
 							table.insert(sources, "snippets")
 						end
 					end
-
 					return sources
 				end,
 			},
 		},
-    config = function(_, opts)
-      require("blink.cmp").setup(opts)
-      vim.lsp.config("*", {
-        capabilities = require("blink.cmp").get_lsp_capabilities(nil, true),
-        handlers = {
-          ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-            border = "rounded",
-          }),
-          ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-            border = "rounded",
-          }),
-        },
-      })
-    end,
+		config = function(_, opts)
+			opts.appearance = {
+				kind_icons = require("utils.icons").kind,
+			}
+			require("blink.cmp").setup(opts)
+			vim.lsp.config("*", {
+				capabilities = require("blink.cmp").get_lsp_capabilities(nil, true),
+			})
+		end,
 	},
 }
