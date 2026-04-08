@@ -1,11 +1,16 @@
 vim.lsp.config["luals"] = {
 	cmd = { "lua-language-server" },
 	filetypes = { "lua" },
-	root_markers = { ".luarc.json", ".luarc.jsonc" },
+	root_markers = { ".luarc.json", ".luarc.jsonc", ".git" },
 	settings = {
 		Lua = {
-			runtime = {
-				version = "LuaJIT",
+			runtime = { version = "LuaJIT" },
+			workspace = {
+				library = vim.api.nvim_get_runtime_file("", true),
+				checkThirdParty = false,
+			},
+			diagnostics = {
+				globals = { "vim" },
 			},
 		},
 	},
@@ -13,45 +18,39 @@ vim.lsp.config["luals"] = {
 vim.lsp.enable("luals")
 
 vim.lsp.config("dockerls", {
-  cmd = { "docker-langserver", "--stdio" },
-  filetypes = { "dockerfile" },
-  root_markers = { "Dockerfile", ".git" },
+	cmd = { "docker-langserver", "--stdio" },
+	filetypes = { "dockerfile" },
+	root_markers = { "Dockerfile", ".git" },
 })
 vim.lsp.enable("dockerls")
 
 vim.lsp.config("terraformls", {
-  cmd = { "terraform-ls", "serve" },
-  filetypes = { "tf", "terraform", "terraform-vars" },
-  root_markers = { ".terraform", ".git" },
-  init_options = {
-    experimentalFeatures = {
-      validateOnSave = true,
-      prefillRequiredFields = true,
-    },
-    validation = {
-      enableEnhancedValidation = true,
-    },
-  },
+	cmd = { "terraform-ls", "serve" },
+	filetypes = { "terraform", "terraform-vars", "hcl" },
+	root_markers = { ".terraform", ".git", "main.tf", "terragrunt.hcl" },
+	init_options = {
+		experimentalFeatures = {
+			validateOnSave = true,
+			prefillRequiredFields = true,
+		},
+		validation = {
+			enableEnhancedValidation = true,
+		},
+	},
 })
 vim.lsp.enable("terraformls")
 
 vim.lsp.config["html"] = {
-  cmd = { "vscode-html-language-server", "--stdio" },
+	cmd = { "vscode-html-language-server", "--stdio" },
 	filetypes = { "html" },
 }
 vim.lsp.enable("html")
 
 vim.lsp.config["cssls"] = {
-  cmd = { "vscode-css-language-server", "--stdio" },
+	cmd = { "vscode-css-language-server", "--stdio" },
 	filetypes = { "css", "scss", "less" },
 }
 vim.lsp.enable("cssls")
-
-vim.lsp.config["clangd"] = {
-	cmd = { "clangd" },
-	filetypes = { "c", "cpp" },
-}
-vim.lsp.enable("clangd")
 
 vim.lsp.config["gopls"] = {
 	cmd = { "gopls" },
@@ -123,7 +122,7 @@ vim.lsp.config["roslyn"] = {
 		"--stdio",
 	},
 	filetypes = { "cs", "razor" },
-	root_markers = { "*.sln", "*.csproj", ".git" },
+	root_markers = { ".git" },
 	settings = {
 		["csharp|inlay_hints"] = {
 			csharp_enable_inlay_hints_for_implicit_object_creation = true,
@@ -136,22 +135,6 @@ vim.lsp.config["roslyn"] = {
 }
 vim.lsp.enable("roslyn")
 
-vim.lsp.config["rust_analyzer"] = {
-	cmd = { "rust-analyzer" },
-	filetypes = { "rust" },
-  settings = {
-    ["rust-analyzer"] = {
-      check = {
-        command = "clippy",
-      },
-      procMacro = {
-        enable = true,
-      },
-    },
-  },
-}
-vim.lsp.enable("rust_analyzer")
-
 vim.lsp.config["yamlls"] = {
 	cmd = { "yaml-language-server", "--stdio" },
 	filetypes = { "yaml", "yaml.docker-compose", "yaml.gitlab", "yaml.helm-values" },
@@ -162,39 +145,32 @@ vim.lsp.config["yamlls"] = {
 				enabled = false,
 			},
 		},
-    yaml = {
-      format = {
-        enable = true,
-      },
-      schemaStore = {
-        enable = true,
-        url = "https://www.schemastore.org/api/json/catalog.json",
-      },
-      schemas = {
-        ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
-        ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.32.1-standalone-strict/all.json"] = "/*.k8s.yaml",
-      },
-    },
+		yaml = {
+			format = {
+				enable = true,
+			},
+			schemaStore = {
+				enable = true,
+				url = "https://www.schemastore.org/api/json/catalog.json",
+			},
+			schemas = {
+				["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+				["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.32.1-standalone-strict/all.json"] = "/*.k8s.yaml",
+			},
+		},
 	},
 }
 vim.lsp.enable("yamlls")
 
-vim.lsp.config["elixir_ls"] = {
-	cmd = { "elixir-ls" },
-	filetypes = { "elixir", "eelixir", "heex", "surface" },
-	root_markers = { "mix.exs", ".git" },
-}
-vim.lsp.enable("elixir_ls")
-
 vim.lsp.config["bashls"] = {
 	cmd = { "bash-language-server", "start" },
-	filetypes = { "bash", "csh", "ksh", "sh", "zsh" },
+	filetypes = { "sh", "bash", "zsh" },
 	root_markers = { ".git" },
 }
 vim.lsp.enable("bashls")
 
 vim.lsp.config["tailwindcss"] = {
-  cmd = { "tailwindcss-language-server", "--stdio" },
+	cmd = { "tailwindcss-language-server", "--stdio" },
 	filetypes = {
 		"css",
 		"scss",
@@ -225,12 +201,6 @@ vim.lsp.config["tailwindcss"] = {
 	},
 }
 vim.lsp.enable("tailwindcss")
-
-vim.lsp.config["prismals"] = {
-	cmd = { "prisma-language-server" },
-	filetypes = { "prisma" },
-}
-vim.lsp.enable("prismals")
 
 vim.lsp.config["tsserver"] = {
 	cmd = { "typescript-language-server", "--stdio" },
@@ -265,27 +235,43 @@ vim.lsp.config["tsserver"] = {
 }
 vim.lsp.enable("tsserver")
 
+local hostname = vim.fn.hostname()
+local username = ({
+	desktop = "redyf",
+	selene = "selene",
+})[hostname] or vim.env.USER
+local flake_path = string.format("/home/%s/opensource/nixdots", username)
+
 vim.lsp.config["nixd"] = {
 	cmd = { "nixd" },
 	filetypes = { "nix" },
+	root_markers = { "flake.nix", "flake.lock", ".git" },
 	settings = {
 		nixd = {
 			autowatch = true,
 			nixpkgs = {
-				expr = 'import (builtins.getFlake "/home/redyf/opensource/nixdots").inputs.nixpkgs { }',
+				expr = string.format('import (builtins.getFlake "%s").inputs.nixpkgs.outPath { }', flake_path),
 			},
 			formatting = {
 				command = { "nixfmt" },
 			},
 			options = {
 				nixos = {
-					expr = '(builtins.getFlake "/home/redyf/opensource/nixdots/").nixosConfigurations.nixos.options',
+					expr = string.format(
+						'(builtins.getFlake "%s").nixosConfigurations.%s.options',
+						flake_path,
+						hostname
+					),
 				},
 				home_manager = {
-					expr = '(builtins.getFlake "/home/redyf/opensource/nixdots").homeConfigurations."redyf".options',
+					expr = string.format(
+						'(builtins.getFlake "%s").homeConfigurations."%s".options',
+						flake_path,
+						username
+					),
 				},
 				flake_parts = {
-					expr = '(builtins.getFlake "/home/redyf/opensource/nixdots").debug.options',
+					expr = string.format('(builtins.getFlake "%s").debug.options', flake_path),
 				},
 			},
 		},
@@ -294,71 +280,55 @@ vim.lsp.config["nixd"] = {
 vim.lsp.enable("nixd")
 
 vim.api.nvim_create_autocmd("LspAttach", {
-	-- group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+	group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
 	callback = function(args)
 		local client = vim.lsp.get_client_by_id(args.data.client_id)
-
-		-- Disable lsp native autocomplete, as we are using cmp
-		if client:supports_method("textDocument/completion") then
-			vim.lsp.completion.enable(false, client.id, args.buf) -- Disables it explicitly
+		if not client then
+			return
 		end
 
-		-- Inlay hints config
-		if client.supports_method("textDocument/inlayHint") then
-			vim.lsp.inlay_hint.enable(false)
+		if client:supports_method("textDocument/inlayHint") then
+			vim.lsp.inlay_hint.enable(false, { bufnr = args.buf })
 		end
-
-		-- Don't define omnifunc, let cmp handle it
-		-- vim.bo[args.buf].omnifunc = "v:lua.vim.lsp.omnifunc" -- Removido
 
 		local opts = { buffer = args.buf }
+
 		vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 		vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
 		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 		vim.keymap.set("n", "gI", vim.lsp.buf.implementation, opts)
 		vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, opts)
-		vim.keymap.set("n", "<S-k>", vim.lsp.buf.hover, opts)
-		vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+		vim.keymap.set("n", "<S-k>", function()
+			vim.lsp.buf.hover({ border = "rounded" })
+		end, opts)
+		vim.keymap.set("n", "<C-k>", function()
+			vim.lsp.buf.signature_help({ border = "rounded" })
+		end, opts)
 		vim.keymap.set("n", "<space>cw", vim.lsp.buf.workspace_symbol, opts)
 		vim.keymap.set("n", "<space>cr", vim.lsp.buf.rename, opts)
 		vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
+
 		vim.keymap.set("n", "<space>cf", function()
 			vim.lsp.buf.format({ async = true })
 		end, opts)
+
 		vim.keymap.set("n", "<space>cd", vim.diagnostic.open_float, opts)
-		vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-		vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+		vim.keymap.set("n", "[d", function()
+			vim.diagnostic.jump({ count = -1 })
+		end, opts)
+		vim.keymap.set("n", "]d", function()
+			vim.diagnostic.jump({ count = -1 })
+		end, opts)
 	end,
 })
-
-vim.lsp.handlers["language/status"] = function() end
 
 vim.diagnostic.config({
-  float = { border = "rounded" },
-  virtual_lines = false,
-  virtual_text = {
-    prefix = "●",
-  },
-  signs = true,
-  underline = true,
-  update_in_insert = false,
-})
-
--- Função para restart do LSP específico
-local function restart_basedpyright()
-	local clients = vim.lsp.get_clients({ name = "basedpyright" })
-	for _, client in pairs(clients) do
-		client:stop()
-	end
-
-	vim.defer_fn(function()
-		vim.lsp.enable("basedpyright")
-	end, 1000)
-end
-
-vim.api.nvim_create_autocmd("BufNewFile", {
-	pattern = "*.py",
-	callback = function()
-		vim.defer_fn(restart_basedpyright, 500)
-	end,
+	float = { border = "rounded" },
+	virtual_lines = false,
+	virtual_text = {
+		prefix = "●",
+	},
+	signs = true,
+	underline = true,
+	update_in_insert = false,
 })
