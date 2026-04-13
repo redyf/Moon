@@ -4,10 +4,10 @@ local function getRandomObject(array)
 end
 
 local LOGOS = {
-	-- { filename = "champloo.txt", height = 18, width = 61, animate = true },
-	-- { filename = "thousand_sunny.txt", height = 33, width = 68, animate = false },
-	-- { filename = "ed.txt", height = 28, width = 73, animate = true },
-	{ filename = "ed2.txt", height = 28, width = 73, animate = true },
+	-- { filename = "../utils/logos/champloo.txt", height = 18, width = 61, animate = true },
+	-- { filename = "../utils/logos/thousand_sunny.txt", height = 33, width = 68, animate = false },
+	-- { filename = "../utils/logos/ed.txt", height = 28, width = 73, animate = true },
+	{ filename = "../utils/logos/ed2.txt", height = 28, width = 73, animate = true },
 }
 
 local DIRPATH = "~/.config/nvim/lua/plugins/"
