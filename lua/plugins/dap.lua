@@ -3,6 +3,7 @@ return {
 	{
 		"mfussenegger/nvim-dap",
 		event = "VeryLazy",
+		enable = false,
 		dependencies = {
 			{ "leoluz/nvim-dap-go", ft = { "go" } },
 			{ "rcarriga/nvim-dap-ui" },
