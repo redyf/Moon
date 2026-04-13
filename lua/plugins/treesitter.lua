@@ -4,22 +4,48 @@ return {
 		branch = "main",
 		build = ":TSUpdate",
 		lazy = false,
-		config = function()
-			require("nvim-treesitter").setup({
-				auto_install = true,
-			})
+
+		init = function()
+			local ensure_installed = {
+				"lua",
+				"vim",
+				"vimdoc",
+				"bash",
+				"sh",
+				"python",
+				"go",
+				"javascript",
+				"typescript",
+				"nix",
+				"yaml",
+				"json",
+				"hcl",
+				"dockerfile",
+				"toml",
+				"ini",
+				"regex",
+				"gitignore",
+				"gitcommit",
+				"gitattributes",
+			}
+
+			pcall(function()
+				require("nvim-treesitter").install(ensure_installed)
+			end)
+
 			vim.api.nvim_create_autocmd("FileType", {
 				callback = function(args)
 					local bufnr = args.buf
 					local ft = vim.bo[bufnr].filetype
+
 					if ft == "" then
 						return
 					end
-					local lang = vim.treesitter.language.get_lang(ft) or ft
-					if pcall(vim.treesitter.start, bufnr, lang) then
-						vim.wo.foldmethod = "expr"
-						vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-					end
+
+					pcall(vim.treesitter.start, bufnr, ft)
+
+					vim.opt_local.foldmethod = "expr"
+					vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 				end,
 			})
 		end,
