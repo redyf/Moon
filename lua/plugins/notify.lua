@@ -4,66 +4,52 @@ return {
 		enabled = true,
 		event = "VeryLazy",
 		config = function()
-			require("notify").setup({
+			local notify = require("notify")
+
+			notify.setup({
 				background_colour = "#000000",
 				fps = 60,
 				render = "default",
 				timeout = 500,
-				topDown = true,
+				top_down = true,
 			})
-			local notify = require("notify")
 
 			local function show_notification(message, level)
 				notify(message, level, { title = "conform.nvim" })
 			end
 
 			function ToggleLineNumber()
-				if vim.wo.number then
-					vim.wo.number = false
-					show_notification("Line numbers disabled", "info")
-				else
-					vim.wo.number = true
-					vim.wo.relativenumber = false
-					show_notification("Line numbers enabled", "info")
-				end
+				vim.wo.number = not vim.wo.number
+				show_notification(vim.wo.number and "Line numbers enabled" or "Line numbers disabled", "info")
 			end
 
 			function ToggleRelativeLineNumber()
-				if vim.wo.relativenumber then
-					vim.wo.relativenumber = false
-					show_notification("Relative line numbers disabled", "info")
-				else
-					vim.wo.relativenumber = true
-					vim.wo.number = false
-					show_notification("Relative line numbers enabled", "info")
-				end
+				vim.wo.relativenumber = not vim.wo.relativenumber
+				show_notification(
+					vim.wo.relativenumber and "Relative line numbers enabled" or "Relative line numbers disabled",
+					"info"
+				)
 			end
 
 			function ToggleWrap()
-				if vim.wo.wrap then
-					vim.wo.wrap = false
-					show_notification("Wrap disabled", "info")
-				else
-					vim.wo.wrap = true
-					vim.wo.number = false
-					show_notification("Wrap enabled", "info")
-				end
+				vim.wo.wrap = not vim.wo.wrap
+				show_notification(vim.wo.wrap and "Wrap enabled" or "Wrap disabled", "info")
 			end
 
 			function ToggleInlayHints()
-				local is_enabled = vim.lsp.inlay_hint.is_enabled()
-				vim.lsp.inlay_hint.enable(not is_enabled)
-				if is_enabled then
-					show_notification("Inlay Hints disabled", "info")
-				else
-					show_notification("Inlay Hints enabled", "info")
-				end
+				local bufnr = 0
+				local is_enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr })
+
+				vim.lsp.inlay_hint.enable(not is_enabled, { bufnr = bufnr })
+
+				show_notification(not is_enabled and "Inlay Hints enabled" or "Inlay Hints disabled", "info")
 			end
 
-			vim.api.nvim_create_autocmd("BufReadPost", {
+			vim.api.nvim_create_autocmd("BufEnter", {
 				callback = function()
 					local current_dir = vim.fn.getcwd()
 					local is_nixpkgs = current_dir:match("nixpkgs$")
+
 					if is_nixpkgs then
 						vim.b.disable_autoformat = true
 						show_notification("Autoformat-on-save disabled for nixpkgs", "info")
@@ -75,29 +61,22 @@ return {
 
 			vim.api.nvim_create_user_command("FormatToggle", function(args)
 				local is_global = not args.bang
-				local current_dir = vim.fn.getcwd()
-				local is_nixpkgs = current_dir:match("nixpkgs$")
 
 				if is_global then
 					vim.g.disable_autoformat = not vim.g.disable_autoformat
+
 					if vim.g.disable_autoformat then
-						show_notification("Autoformat-on-save disabled globally", "info")
+						show_notification("Autoformat disabled globally", "info")
 					else
-						show_notification("Autoformat-on-save enabled globally", "info")
-					end
-				elseif is_nixpkgs then
-					vim.b.disable_autoformat = not vim.b.disable_autoformat
-					if vim.b.disable_autoformat then
-						show_notification("Autoformat-on-save disabled for nixpkgs", "info")
-					else
-						show_notification("Autoformat-on-save enabled for nixpkgs", "info")
+						show_notification("Autoformat enabled globally", "info")
 					end
 				else
 					vim.b.disable_autoformat = not vim.b.disable_autoformat
+
 					if vim.b.disable_autoformat then
-						show_notification("Autoformat-on-save disabled for this buffer", "info")
+						show_notification("Autoformat disabled for buffer", "info")
 					else
-						show_notification("Autoformat-on-save enabled for this buffer", "info")
+						show_notification("Autoformat enabled for buffer", "info")
 					end
 				end
 			end, {
@@ -107,24 +86,17 @@ return {
 
 			local filtered_message = { "No information available" }
 
-			-- Override notify function to filter out messages
-			---@diagnostic disable-next-line: duplicate-set-field
 			vim.notify = function(message, level, opts)
-				local merged_opts = vim.tbl_extend("force", {
-					on_open = function(win)
-						local buf = vim.api.nvim_win_get_buf(win)
-						vim.api.nvim_buf_set_option(buf, "filetype", "markdown")
-					end,
-				}, opts or {})
-
 				for _, msg in ipairs(filtered_message) do
 					if message == msg then
 						return
 					end
 				end
-				return notify(message, level, merged_opts)
+
+				return notify(message, level, opts)
 			end
 		end,
+
 		keys = {
 			{
 				"<leader>un",

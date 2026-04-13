@@ -5,10 +5,16 @@ return {
 		opts = {
 			notify_on_error = true,
 			lsp_fallback = true,
-			format_on_save = {
-				timeout_ms = 500,
-				lsp_format = "fallback",
-			},
+			format_on_save = function(bufnr)
+				if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+					return
+				end
+
+				return {
+					timeout_ms = 500,
+					lsp_format = "fallback",
+				}
+			end,
 			formatters_by_ft = {
 				["html"] = { "prettier", "prettierd", stop_after_first = true },
 				["css"] = { "prettier", "prettierd", stop_after_first = true },
@@ -55,7 +61,7 @@ return {
 				require("conform").format()
 			end, { silent = true, desc = "Format Buffer" })
 			vim.keymap.set("v", "<leader>cF", function()
-				vim.lsp.buf.format()
+				require("conform").format({ async = true })
 			end, { silent = true, desc = "Format Lines" })
 		end,
 	},
